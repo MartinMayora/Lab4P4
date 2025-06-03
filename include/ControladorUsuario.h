@@ -1,0 +1,39 @@
+#ifndef CONTROLADORUSUARIO_H
+#define CONTROLADORUSUARIO_H
+
+#include "IAltaUsuario.h"
+#include "Propietario.h"
+#include "Inmobiliaria.h"
+
+class ControladorUsuario : public IAltaUsuario {
+private:
+    static ControladorUsuario* instancia;
+
+    // Referencias temporales para dar de alta los inmuebles y representar propietarios
+    Propietario* propietarioRecordado;
+    Inmobiliaria* inmobiliariaRecordada;
+
+    ControladorUsuario();
+
+public:
+    static ControladorUsuario* getInstance();
+
+    bool altaCliente(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string apellido, std::string documento);
+
+    bool altaPropietario(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string cuentaBancaria, std::string telefono) ;
+
+    bool altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string direccion, std::string url,std::string telefono);
+    
+    void altaCasa(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, bool esPH, TipoTecho techo);
+
+    void altaApartamento(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, int piso, bool tieneAscensor,float gastosComunes);
+
+    std::set<DTUsuario> listarPropietarios();
+
+    void representarPropietario(std::string nicknamePropietario);
+
+    void finalizarAltaUsuario();
+
+};
+
+#endif
