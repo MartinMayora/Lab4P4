@@ -9,6 +9,11 @@
 #include <string>
 #include <map>
 
+class Usuario;
+class Cliente;
+class Propietario;
+class Inmobiliaria;
+
 class ManejadorUsuario {
 private:
     map<string, Usuario*> usuarios;
@@ -25,11 +30,18 @@ public:
     static ManejadorUsuario* getInstance();
     static void deleteInstance();
 
-    bool crearCliente(std::string nickname, std::string contrasena, std::string nombre,std::string email, std::string apellido, std::string documento);
+    bool crearCliente(std::string nickname, std::string contrasena, std::string nombre,std::string email, 
+        std::string apellido, std::string documento);
 
-    bool crearPropietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
+    bool crearPropietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
+        std::string cuentaBancaria, std::string telefono);
 
-    bool crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url,std::string telefono);
+    bool crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
+        std::string direccion, std::string url,std::string telefono);
+    
+    Propietario* getPropietario(std::string nickname);
+
+
 };
 
 #endif

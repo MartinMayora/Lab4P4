@@ -54,3 +54,10 @@ bool ManejadorUsuario::crearInmobiliaria(std::string nickname, std::string contr
         }
     }
 
+Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
+    auto it = propietarios.find(nickname);  
+    if (it != propietarios.end())
+        return it->second;
+    else
+        return NULL;
+}

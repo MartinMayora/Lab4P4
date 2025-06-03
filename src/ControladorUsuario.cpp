@@ -18,14 +18,30 @@ ControladorUsuario* ControladorUsuario::getInstance() {
     return instancia;
 }
 
-bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string apellido, std::string documento) {
+bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena,std::string nombre,
+     std::string email,std::string apellido, std::string documento) {
     return ManejadorUsuario::getInstance()->crearCliente(nickname, contrasena, nombre, email, apellido, documento);
 }
 
-bool ControladorUsuario::altaPropietario(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string cuentaBancaria, std::string telefono) {
-    return ManejadorUsuario::getInstance()->crearPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+bool ControladorUsuario::altaPropietario(std::string nickname, std::string contrasena,std::string nombre,
+     std::string email,std::string cuentaBancaria, std::string telefono) {
+        ManejadorUsuario* mu = ManejadorUsuario::getInstance();
+        bool alta= mu->crearPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        if (alta){
+            propietarioRecordado=mu->getPropietario(nickname);
+        }
+    return alta;
 }
 
-bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string direccion, std::string url,std::string telefono){
+bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre,
+     std::string email,std::string direccion, std::string url,std::string telefono){
     return ManejadorUsuario::getInstance()->crearPropietario(nickname, contrasena, nombre, email, direccion, url, telefono);
+}
+
+void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int superficie,
+                                  int anioConstruccion, bool esPH, TipoTecho techo) {
+    if (propietarioRecordado != NULL) {
+        ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
+            esPH, techo,propietarioRecordado);
+    }
 }
