@@ -21,3 +21,11 @@ ControladorUsuario* ControladorUsuario::getInstance() {
 bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string apellido, std::string documento) {
     return ManejadorUsuario::getInstance()->crearCliente(nickname, contrasena, nombre, email, apellido, documento);
 }
+
+bool ControladorUsuario::altaPropietario(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string cuentaBancaria, std::string telefono) {
+    return ManejadorUsuario::getInstance()->crearPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+}
+
+bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string direccion, std::string url,std::string telefono){
+    return ManejadorUsuario::getInstance()->crearPropietario(nickname, contrasena, nombre, email, direccion, url, telefono);
+}
