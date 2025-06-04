@@ -61,3 +61,7 @@ Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
     else
         return NULL;
 }
+
+std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
+
+}

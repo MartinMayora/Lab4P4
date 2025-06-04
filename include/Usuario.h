@@ -12,6 +12,14 @@ class Usuario {
     public:
         Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email);
         virtual ~Usuario();
+        //getters
+        std::string getNickname();
+        std::string getContrasena();
+        std::string getNombre();
+        std::string getEmail();
+
+
+
 };
 
 #endif
