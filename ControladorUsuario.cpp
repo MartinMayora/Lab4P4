@@ -1,9 +1,10 @@
-#include "../include/...ControladorUsuario.h"
-#include "../include/...ManejadorUsuario.h"
-#include "../include/...Cliente.h"
-#include "../include/...Propietario.h"
-#include "../include/...Inmobiliaria.h"
-#include "../include/...DTUsuario.h"
+
+#include "../include/ControladorUsuario.h"
+#include "../include/ManejadorUsuario.h"
+#include "../include/Cliente.h"
+#include "../include/Propietario.h"
+#include "../include/Inmobiliaria.h"
+#include "../include/DTUsuario.h"
 
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
