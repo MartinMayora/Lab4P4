@@ -41,6 +41,7 @@ bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string cont
 void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int superficie,
                                   int anioConstruccion, bool esPH, TipoTecho techo) {
     if (propietarioRecordado != NULL) {
+        //preguntar si puedo poner como parametro al propietarioRecordado
         ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
             esPH, techo,propietarioRecordado);
     }

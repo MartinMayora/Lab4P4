@@ -21,7 +21,6 @@ void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int s
     //int codigo = codInc++;
     Casa* casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     //aca tengo q crear en propietario un set de inmuebles y hacer q la casa esa se agregue a ese set 
-    casa->setDuenio(propietario);
-    inmuebles[codigo] = casa;
+    
 }
 
