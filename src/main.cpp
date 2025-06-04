@@ -1,8 +1,10 @@
 #include "../include/Menu.h"
 #include <iostream>
 
-int main() {
-    while (true) {
+int main()
+{
+    while (true)
+    {
         mostrarMenu();
         int opcion = obtenerOpcion();
         ejecutarOpcion(opcion);
@@ -10,3 +12,5 @@ int main() {
     }
     return 0;
 }
+
+// prueba para cata
