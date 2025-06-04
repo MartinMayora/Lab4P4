@@ -2,6 +2,7 @@
 #include "../include/Cliente.h"
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
+#include "../include/DTUsuario.h"
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
@@ -63,5 +64,15 @@ Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
 }
 
 std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
-
+    std::set<DTUsuario> resu;
+    //recorremos todo el mapa de propietarios y para cada uno creamos un DTUsuario y agregamos al resultado
+    for (std::map<std::string, Propietario*>::iterator i = propietarios.begin(); i!=propietarios.end(); i++) {
+        Propietario* propietario = i->second;
+        std::string nickname= propietario->getNickname();
+        std::string nombre= propietario->getNombre();
+         //creamos el DTUsuario
+        DTUsuario dtUsuario = DTUsuario(nickname,nombre);
+        resu.insert(dtUsuario);
+    }
+    return resu;
 }

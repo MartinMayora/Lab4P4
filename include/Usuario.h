@@ -17,9 +17,6 @@ class Usuario {
         std::string getContrasena();
         std::string getNombre();
         std::string getEmail();
-
-
-
 };
 
 #endif

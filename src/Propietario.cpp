@@ -16,4 +16,15 @@ void Propietario::agregarInmueble(Inmueble* inmueble) {
     inmuebles.insert(inmueble);
 }
 
+//Getters
+std::string Propietario::getNickname() {
+    return getNickname();
+}
+
+std::string Propietario::getNombre(){
+    return getNombre();
+}
+
+
+
 
