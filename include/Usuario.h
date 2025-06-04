@@ -10,6 +10,7 @@ class Usuario {
         std::string email;
 
     public:
+        Usuario();
         Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email);
         virtual ~Usuario();
 };
