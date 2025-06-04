@@ -5,9 +5,6 @@
 
 ManejadorInmueble* ManejadorInmueble::instancia = nullptr;
 
-//ManejadorInmueble::ManejadorInmueble() {
-  //  codInc = 1;
-//}
 
 ManejadorInmueble* ManejadorInmueble::getInstance() {
     if (instancia == NULL)
@@ -15,12 +12,20 @@ ManejadorInmueble* ManejadorInmueble::getInstance() {
     return instancia;
 }
 
-void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, bool esPH, TipoTecho techo,
-                                  Propietario* propietario) {
-    //int codigo = codInc++;
+void ManejadorInmueble::crearCasa(int codigo,std::string direccion, int numeroPuerta, int superficie,
+                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario* propietario) {
     Casa* casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
-    //aca tengo q crear en propietario un set de inmuebles y hacer q la casa esa se agregue a ese set 
-    
+    //agregamos casa al set de inmuebles para propietario
+    propietario->agregarInmueble(casa);
+    //agregamos casa al map de inmuebles del manejador
+    inmuebles[codigo]=casa;
 }
 
+void ManejadorInmueble::crearApartamento(int codigo,std::string direccion, int numeroPuerta, int superficie,
+                                  int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes, Propietario* propietario) {
+    Apartamento* apto = new Apartamento(codigo, direccion, numeroPuerta, superficie, anioConstruccion,piso, tieneAscensor,gastosComunes);
+    //agregamos casa al set de inmuebles para propietario
+    propietario->agregarInmueble(apto);
+    //agregamos casa al map de inmuebles del manejador
+    inmuebles[codigo]=apto;
+}
