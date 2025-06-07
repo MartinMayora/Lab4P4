@@ -16,7 +16,14 @@ class Inmueble {
         ~Inmueble();
         void agregarAdministraPropiedad(Propietario* p);
         std::set<Propietario*> getAdministraPropiedad();
-        
+
+        //getters
+        int getCodigo();
+        std::string getDireccion();
+        int getNumeroPuerta();
+        int getSuperficie();
+        int getAnoConstruccion();
+
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool esAdministrado(Inmobiliaria* i);
 };
