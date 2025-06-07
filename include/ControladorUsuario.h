@@ -4,6 +4,9 @@
 #include "IAltaUsuario.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
+#include <string>
+#include <map>
+
 
 class ControladorUsuario : public IAltaUsuario {
 private:
@@ -33,6 +36,10 @@ public:
     void representarPropietario(std::string nicknamePropietario);
 
     void finalizarAltaUsuario();
+
+    std::Set<DTUsuario> listarInmobiliarias();
+
+    void altaAdministraPropiedad(nicknameInmobiliaria: String, codigoInmueble: int);
 
 };
 

@@ -40,7 +40,7 @@ public:
         std::string direccion, std::string url,std::string telefono);
     
     Propietario* getPropietario(std::string nickname);
-
+    map<string, Inmobiliaria*> getInmobiliarias();
 
 };
 
