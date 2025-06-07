@@ -9,3 +9,18 @@ Inmobiliaria::Inmobiliaria(std::string nickname, std::string contrasena, std::st
 //Destructor
 Inmobiliaria::~Inmobiliaria(){
 }
+
+DTUsuario Inmobiliaria::getDTUsuario(){
+    return DTUsuario(this->getNickname, this->getNombre);
+}
+
+std::Set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
+    std::Set<DTInmuebleListado> listInmueblesPropietario;
+    std::set<Propietario*>::iterator it;
+    for(it = propietarios.begin(); it != propietarios.end; ++it){
+        Propietario* p = *it;
+        std::Set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
+        listInmueblesPropietario.insert(aux.begin(), aux.end());
+    }
+    return listInmueblesPropietario;
+}

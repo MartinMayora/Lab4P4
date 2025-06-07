@@ -16,8 +16,12 @@ class Propietario : public Usuario {
         Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
         ~Propietario();
         void agregarInmueble(Inmueble* inmueble);
+
         std::string getNickname();
         std::string getNombre();
+
+        // para func listarInmueblesNoAdministradosInmobiliaria
+        std::Set<DTInmuebleListado> getInmueblesNoAdmin(Inmobiliaria* i);
 
 };
 

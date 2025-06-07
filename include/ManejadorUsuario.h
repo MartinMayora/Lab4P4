@@ -40,7 +40,8 @@ public:
         std::string direccion, std::string url,std::string telefono);
     
     Propietario* getPropietario(std::string nickname);
-    map<string, Inmobiliaria*> getInmobiliarias();
+    map<string, Inmobiliaria*>& getInmobiliarias();
+    Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
 
 };
 

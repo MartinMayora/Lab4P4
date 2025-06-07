@@ -59,3 +59,15 @@ void ControladorUsuario::altaApartamento(int codigo, std::string direccion, int 
 std::set<DTUsuario> ControladorUsuario::listarPropietarios() {
     return ManejadorUsuario::getInstance()->listarPropietarios();
 }
+
+std::Set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
+    std::set<DTUsuario> res;
+    ManejadorUsuario* m = ManejadorUsuario::getInstance();
+    map<string, Inmobiliaria*>& li = m->getInmobiliarias; 
+    map<string, Inmobiliaria*>::iterator iter;
+    for(iter = li.begin(); it != li.end(); ++it){
+        Inmobiliaria* i = iter->second();
+        res.insert(i->getDTUsuario());
+    }
+    return res;
+}

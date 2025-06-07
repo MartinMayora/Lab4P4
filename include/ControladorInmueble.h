@@ -1,11 +1,13 @@
 #ifndef CONTROLADORINMUEBLE_H
 #define CONTROLADORINMUEBLE_H
 
-#include "Propietario.h"
+
 #include "Inmobiliaria.h"
 #include "Inmueble.h"
 #include "Publicacion.h"
-
+#include <string>
+#include <map>
+#include <set>
 
 class ControladorUsuario : public IAltaUsuario {
 private:

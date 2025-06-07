@@ -76,3 +76,15 @@ std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
     }
     return resu;
 }
+
+map<string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
+    return this->inmobiliarias;
+}
+
+Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria){
+    Inmobiliaria* iter = this->inmobiliarias.find(nicknameInmobiliaria);  
+    if (iter != this->inmobiliarias.end())
+        return iter->second;
+    else
+        return NULL;
+}

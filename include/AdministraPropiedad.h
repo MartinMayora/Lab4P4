@@ -9,6 +9,9 @@ class AdministraPropiedad {
     public:
         AdministraPropiedad(DTFecha* fecha);
         ~AdministraPropiedad();
+
+        // para func listarInmueblesNoAdministradosInmobiliaria
+        bool inmobiliariaAsociada(Inmobiliaria* i);
 };
 
 #endif

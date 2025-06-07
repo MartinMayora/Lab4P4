@@ -1,17 +1,29 @@
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 #include "Usuario.h"
+#include "Propietario.h"
 #include <string>
+#include <set>
 
 class Inmobiliaria : public Usuario {
     private:
         std::string direccion;
         std::string url;
         std::string telefono;
-
+        //agregue set de propietarios
+        std::set<Propietario*> propietarios;
     public:
         Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
         ~Inmobiliaria();
+        //agregue funciones para set de propietarios agregar y get por si desp sirven
+        void agregarPropietario(Propietario* p);
+        std::set<Propietario*> getPropietarios();
+
+        DTUsuario getDTUsuario();
+        
+        // para func listarInmueblesNoAdministradosInmobiliaria
+        std::Set<DTInmuebleListado> getInmueblesNoAdminPropietario();
+
 };
 
 #endif
