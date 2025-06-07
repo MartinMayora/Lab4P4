@@ -8,9 +8,9 @@
 class AdministraPropiedad {
     private:
         DTFecha* fecha;
-        Inmobiliaria* i;
-        Inmueble* inm;
-        Publicacion* pub;
+        Inmobiliaria* inmobiliaria;
+        Inmueble* inmueble;
+        Publicacion* publicacion;
 
     public:
         AdministraPropiedad(DTFecha* fecha);
