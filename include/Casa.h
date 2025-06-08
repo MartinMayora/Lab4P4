@@ -9,7 +9,9 @@ class Casa : public Inmueble {
         TipoTecho techo;
 
     public:
-        Casa(bool esPH, TipoTecho techo);
+        //modifico el constructor q venia en los zip
+        Casa(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion,
+            bool esPH, TipoTecho techo);
         ~Casa();
 };
 
