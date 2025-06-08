@@ -39,7 +39,7 @@ public:
 
     std::Set<DTUsuario> listarInmobiliarias();
 
-    void altaAdministraPropiedad(nicknameInmobiliaria: String, codigoInmueble: int);
+    void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
 
 };
 
