@@ -25,3 +25,8 @@ std::set<DTInmuebleListado> ControladorInmueble:: listarInmueblesNoAdministrados
     listInmuebles = ci.getInmueblesNoAdminPropietario();
     return listInmuebles;
 }
+
+std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble) {
+    ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
+    return manejador->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
+}
