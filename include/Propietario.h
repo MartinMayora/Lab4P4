@@ -17,7 +17,7 @@ class Propietario : public Usuario {
 
     public:
         Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
-        ~Propietario();
+        ~Propietario() override;
         void agregarInmueble(Inmueble* inmueble);
         void agregarInmobiliaria(Inmobiliaria* i);
 
@@ -25,7 +25,7 @@ class Propietario : public Usuario {
         std::string getNombre();
 
         // para func listarInmueblesNoAdministradosInmobiliaria
-        std::Set<DTInmuebleListado> getInmueblesNoAdmin(Inmobiliaria* i);
+        std::set<DTInmuebleListado> getInmueblesNoAdmin(Inmobiliaria* i);
 
 };
 

@@ -8,9 +8,8 @@ Propietario::Propietario(std::string nickname, std::string contrasena, std::stri
 }
 
 //Destructor 
-Propietario::~Propietario(){
+Propietario::~Propietario() { }
 
-}
 
 void Propietario::agregarInmueble(Inmueble* inmueble) {
     inmuebles.insert(inmueble);
@@ -25,8 +24,8 @@ std::string Propietario::getNombre(){
     return getNombre();
 }
 
-std::Set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
-    std::Set<DTInmuebleListado> listInmueblesPropietario;
+std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
+    std::set<DTInmuebleListado> listInmueblesPropietario;
     std::set<Inmueble*>::iterator it;
     for(it = inmuebles.begin(); it != inmuebles.end(); ++it){
         Inmueble* in = *it;
