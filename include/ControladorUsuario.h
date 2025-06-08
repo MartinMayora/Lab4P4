@@ -16,6 +16,8 @@ private:
     Propietario* propietarioRecordado;
     Inmobiliaria* inmobiliariaRecordada;
 
+    DTFecha fechaActual;
+
     ControladorUsuario();
 
 public:
