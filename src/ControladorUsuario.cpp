@@ -78,5 +78,5 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     Inmobiliaria* ci = mU.getInmobiliaria(nicknameInmobiliaria);
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI.getInmueble(codigoInmueble);
-    altaAdministraPropiedad(cin, )
+    ci.altaAdministraPropiedad(cin, this.fechaActual);
 }
