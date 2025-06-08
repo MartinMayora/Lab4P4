@@ -3,6 +3,12 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Publicacion.h"
 
+AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha){
+    this->inmobiliaria = i;
+    this->inmueble = inm;
+    this->fecha = fecha;
+}
+
 DTFecha* AdministraPropiedad::getFecha(){
     return fecha;
 }
