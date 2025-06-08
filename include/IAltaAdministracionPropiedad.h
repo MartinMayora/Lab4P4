@@ -14,3 +14,5 @@ class IAltaAdministracionPropiedad {
 
     virtual std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria) = 0;
 }
+
+#endif
