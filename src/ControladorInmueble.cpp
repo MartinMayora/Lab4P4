@@ -14,7 +14,7 @@ ControladorInmueble* ControladorInmueble::instancia = NULL;
 
 ControladorInmueble* ControladorInmueble::getInstance() {
     if (instancia == NULL)
-        instancia = new ControladorUsuario();
+        instancia = new ControladorInmueble();
     return instancia;
 }
 
