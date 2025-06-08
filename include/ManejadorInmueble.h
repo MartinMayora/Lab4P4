@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 #include "TipoTecho.h"
+#include "Inmueble.h"
+
 
 class Inmueble;
 class Casa;
@@ -28,6 +30,8 @@ public:
 
     void crearApartamento(int codigo, std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
                           int piso, bool tieneAscensor, float gastosComunes,Propietario*propietario);
+    
+    Inmueble* getInmueble(int codigoInmueble);
 };
 
 #endif

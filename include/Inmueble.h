@@ -11,13 +11,13 @@ class Inmueble {
         int numeroPuerta;
         int superficie;
         int anoConstruccion;
-        std::set<AdministraPropiedad*> admProp;
+        std::set<AdministraPropiedad*> admprop;
 
     public:
         Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
         ~Inmueble();
-        void agregarAdministraPropiedad(Propietario* p);
-        std::set<Propietario*> getAdministraPropiedad();
+        
+        std::set<AdministraPropiedad*> getAdministraPropiedad();
 
         //getters
         int getCodigo();
@@ -28,6 +28,8 @@ class Inmueble {
 
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool esAdministrado(Inmobiliaria* i);
+
+        void asociarAdministracionPropiedad(AdministraPropiedad* ap);
 };
 
 #endif

@@ -1,4 +1,7 @@
 #include "../include/Inmobiliaria.h"
+#include "../include/DTUsuario.h"
+#include "../include/DTInmuebleListado.h"
+#include "../include/Propietario.h"
 
 //Constructor
 Inmobiliaria::Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
@@ -23,4 +26,10 @@ std::Set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
         listInmueblesPropietario.insert(aux.begin(), aux.end());
     }
     return listInmueblesPropietario;
+}
+
+void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual){
+    AdministraPropiedad* ap = new AdministraPropiedad(this, inmueble, fechaActual);
+    this->administra.insert(ap);
+    inmueble.asociarAdministracionPropiedad(ap);
 }

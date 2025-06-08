@@ -13,7 +13,7 @@ class AdministraPropiedad {
         Publicacion* publicacion;
 
     public:
-        AdministraPropiedad(DTFecha* fecha);
+        AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha);
         ~AdministraPropiedad();
 
         //getters
@@ -24,6 +24,7 @@ class AdministraPropiedad {
 
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool inmobiliariaAsociada(Inmobiliaria* i);
+
 };
 
 #endif

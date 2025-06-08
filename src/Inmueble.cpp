@@ -33,8 +33,8 @@ int Inmueble::getAnoConstruccion() {
     return anoConstruccion;
 }
 
-std::set<Propietario*> Inmueble::getAdministraPropiedad(){
-return admin
+std::set<AdministraPropiedad*> Inmueble::getAdministraPropiedad(){
+    return admprop;
 }
 
 bool Inmueble::esAdministrado(Inmobiliaria* i){
@@ -45,4 +45,8 @@ bool Inmueble::esAdministrado(Inmobiliaria* i){
         administra = ap.inmobiliariaAsociada(i);
     }
     return administra;
+}
+
+void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad* ap){
+    this->admprop.insert(ap);
 }

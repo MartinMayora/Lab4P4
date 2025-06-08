@@ -29,3 +29,11 @@ void ManejadorInmueble::crearApartamento(int codigo,std::string direccion, int n
     //agregamos casa al map de inmuebles del manejador
     inmuebles[codigo]=apto;
 }
+
+Inmueble* ManejadorInmueble::getInmueble(int codigoInmueble){
+    Inmueble* iter = this->inmuebles.find(codigoInmueble);  
+    if (iter != this->inmuebles.end())
+        return iter->second;
+    else
+        return NULL;
+}

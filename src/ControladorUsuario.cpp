@@ -1,5 +1,6 @@
 #include "../include/ControladorUsuario.h"
 #include "../include/ManejadorUsuario.h"
+#include "../include/ManejadorInmueble.h"
 #include "../include/Cliente.h"
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
@@ -70,4 +71,12 @@ std::Set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
         res.insert(i->getDTUsuario());
     }
     return res;
+}
+
+void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
+    ManejadorUsuario* mU = ManejadorUsuario::getInstance();
+    Inmobiliaria* ci = mU.getInmobiliaria(nicknameInmobiliaria);
+    ManejadorInmueble* mI = ManejadorInmueble::getInstance();
+    Inmueble* cin = mI.getInmueble(codigoInmueble);
+    altaAdministraPropiedad(cin, )
 }

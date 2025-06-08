@@ -2,6 +2,9 @@
 #define INMOBILIARIA_H
 #include "Usuario.h"
 #include "Propietario.h"
+#include "AdministraPropiedad.h"
+#include "DTUsuario.h"
+#include "DTInmuebleListado.h"
 #include <string>
 #include <set>
 
@@ -12,6 +15,7 @@ class Inmobiliaria : public Usuario {
         std::string telefono;
         //agregue set de propietarios
         std::set<Propietario*> propietarios;
+        std::set<AdministraPropiedad*> administra;
     public:
         Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
         ~Inmobiliaria();
@@ -23,6 +27,8 @@ class Inmobiliaria : public Usuario {
         
         // para func listarInmueblesNoAdministradosInmobiliaria
         std::Set<DTInmuebleListado> getInmueblesNoAdminPropietario();
+
+        void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
 
 };
 
