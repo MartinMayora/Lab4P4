@@ -66,7 +66,7 @@ std::set<DTUsuario> ControladorUsuario::listarPropietarios() {
     return ManejadorUsuario::getInstance()->listarPropietarios();
 }
 
-std::Set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
+std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
     map<string, Inmobiliaria*>& li = m->getInmobiliarias; 

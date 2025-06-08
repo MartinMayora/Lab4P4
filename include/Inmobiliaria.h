@@ -26,7 +26,7 @@ class Inmobiliaria : public Usuario {
         DTUsuario getDTUsuario();
         
         // para func listarInmueblesNoAdministradosInmobiliaria
-        std::Set<DTInmuebleListado> getInmueblesNoAdminPropietario();
+        std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
 
         void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
 

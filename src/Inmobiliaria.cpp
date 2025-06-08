@@ -17,8 +17,8 @@ DTUsuario Inmobiliaria::getDTUsuario(){
     return DTUsuario(this->getNickname, this->getNombre);
 }
 
-std::Set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
-    std::Set<DTInmuebleListado> listInmueblesPropietario;
+std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
+    std::set<DTInmuebleListado> listInmueblesPropietario;
     std::set<Propietario*>::iterator it;
     for(it = propietarios.begin(); it != propietarios.end; ++it){
         Propietario* p = *it;

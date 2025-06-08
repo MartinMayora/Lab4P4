@@ -18,11 +18,11 @@ private:
 public:
     static ControladorInmueble* getInstance();
 
-    std::Set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria );
+    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria );
 
     bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio);
 
-    std::Set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo,TipoInmueble tipoInmueble);
+    std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo,TipoInmueble tipoInmueble);
     
     void eliminarInmueble(int codigoInmueble);
 
