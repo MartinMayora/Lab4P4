@@ -39,4 +39,6 @@ std::Set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
 }
 
 
-
+void Propietario::agregarInmobiliaria(Inmobiliaria* i) {
+    this->inmobiliarias.insert(i);
+}

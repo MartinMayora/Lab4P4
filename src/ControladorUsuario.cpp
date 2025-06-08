@@ -36,7 +36,12 @@ bool ControladorUsuario::altaPropietario(std::string nickname, std::string contr
 
 bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre,
      std::string email,std::string direccion, std::string url,std::string telefono){
-    return ManejadorUsuario::getInstance()->crearPropietario(nickname, contrasena, nombre, email, direccion, url, telefono);
+        ManejadorUsuario* mu = ManejadorUsuario::getInstance();
+        bool alta= mu->crearInmobiliaria(nickname, contrasena, nombre, email, direccion,url, telefono);
+        if (alta){
+            inmobiliariaRecordada=mu->getInmobiliaria(nickname);
+        }
+    return alta;
 }
 
 void ControladorUsuario::altaCasa(int codigo, std::string direccion, int numeroPuerta, int superficie,
@@ -79,4 +84,10 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI.getInmueble(codigoInmueble);
     ci.altaAdministraPropiedad(cin, this.fechaActual);
+}
+
+void ControladorUsuario::representarPropietario(std::string nicknamePropietario){
+    if (inmobiliariaRecordada!=NULL){
+            ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
+    }
 }

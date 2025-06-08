@@ -61,6 +61,16 @@ Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
         return it->second;
     else
         return NULL;
+        
+}
+
+Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nickname) {
+    auto it = inmobiliarias.find(nickname);  
+    if (it != inmobiliarias.end())
+        return it->second;
+    else
+        return NULL;
+        
 }
 
 std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
@@ -87,4 +97,11 @@ Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria
         return iter->second;
     else
         return NULL;
+}
+
+void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada) {
+    auto p = propietarios.find(nicknamePropietario);
+    if (p != propietarios.end()) {
+        Propietario* propietario = it->second;
+        propietario->agregarInmobiliaria(inmobiliariaRecordada);
 }

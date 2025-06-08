@@ -11,11 +11,15 @@ class Propietario : public Usuario {
         std::string telefono;
         //agregue un set a lo q ya venia 
         std::set<Inmueble*> inmuebles;
+        //son las inmobiliarias que representan al propietario 
+        std::set<Inmobiliaria*> inmobiliarias;
+
 
     public:
         Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
         ~Propietario();
         void agregarInmueble(Inmueble* inmueble);
+        void agregarInmobiliaria(Inmobiliaria* i);
 
         std::string getNickname();
         std::string getNombre();
