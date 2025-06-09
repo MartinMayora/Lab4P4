@@ -43,7 +43,7 @@ public:
     void representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada);
 
     Propietario* getPropietario(std::string nickname);
-    map<string, Inmobiliaria*>* getInmobiliarias();
+    std::map<std::string, Inmobiliaria*>* getInmobiliarias();
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
 
 };
