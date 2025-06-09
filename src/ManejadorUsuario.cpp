@@ -105,3 +105,23 @@ void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, I
         Propietario* propietario = it->second;
         propietario->agregarInmobiliaria(inmobiliariaRecordada);
 }
+}
+
+bool ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria){
+    if (this->inmobiliarias.find(nicknameBuscado) != this->inmobiliarias.end()) {
+        return true;
+    } 
+    return false;
+}
+
+bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio){
+    if(!existeInmobiliaria(nicknameInmobiliaria)){
+        return false;
+    }
+    std::set<Inmobiliaria*> inm;
+    
+    for(inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.begin(); ++inm){
+        Inmobiliaria* inmobiliariaAux = *inm;
+        inmobiliariaAux.publicarInmueble();
+    }
+}

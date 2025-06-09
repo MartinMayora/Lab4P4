@@ -30,3 +30,9 @@ std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion t
     ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
     return manejador->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
 }
+
+bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio){
+    ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
+    return  manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto);
+
+}

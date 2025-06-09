@@ -23,6 +23,9 @@ class Inmobiliaria : public Usuario {
         void agregarPropietario(Propietario* p);
         std::set<Propietario*> getPropietarios();
 
+        //funcion utilizada en altaPublicacion
+        void publicarInmueble();
+
         DTUsuario getDTUsuario();
         
         // para func listarInmueblesNoAdministradosInmobiliaria

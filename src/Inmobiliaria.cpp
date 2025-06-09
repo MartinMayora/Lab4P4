@@ -33,3 +33,11 @@ void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaAct
     this->administra.insert(ap);
     inmueble.asociarAdministracionPropiedad(ap);
 }
+
+void Inmobiliaria::publicarInmueble(){
+    std::set<AdministraPropiedad*> administraAux;
+    for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
+        AdministraPropiedad* ap = *administraAux;
+        ap.tieneInmueble(codigoInmueble);
+    }
+}

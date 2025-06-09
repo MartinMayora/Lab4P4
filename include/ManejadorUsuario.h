@@ -19,7 +19,7 @@ private:
     map<string, Usuario*> usuarios;
     map<string, Cliente*> clientes;
     map<string, Propietario*> propietarios;
-    map<string, Inmobiliaria*> inmobiliarias;
+    std::set<Inmobiliaria*> inmobiliarias;
 
     static ManejadorUsuario* instancia;
 
@@ -39,6 +39,7 @@ public:
     bool crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
         std::string direccion, std::string url,std::string telefono);
     
+    bool existeInmobiliaria(map<string, Inmobiliaria*> inmobiliarias; std::string nickname)
     Propietario* getPropietario(std::string nickname);
     map<string, Inmobiliaria*>* getInmobiliarias();
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
