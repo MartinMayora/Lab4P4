@@ -5,7 +5,6 @@
 #include "Cliente.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
-#include "ICollection.h"
 #include <string>
 #include <map>
 
@@ -16,10 +15,10 @@ class Inmobiliaria;
 
 class ManejadorUsuario {
 private:
-    map<string, Usuario*> usuarios;
-    map<string, Cliente*> clientes;
-    map<string, Propietario*> propietarios;
-    map<string, Inmobiliaria*> inmobiliarias;
+    std::map<std::string, Usuario*> usuarios;
+    std::map<std::string, Cliente*> clientes;
+    std::map<std::string, Propietario*> propietarios;
+    std::map<std::string, Inmobiliaria*> inmobiliarias;
 
     static ManejadorUsuario* instancia;
 
