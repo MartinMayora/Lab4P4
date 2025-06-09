@@ -16,7 +16,7 @@ class ManejadorInmueble {
 private:
     static ManejadorInmueble* instancia;
     std::map<int, Inmueble*> inmuebles;
-    //contador incremental no se si tendria q ser algo asi int codInc;
+    int codInc;
 
     ManejadorInmueble();
     ~ManejadorInmueble();
@@ -25,10 +25,10 @@ public:
     static ManejadorInmueble* getInstance();
     static void deleteInstance();
 
-    void crearCasa(int codigo,std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
+    void crearCasa(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
                    bool esPH, TipoTecho techo, Propietario*propietario);
 
-    void crearApartamento(int codigo, std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
+    void crearApartamento(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
                           int piso, bool tieneAscensor, float gastosComunes,Propietario*propietario);
     
     Inmueble* getInmueble(int codigoInmueble);

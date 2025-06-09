@@ -5,6 +5,10 @@
 
 ManejadorInmueble* ManejadorInmueble::instancia = nullptr;
 
+ManejadorInmueble::ManejadorInmueble() {
+    codInc = 0; 
+}
+
 
 ManejadorInmueble* ManejadorInmueble::getInstance() {
     if (instancia == NULL)
@@ -12,22 +16,26 @@ ManejadorInmueble* ManejadorInmueble::getInstance() {
     return instancia;
 }
 
-void ManejadorInmueble::crearCasa(int codigo,std::string direccion, int numeroPuerta, int superficie,
+void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
                                   int anioConstruccion, bool esPH, TipoTecho techo, Propietario* propietario) {
-    Casa* casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
+    int codigo=codInc++;
+    Casa* casa = new Casa(codigo,direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     //agregamos casa al set de inmuebles para propietario
     propietario->agregarInmueble(casa);
     //agregamos casa al map de inmuebles del manejador
     inmuebles[codigo]=casa;
 }
 
-void ManejadorInmueble::crearApartamento(int codigo,std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes, Propietario* propietario) {
-    Apartamento* apto = new Apartamento(codigo, direccion, numeroPuerta, superficie, anioConstruccion,piso, tieneAscensor,gastosComunes);
+void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
+                                  int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes,
+                                   Propietario* propietario) {
+    int codigo=codInc++;
+    Apartamento* apto = new Apartamento(codigo,direccion, numeroPuerta, superficie, anioConstruccion,piso, tieneAscensor,gastosComunes);
     //agregamos casa al set de inmuebles para propietario
     propietario->agregarInmueble(apto);
     //agregamos casa al map de inmuebles del manejador
     inmuebles[codigo]=apto;
+
 }
 
 Inmueble* ManejadorInmueble::getInmueble(int codigoInmueble){

@@ -44,19 +44,17 @@ bool ControladorUsuario::altaInmobiliaria(std::string nickname, std::string cont
     return alta;
 }
 
-void ControladorUsuario::altaCasa(int codigo, std::string direccion, int numeroPuerta, int superficie,
+void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int superficie,
                                   int anioConstruccion, bool esPH, TipoTecho techo) {
     if (propietarioRecordado != NULL) {
-        //preguntar si puedo poner como parametro al propietarioRecordado
         ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
             esPH, techo,propietarioRecordado);
     }
 }
 
-void ControladorUsuario::altaApartamento(int codigo, std::string direccion, int numeroPuerta, int superficie,
+void ControladorUsuario::altaApartamento(std::string direccion, int numeroPuerta, int superficie,
                                   int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes) {
     if (propietarioRecordado != NULL) {
-        //preguntar si puedo poner como parametro al propietarioRecordado
         ManejadorInmueble::getInstance()->crearApartamento(direccion, numeroPuerta, superficie, anioConstruccion,
             piso,tieneAscensor,gastosComunes,propietarioRecordado);
     }
