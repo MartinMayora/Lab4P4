@@ -25,7 +25,7 @@ class Inmobiliaria : public Usuario {
         void agregarPropietario(Propietario* p);
         std::set<Propietario*> getPropietarios();
 
-        //funcion utilizada en altaPublicacion
+        //Operaciones caso de uso ALTA PUBLICACION 
         void publicarInmueble();
 
         DTUsuario getDTUsuario();
@@ -34,6 +34,11 @@ class Inmobiliaria : public Usuario {
         std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
 
         void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
+
+        //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
+        bool tieneSuscriptor(std::string nickname);
+  
+
 
 };
 

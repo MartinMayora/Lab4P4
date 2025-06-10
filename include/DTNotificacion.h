@@ -1,0 +1,29 @@
+#ifndef DTNOTIFICACION_H
+#define DTNOTIFICACION_H
+
+#include <string>
+#include "TipoPublicacion.h"
+#include "TipoInmueble.h"
+
+class DTNotificacion {
+private:
+    std::string nickname;
+    int codigo;
+    std::string texto;
+    TipoPublicacion tipo;
+    TipoInmueble inmueble;
+
+public:
+    // Constructor
+    DTNotificacion(std::string nickname, int codigo, std::string texto, TipoPublicacion tipo, TipoInmueble inmueble);
+
+    // Getters
+    std::string getNickname();
+    int getCodigo();
+    std::string getTexto();
+    TipoPublicacion getTipo();
+    TipoInmueble getInmueble();
+
+};
+
+#endif
