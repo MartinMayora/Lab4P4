@@ -22,7 +22,7 @@ std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
     std::set<Propietario*>::iterator it;
     for(it = propietarios.begin(); it != propietarios.end; ++it){
         Propietario* p = *it;
-        std::Set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
+        std::set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
         listInmueblesPropietario.insert(aux.begin(), aux.end());
     }
     return listInmueblesPropietario;
