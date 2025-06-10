@@ -36,7 +36,7 @@ void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaAct
     inmueble->asociarAdministracionPropiedad(ap);
 }
 
-    
+//Operaciones caso de uso ALTA DE PUBLICACION 
 void Inmobiliaria::publicarInmueble(){
     std::set<AdministraPropiedad*> administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){

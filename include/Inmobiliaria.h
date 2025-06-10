@@ -29,12 +29,10 @@ class Inmobiliaria : public Usuario {
 
         //Operaciones caso de uso ALTA PUBLICACION 
         void publicarInmueble();
-
-        DTUsuario getDTUsuario();
         
-        // para func listarInmueblesNoAdministradosInmobiliaria
+        //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
+        DTUsuario getDTUsuario();
         std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
-
         void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
 
         //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
