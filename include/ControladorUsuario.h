@@ -29,9 +29,9 @@ public:
 
     bool altaInmobiliaria(std::string nickname, std::string contrasena,std::string nombre, std::string email,std::string direccion, std::string url,std::string telefono);
     
-    void altaCasa(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, bool esPH, TipoTecho techo,Propietario*propietarioRecordado);
+    void altaCasa(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, bool esPH, TipoTecho techo);
 
-    void altaApartamento(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, int piso, bool tieneAscensor,float gastosComunes,Propietario*propietarioRecordado);
+    void altaApartamento(std::string direccion, int numeroPuerta, int superficie,int anioConstruccion, int piso, bool tieneAscensor,float gastosComunes);
 
     std::set<DTUsuario> listarPropietarios();
 
