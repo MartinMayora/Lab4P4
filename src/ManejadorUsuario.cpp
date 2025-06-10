@@ -107,3 +107,11 @@ std::map<std::string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
 
 
 //OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
+
+std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){
+    
+}
+
+void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria){
+
+}
