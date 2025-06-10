@@ -92,11 +92,11 @@ map<string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
 }
 
 Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria){
-    Inmobiliaria* iter = this->inmobiliarias.find(nicknameInmobiliaria);  
+    std::map<std::string, Inmobiliaria*> iter = this->inmobiliarias.find(nicknameInmobiliaria);  
     if (iter != this->inmobiliarias.end())
         return iter->second;
     else
-        return NULL;
+        return nullptr;
 }
 
 void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada) {
