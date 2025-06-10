@@ -106,3 +106,4 @@ std::map<std::string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
 }
 
 
+//OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
