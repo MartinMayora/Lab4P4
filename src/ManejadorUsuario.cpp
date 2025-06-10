@@ -104,6 +104,8 @@ Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria
 std::map<std::string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
     return this->inmobiliarias;
 }
+
+//OPERACIONES CASO DE USO ALTA PUBLICACION
 bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria){
     if (this->inmobiliarias.find(nicknameInmobiliaria) != this->inmobiliarias.end()) {
         return true;
