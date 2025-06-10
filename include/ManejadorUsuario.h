@@ -38,8 +38,6 @@ public:
         std::string cuentaBancaria, std::string telefono);
     bool crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
         std::string direccion, std::string url,std::string telefono);
-    
-    bool existeInmobiliaria(std::map<string, Inmobiliaria*> inmobiliarias, std::string nickname);
     std::set<DTUsuario> listarPropietarios();
     void representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada);
     Propietario* getPropietario(std::string nickname);
