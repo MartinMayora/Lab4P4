@@ -19,6 +19,7 @@ ControladorUsuario* ControladorUsuario::getInstance() {
     return instancia;
 }
 
+//OPERACIONES DE CASO DE USO ALTA USUARIO (Cata)
 bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena,std::string nombre,
      std::string email,std::string apellido, std::string documento) {
     return ManejadorUsuario::getInstance()->crearCliente(nickname, contrasena, nombre, email, apellido, documento);
@@ -48,7 +49,7 @@ void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int s
                                   int anioConstruccion, bool esPH, TipoTecho techo) {
     if (propietarioRecordado != NULL) {
         ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
-            esPH, techo,propietarioRecordado);
+            esPH, techo,this->propietarioRecordado);
     }
 }
 
@@ -56,7 +57,7 @@ void ControladorUsuario::altaApartamento(std::string direccion, int numeroPuerta
                                   int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes) {
     if (propietarioRecordado != NULL) {
         ManejadorInmueble::getInstance()->crearApartamento(direccion, numeroPuerta, superficie, anioConstruccion,
-            piso,tieneAscensor,gastosComunes,propietarioRecordado);
+            piso,tieneAscensor,gastosComunes,this->propietarioRecordado);
     }
 }
 
@@ -64,13 +65,25 @@ std::set<DTUsuario> ControladorUsuario::listarPropietarios() {
     return ManejadorUsuario::getInstance()->listarPropietarios();
 }
 
+void ControladorUsuario::representarPropietario(std::string nicknamePropietario){
+    if (inmobiliariaRecordada!=NULL){
+            ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
+    }
+}
+
+void ControladorUsuario::finalizarAltaUsuario(){
+    propietarioRecordado=NULL;
+    inmobiliariaRecordada=NULL;
+}
+
+//OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
 std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
-    map<string, Inmobiliaria*>& li = m->getInmobiliarias; 
-    map<string, Inmobiliaria*>::iterator iter;
-    for(iter = li.begin(); it != li.end(); ++it){
-        Inmobiliaria* i = iter->second();
+    std::map<std::string, Inmobiliaria*>& li = m->getInmobiliarias(); 
+    std::map<std::string, Inmobiliaria*>::iterator iter;
+    for(iter = li.begin(); iter != li.end(); ++iter){
+        Inmobiliaria* i = iter->second;
         res.insert(i->getDTUsuario());
     }
     return res;
@@ -78,14 +91,17 @@ std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
 
 void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
     ManejadorUsuario* mU = ManejadorUsuario::getInstance();
-    Inmobiliaria* ci = mU.getInmobiliaria(nicknameInmobiliaria);
+    Inmobiliaria* ci = mU->getInmobiliaria(nicknameInmobiliaria);
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
-    Inmueble* cin = mI.getInmueble(codigoInmueble);
-    ci.altaAdministraPropiedad(cin, this.fechaActual);
+    Inmueble* cin = mI->getInmueble(codigoInmueble);
+    ci->altaAdministraPropiedad(cin, this->fechaActual);
 }
 
-void ControladorUsuario::representarPropietario(std::string nicknamePropietario){
-    if (inmobiliariaRecordada!=NULL){
-            ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
-    }
+//OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (Cata)
+std::set<std::string> ControladorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario) {
+    return ManejadorUsuario::getInstance()->listarInmobiliariasNoSuscriptas(nicknameUsuario);
+}
+
+void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria) {
+    ManejadorUsuario::getInstance()->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
 }

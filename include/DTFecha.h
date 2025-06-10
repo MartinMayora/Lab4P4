@@ -10,6 +10,7 @@ class DTFecha {
         int mes;
         int anio;
     public:
+        DTFecha();
         DTFecha(int dia, int mes, int anio);
         DTFecha(DTFecha* fecha);
         bool operator>=(DTFecha* fecha);

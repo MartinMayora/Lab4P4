@@ -2,6 +2,10 @@
 #include <sstream>
 #include <iostream>
 
+DTFecha::DTFecha(){
+    
+}
+
 DTFecha::DTFecha(int dia, int mes, int anio) {
     this->anio = anio;
     this->mes = mes;

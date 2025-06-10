@@ -39,9 +39,9 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
 }
 
 Inmueble* ManejadorInmueble::getInmueble(int codigoInmueble) {
-    auto iter = this->inmuebles.find(codigoInmueble);  
+    std::map<int, Inmueble*>::iterator iter = this->inmuebles.find(codigoInmueble);
     if (iter != this->inmuebles.end())
         return iter->second;
     else
-        return nullptr;
+        return NULL;
 }

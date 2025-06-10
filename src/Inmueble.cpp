@@ -42,7 +42,7 @@ bool Inmueble::esAdministrado(Inmobiliaria* i){
     bool administra = false;
     for(it = admprop.begin(); it != admprop.end() && !administra; ++it){
         AdministraPropiedad* ap = *it;
-        administra = ap.inmobiliariaAsociada(i);
+        administra = ap->inmobiliariaAsociada(i);
     }
     return administra;
 }

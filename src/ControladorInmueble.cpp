@@ -18,11 +18,11 @@ ControladorInmueble* ControladorInmueble::getInstance() {
     return instancia;
 }
 
-std::set<DTInmuebleListado> ControladorInmueble:: listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria){
+std::set<DTInmuebleListado> ControladorInmueble::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria){
     std::set<DTInmuebleListado> listInmuebles;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
     Inmobiliaria* ci = m->getInmobiliaria(nicknameInmobiliaria);
-    listInmuebles = ci.getInmueblesNoAdminPropietario();
+    listInmuebles = ci->getInmueblesNoAdminPropietario();
     return listInmuebles;
 }
 

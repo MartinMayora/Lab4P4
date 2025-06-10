@@ -13,16 +13,17 @@ Inmobiliaria::Inmobiliaria(std::string nickname, std::string contrasena, std::st
 Inmobiliaria::~Inmobiliaria(){
 }
 
+//Operaciones caso de uso ALTA ADMINISTRA PROPIEDAD
 DTUsuario Inmobiliaria::getDTUsuario(){
-    return DTUsuario(this->getNickname, this->getNombre);
+    return DTUsuario(this->getNickname(), this->getNombre());
 }
 
 std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
     std::set<DTInmuebleListado> listInmueblesPropietario;
     std::set<Propietario*>::iterator it;
-    for(it = propietarios.begin(); it != propietarios.end; ++it){
+    for(it = this->getPropietarios().begin(); it != this->getPropietarios().end(); ++it){
         Propietario* p = *it;
-        std::Set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
+        std::set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
         listInmueblesPropietario.insert(aux.begin(), aux.end());
     }
     return listInmueblesPropietario;
@@ -31,9 +32,9 @@ std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
 void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual){
     AdministraPropiedad* ap = new AdministraPropiedad(this, inmueble, fechaActual);
     this->administra.insert(ap);
-    inmueble.asociarAdministracionPropiedad(ap);
-}
+    inmueble->asociarAdministracionPropiedad(ap);}
 
+    
 void Inmobiliaria::publicarInmueble(){
     std::set<AdministraPropiedad*> administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
