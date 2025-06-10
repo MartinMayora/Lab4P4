@@ -29,7 +29,7 @@ std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
     std::set<Inmueble*>::iterator it;
     for(it = inmuebles.begin(); it != inmuebles.end(); ++it){
         Inmueble* in = *it;
-        bool administrado = in.esAdministrado(i);
+        bool administrado = in->esAdministrado(i);
         if (!administrado){
             listInmueblesPropietario.insert(DTInmuebleListado(in->getCodigo, in->getDireccion, this->getNickname));
         }

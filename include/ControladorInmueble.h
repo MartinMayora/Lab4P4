@@ -5,11 +5,12 @@
 #include "Inmobiliaria.h"
 #include "Inmueble.h"
 #include "Publicacion.h"
+#include "DTInmuebleAdministrado.h"
 #include <string>
 #include <map>
 #include <set>
 
-class ControladorUsuario : public IAltaUsuario {
+class ControladorInmueble  {
 private:
     static ControladorInmueble* instancia;
 
