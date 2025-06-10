@@ -1,6 +1,7 @@
 #ifndef CONTROLADORUSUARIO_H
 #define CONTROLADORUSUARIO_H
 
+#include "ISuscribirseANotificaciones.h"
 #include "IAltaUsuario.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
@@ -8,7 +9,7 @@
 #include <map>
 
 
-class ControladorUsuario : public IAltaUsuario {
+class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones {
 private:
     static ControladorUsuario* instancia;
 
