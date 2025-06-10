@@ -1,7 +1,6 @@
 #ifndef CONTROLADORINMUEBLE_H
 #define CONTROLADORINMUEBLE_H
 
-
 #include "Inmobiliaria.h"
 #include "Inmueble.h"
 #include "Publicacion.h"
@@ -10,21 +9,24 @@
 #include <map>
 #include <set>
 #include "DTPublicacion.h"
-class ControladorInmueble  {
+#include "TipoInmueble.h"
+
+class ControladorInmueble
+{
 private:
-    static ControladorInmueble* instancia;
+    static ControladorInmueble *instancia;
 
     ControladorInmueble();
 
 public:
-    static ControladorInmueble* getInstance();
+    static ControladorInmueble *getInstance();
 
-    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria );
+    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
 
-    bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio);
+    bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio);
 
-    std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo,TipoInmueble tipoInmueble);
-    
+    std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
+
     void eliminarInmueble(int codigoInmueble);
 
     std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);

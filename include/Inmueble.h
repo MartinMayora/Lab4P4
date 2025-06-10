@@ -3,36 +3,39 @@
 #include <string>
 #include <set>
 #include "AdministraPropiedad.h"
+#include "TipoInmueble.h"
 
-class AdministraPropiedad; 
+class AdministraPropiedad;
 class Inmobiliaria;
 
-class Inmueble {
-    private:
-        int codigo;
-        std::string direccion;
-        int numeroPuerta;
-        int superficie;
-        int anoConstruccion;
-        std::set<AdministraPropiedad*> admprop;
+class Inmueble
+{
+private:
+    int codigo;
+    std::string direccion;
+    int numeroPuerta;
+    int superficie;
+    int anoConstruccion;
+    std::set<AdministraPropiedad *> admprop;
 
-    public:
-        Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
-        ~Inmueble();
-        
-        std::set<AdministraPropiedad*> getAdministraPropiedad();
+public:
+    Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
+    ~Inmueble();
 
-        //getters
-        int getCodigo();
-        std::string getDireccion();
-        int getNumeroPuerta();
-        int getSuperficie();
-        int getAnoConstruccion();
+    std::set<AdministraPropiedad *> getAdministraPropiedad();
 
-        // para func listarInmueblesNoAdministradosInmobiliaria
-        bool esAdministrado(Inmobiliaria* i);
+    // getters
+    int getCodigo();
+    std::string getDireccion();
+    int getNumeroPuerta();
+    int getSuperficie();
+    int getAnoConstruccion();
+    TipoInmueble getTipoInmueble();
 
-        void asociarAdministracionPropiedad(AdministraPropiedad* ap);
+    // para func listarInmueblesNoAdministradosInmobiliaria
+    bool esAdministrado(Inmobiliaria *i);
+
+    void asociarAdministracionPropiedad(AdministraPropiedad *ap);
 };
 
 #endif

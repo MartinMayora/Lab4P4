@@ -9,30 +9,32 @@
 #include <map>
 #include <set>
 
+ControladorInmueble *ControladorInmueble::instancia = NULL;
 
-ControladorInmueble* ControladorInmueble::instancia = NULL;
-
-ControladorInmueble* ControladorInmueble::getInstance() {
+ControladorInmueble *ControladorInmueble::getInstance()
+{
     if (instancia == NULL)
         instancia = new ControladorInmueble();
     return instancia;
 }
 
-std::set<DTInmuebleListado> ControladorInmueble::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria){
+std::set<DTInmuebleListado> ControladorInmueble::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria)
+{
     std::set<DTInmuebleListado> listInmuebles;
-    ManejadorUsuario* m = ManejadorUsuario::getInstance();
-    Inmobiliaria* ci = m->getInmobiliaria(nicknameInmobiliaria);
+    ManejadorUsuario *m = ManejadorUsuario::getInstance();
+    Inmobiliaria *ci = m->getInmobiliaria(nicknameInmobiliaria);
     listInmuebles = ci->getInmueblesNoAdminPropietario();
     return listInmuebles;
 }
 
-std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble) {
-    ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
+std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
+{
+    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     return manejador->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
 }
 
-bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio){
-    ManejadorUsuario* manejador = ManejadorUsuario::getInstance();
-    return  manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto,precio);
-
+bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio)
+{
+    ManejadorUsuario *manejador = ManejadorUsuario::getInstance();
+    return manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
