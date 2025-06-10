@@ -14,6 +14,7 @@ ManejadorUsuario* ManejadorUsuario::getInstance() {
     return instancia;
 }
 
+//OPERACIONES CASO DE USO ALTA USUARIO
 bool ManejadorUsuario::existeUsuario(std::string nickname) {
 	return (this->usuarios.find(nickname) != this->usuarios.end());
 }
@@ -55,41 +56,39 @@ bool ManejadorUsuario::crearInmobiliaria(std::string nickname, std::string contr
         }
     }
 
-Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
-    auto it = propietarios.find(nickname);  
-    if (it != propietarios.end())
-        return it->second;
-    else
-        return NULL;
-        
-}
-
-Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nickname) {
-    auto it = inmobiliarias.find(nickname);  
-    if (it != inmobiliarias.end())
-        return it->second;
-    else
-        return NULL;
-        
-}
-
 std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
     std::set<DTUsuario> resu;
     //recorremos todo el mapa de propietarios y para cada uno creamos un DTUsuario y agregamos al resultado
-    for (std::map<std::string, Propietario*>::iterator i = propietarios.begin(); i!=propietarios.end(); i++) {
-        Propietario* propietario = i->second;
-        std::string nickname= propietario->getNickname();
-        std::string nombre= propietario->getNombre();
-         //creamos el DTUsuario
-        DTUsuario dtUsuario = DTUsuario(nickname,nombre);
-        resu.insert(dtUsuario);
-    }
+        for (std::map<std::string, Propietario*>::iterator i = propietarios.begin(); i!=propietarios.end(); i++) {
+            Propietario* propietario = i->second;
+            std::string nickname= propietario->getNickname();
+            std::string nombre= propietario->getNombre();
+            //creamos el DTUsuario
+            DTUsuario dtUsuario = DTUsuario(nickname,nombre);
+            resu.insert(dtUsuario);
+        }
     return resu;
 }
 
-std::map<std::string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
-    return this->inmobiliarias;
+
+void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada) {
+    std::map<std::string, Propietario*>::iterator p = propietarios.find(nicknamePropietario);
+    if (p != propietarios.end()) {
+        Propietario* propietario = p->second;
+        propietario->agregarInmobiliaria(inmobiliariaRecordada);
+    }
 }
+
+
+
+Propietario* ManejadorUsuario::getPropietario(std::string nickname) {
+     std::map<std::string, Propietario*>::iterator iter = this->propietarios.find(nickname);
+    if (iter != this->propietarios.end())
+        return iter->second;
+    else
+        return NULL; 
+}
+
 
 Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria) {
     std::map<std::string, Inmobiliaria*>::iterator iter = this->inmobiliarias.find(nicknameInmobiliaria);
@@ -100,12 +99,10 @@ Inmobiliaria* ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria
 }
 
 
-void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada) {
-    std::map<std::string, Propietario*>::iterator p = propietarios.find(nicknamePropietario);
-    if (p != propietarios.end()) {
-        Propietario* propietario = p->second;
-        propietario->agregarInmobiliaria(inmobiliariaRecordada);
-    }
+//OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
+
+std::map<std::string, Inmobiliaria*>& ManejadorUsuario::getInmobiliarias(){
+    return this->inmobiliarias;
 }
 
 
