@@ -139,7 +139,14 @@ std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::str
     return resultado;
 }
 
-
+/* la tengo  q arreglar 
 void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria){
+    Inmobiliaria* inm = this->getInmobiliaria(nicknameInmobiliaria);
+    Usuario* u = getUsuario(nicknameUsuario);
+    Suscriptor* s = dynamic_cast<Suscriptor*>(u);
+    if (s){
+        inm->agregarSuscriptor(s);
+    }
 
 }
+*/
