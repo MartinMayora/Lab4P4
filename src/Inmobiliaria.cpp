@@ -2,6 +2,7 @@
 #include "../include/DTUsuario.h"
 #include "../include/DTInmuebleListado.h"
 #include "../include/Propietario.h"
+#include "../include/Cliente.h"
 
 //Constructor
 Inmobiliaria::Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
@@ -42,4 +43,21 @@ void Inmobiliaria::publicarInmueble(){
         administraPropiedad* ap = *administraAux;
         ap.tieneInmueble(codigoInmueble);
     }
+}
+
+
+//Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
+bool Inmobiliaria::tieneSuscriptor(std::string nickname) {
+    //para cada suscriptor del set chequea si es cliente o propietario y si el nickname coincide 
+    std::set<Suscriptor*>::iterator it;
+    for (it = suscriptores.begin(); it != suscriptores.end(); ++it) {
+        Cliente* c = dynamic_cast<Cliente*>(*it);
+        if (c != NULL && c->getNickname() == nickname)
+            return true;
+
+        Propietario* p = dynamic_cast<Propietario*>(*it);
+        if (p != NULL && p->getNickname() == nickname)
+            return true;
+    }
+    return false;
 }

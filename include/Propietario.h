@@ -9,7 +9,7 @@
 class Inmueble;
 class Inmobiliaria;
 
-class Propietario : public Usuario {
+class Propietario : public Usuario, public Suscriptor{
     private:
         std::string cuentaBancaria;
         std::string telefono;

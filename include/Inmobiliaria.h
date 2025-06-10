@@ -5,10 +5,10 @@
 #include "AdministraPropiedad.h"
 #include "DTUsuario.h"
 #include "DTInmuebleListado.h"
+#include "Suscriptor.h"
 #include <string>
 #include <set>
 
-class AdministraPropiedad; 
 
 class Inmobiliaria : public Usuario {
     private:
@@ -18,6 +18,8 @@ class Inmobiliaria : public Usuario {
         //agregue set de propietarios
         std::set<Propietario*> propietarios;
         std::set<AdministraPropiedad*> administra;
+        std::set<Suscriptor*> suscriptores;
+        
     public:
         Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
         ~Inmobiliaria();

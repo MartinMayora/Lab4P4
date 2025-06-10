@@ -3,7 +3,7 @@
 #include "Usuario.h"
 #include <string>
 
-class Cliente : public Usuario {
+class Cliente : public Usuario, public Suscriptor{
     private:
         std::string apellido;
         std::string documento;

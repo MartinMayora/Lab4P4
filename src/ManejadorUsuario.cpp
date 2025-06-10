@@ -126,9 +126,19 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria,int codi
 
 //OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
 
-std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){
-    
+std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario) {
+    std::set<std::string> resultado;
+    std::map<std::string, Inmobiliaria*>::iterator inm;
+    //la visibilidad es desde inmobiliaria hacia suscriptores, buscamos para cada inmobiliaria si contiene o no al suscriptor
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); inm++) {
+        Inmobiliaria* inmo = inm->second;
+        if (!inmo->tieneSuscriptor(nicknameUsuario)) {
+            resultado.insert(inmo->getNickname()); 
+        }
+    }
+    return resultado;
 }
+
 
 void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria){
 
