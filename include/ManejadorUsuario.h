@@ -5,7 +5,7 @@
 #include "Cliente.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
-#include "ICollection.h"
+//#include "ICollection.h"
 #include <string>
 #include <map>
 
@@ -29,6 +29,8 @@ private:
 public:
     static ManejadorUsuario* getInstance();
     static void deleteInstance();
+
+    bool existeUsuario(std::string nickname);
 
     bool crearCliente(std::string nickname, std::string contrasena, std::string nombre,std::string email, 
         std::string apellido, std::string documento);
