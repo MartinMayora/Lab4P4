@@ -38,13 +38,15 @@ public:
         std::string cuentaBancaria, std::string telefono);
     bool crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, 
         std::string direccion, std::string url,std::string telefono);
-
-    bool existeInmobiliaria(map<string, Inmobiliaria*> inmobiliarias; std::string nickname)
+    std::set<DTUsuario> listarPropietarios();
     std::set<DTUsuario> listarPropietarios();
     void representarPropietario(std::string nicknamePropietario, Inmobiliaria* inmobiliariaRecordada);
     Propietario* getPropietario(std::string nickname);
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
 
+    //Operaciones caso de uso ALTA PUBLICACION
+    bool existeInmobiliaria(std::string nickname);
+    
     //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
     std::map<std::string, Inmobiliaria*>& getInmobiliarias();
 
