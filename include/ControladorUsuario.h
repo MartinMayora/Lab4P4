@@ -43,6 +43,11 @@ public:
 
     void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
 
+    std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
+    
+    void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
+
+
 };
 
 #endif

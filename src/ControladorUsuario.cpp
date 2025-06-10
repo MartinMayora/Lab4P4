@@ -103,3 +103,10 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     ci.altaAdministraPropiedad(cin, this.fechaActual);
 }
 
+std::set<std::string> ControladorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario) {
+    return ManejadorUsuario::getInstance()->listarInmobiliariasNoSuscriptas(nicknameUsuario);
+}
+
+void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria) {
+    ManejadorUsuario::getInstance()->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
+}

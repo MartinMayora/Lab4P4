@@ -5,6 +5,7 @@
 #include "Cliente.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
+#include "ICollection.h"
 #include <string>
 #include <map>
 
@@ -45,6 +46,10 @@ public:
     Propietario* getPropietario(std::string nickname);
     std::map<std::string, Inmobiliaria*>* getInmobiliarias();
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
+
+    std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
+    void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
+
 
 };
 
