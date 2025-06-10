@@ -32,13 +32,14 @@ std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario(){
 void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual){
     AdministraPropiedad* ap = new AdministraPropiedad(this, inmueble, fechaActual);
     this->administra.insert(ap);
-    inmueble->asociarAdministracionPropiedad(ap);}
+    inmueble->asociarAdministracionPropiedad(ap);
+}
 
     
 void Inmobiliaria::publicarInmueble(){
     std::set<AdministraPropiedad*> administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
-        AdministraPropiedad* ap = *administraAux;
+        administraPropiedad* ap = *administraAux;
         ap.tieneInmueble(codigoInmueble);
     }
 }

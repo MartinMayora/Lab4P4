@@ -8,6 +8,8 @@
 #include <string>
 #include <set>
 
+class AdministraPropiedad; 
+
 class Inmobiliaria : public Usuario {
     private:
         std::string direccion;

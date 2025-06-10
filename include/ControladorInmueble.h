@@ -9,7 +9,7 @@
 #include <string>
 #include <map>
 #include <set>
-
+#include "DTPublicacion.h"
 class ControladorInmueble  {
 private:
     static ControladorInmueble* instancia;

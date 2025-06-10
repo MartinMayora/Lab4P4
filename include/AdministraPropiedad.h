@@ -5,6 +5,9 @@
 #include "Inmobiliaria.h"
 #include "Publicacion.h"
 
+class Inmobiliaria;
+class Inmueble;
+
 class AdministraPropiedad {
     private:
         DTFecha* fecha;

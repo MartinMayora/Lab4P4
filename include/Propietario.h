@@ -4,6 +4,10 @@
 #include <string>
 #include <set>
 #include "Inmueble.h"
+#include "DTInmuebleListado.h"
+
+class Inmueble;
+class Inmobiliaria;
 
 class Propietario : public Usuario {
     private:
@@ -17,7 +21,7 @@ class Propietario : public Usuario {
 
     public:
         Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
-        ~Propietario() override;
+        ~Propietario();
         void agregarInmueble(Inmueble* inmueble);
         void agregarInmobiliaria(Inmobiliaria* i);
 

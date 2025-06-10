@@ -4,6 +4,9 @@
 #include <set>
 #include "AdministraPropiedad.h"
 
+class AdministraPropiedad; 
+class Inmobiliaria;
+
 class Inmueble {
     private:
         int codigo;
