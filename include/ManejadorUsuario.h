@@ -44,7 +44,10 @@ public:
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
 
     //Operaciones caso de uso ALTA PUBLICACION
-    bool existeInmobiliaria(std::string nickname);
+    bool existeInmobiliaria(std::string nicknameInmobiliaria);
+    bool darInmobiliaria(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion,
+         std::string texto, float precio);
+
     
     //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
     std::map<std::string, Inmobiliaria*>& getInmobiliarias();

@@ -114,16 +114,15 @@ bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria){
 }
 
 bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion, std::string texto, float precio){
-    if(!existeInmobiliaria(nicknameInmobiliaria)){
+    if(!this->existeInmobiliaria(nicknameInmobiliaria)){
         return false;
     }
-    std::set<Inmobiliaria*> inm;
-    
-    for(inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm){
-        Inmobiliaria* inmobiliariaAux = *inm;
-        inmobiliariaAux.publicarInmueble();
+    std::map<std::string,Inmobiliaria*>::iterator inm;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm){
+        Inmobiliaria* inmobiliariaAux = inm->second;
+        inmobiliariaAux->publicarInmueble();
     }
-
+}
 
 //OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
 
