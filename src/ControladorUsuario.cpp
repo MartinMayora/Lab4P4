@@ -71,7 +71,7 @@ std::set<DTUsuario> ControladorUsuario::listarPropietarios() {
 }
 
 //Operacion del caso de uso ALTA USUARIO
-void ControladorUsuario::representarPropietario(std::string nicknamePropietario,Inmobiliaria* inmobiliariaRecordada){
+void ControladorUsuario::representarPropietario(std::string nicknamePropietario){
     if (inmobiliariaRecordada!=NULL){
             ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
     }

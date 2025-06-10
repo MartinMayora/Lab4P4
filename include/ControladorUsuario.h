@@ -35,7 +35,7 @@ public:
 
     std::set<DTUsuario> listarPropietarios();
 
-    void representarPropietario(std::string nicknamePropietario, Inmobiliaria*inmobiliariaRecordada);
+    void representarPropietario(std::string nicknamePropietario);
 
     void finalizarAltaUsuario();
 
