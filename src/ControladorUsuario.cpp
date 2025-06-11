@@ -117,3 +117,9 @@ std::set<std::string> ControladorUsuario::listarInmobiliariasNoSuscriptas(std::s
 void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria) {
     ManejadorUsuario::getInstance()->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
 }
+
+//OPERACION DE ALTAPUBLICACION
+
+std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
+    return ManejadorUsuario::getInstance()->listarInmobiliarias();
+}

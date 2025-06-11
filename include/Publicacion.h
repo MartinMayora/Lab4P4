@@ -6,10 +6,11 @@
 #include "DTPublicacion.h"
 #include "AdministraPropiedad.h"
 #include <string>
+#include "Suscriptor.h"
+class AdministraPropiedad;
 
 class Publicacion
-{
-private:
+{private:
     int codigo;
     DTFecha *fecha;
     TipoPublicacion tipo;
@@ -17,9 +18,6 @@ private:
     float precio;
     bool activa;
     AdministraPropiedad *admin;
-
-public:
-    AdministraPropiedad *getAdministraPropiedad() const;
 
 public:
     Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa);
@@ -31,7 +29,7 @@ public:
     std::string getTexto() const;
     float getPrecio() const;
     bool getEstaActiva() const;
-    AdministraPropiedad *getAdministraPropiedad() const;
+    AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
     DTPublicacion getDataPublicacion(std::string nombreInmobiliaria) const;
 };

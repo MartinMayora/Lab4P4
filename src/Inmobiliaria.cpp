@@ -38,12 +38,21 @@ void Inmobiliaria::altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaAct
 
 //Operaciones caso de uso ALTA DE PUBLICACION 
 void Inmobiliaria::publicarInmueble(){
-    std::set<AdministraPropiedad*> administraAux;
+    std::set<AdministraPropiedad*>::iterator administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
-        administraPropiedad* ap = *administraAux;
+        AdministraPropiedad* ap = *administraAux;
         ap.tieneInmueble(codigoInmueble);
     }
 }
+
+std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
+    std::set<AdministraPropiedad*>::iterator administraAux;
+    for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
+        AdministraPropiedad* ap = *administraAux;
+        ap.getFecha();
+    }
+}
+
 
 
 //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES

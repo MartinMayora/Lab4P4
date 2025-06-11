@@ -7,7 +7,7 @@
 #include "Inmobiliaria.h"
 #include <string>
 #include <map>
-
+#include "DTInmuebleAdministrado.h"
 class Usuario;
 class Cliente;
 class Propietario;
@@ -44,14 +44,14 @@ public:
     Inmobiliaria* getInmobiliaria(std::string nicknameInmobiliaria);
 
     //Operaciones caso de uso ALTA PUBLICACION
+    std::set<DTUsuario> listarInmobiliarias();
     bool existeInmobiliaria(std::string nicknameInmobiliaria);
     bool darInmobiliaria(std::string nicknameInmobiliaria,int codigoInmueble,TipoPublicacion tipoPublicacion,
          std::string texto, float precio);
-
-    
+    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
     //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
     std::map<std::string, Inmobiliaria*>& getInmobiliarias();
-
+    Inmobiliaria* findInmobiliaria(std::string nicknameInmobiliaria);
     //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
     void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);

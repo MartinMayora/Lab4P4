@@ -2,7 +2,7 @@
 #define CLIENTE_H
 #include "Usuario.h"
 #include <string>
-
+#include "Suscriptor.h"
 class Cliente : public Usuario, public Suscriptor{
     private:
         std::string apellido;

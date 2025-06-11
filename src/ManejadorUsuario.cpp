@@ -115,6 +115,18 @@ std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias()
 }
 
 // OPERACIONES CASO DE USO ALTA PUBLICACION
+std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias(){
+    std::set<DTUsuario> toReturn;
+    std::map<std::string, Inmobiliaria *>::iterator inm;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
+    {
+        Inmobiliaria *inmobiliariaAux = inm->second;
+        std::string nickname= inmobiliariaAux->getNickname();
+        std::string nombre = inmobiliariaAux->getNombre();
+        DTUsuario toAdd = DTUsuario(nickname, nombre);
+        toReturn.insert(toAdd);
+    }
+}
 bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria)
 {
     if (this->inmobiliarias.find(nicknameInmobiliaria) != this->inmobiliarias.end())
@@ -135,6 +147,23 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
         inmobiliariaAux->publicarInmueble();
+    }
+}
+
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
+    Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
+    std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
+    return adm
+}
+
+Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria){
+    std::map<std::string, Inmobiliaria *>::iterator inm;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
+    {
+        Inmobiliaria *inmobiliariaAux = inm->second;
+       if (inmobiliariaAux->getNickname() == nicknameInmobiliaria){
+            return inmobiliariaAux
+       }
     }
 }
 
