@@ -61,3 +61,12 @@ bool Inmobiliaria::tieneSuscriptor(std::string nickname) {
     }
     return false;
 }
+
+bool Inmobiliaria::estaSuscripto(Suscriptor* s){
+    return this->suscriptores.find(s)!=this->suscriptores.end();
+}
+
+void Inmobiliaria::agregarSuscriptor(Suscriptor* s){
+    suscriptores.insert(s);
+
+}

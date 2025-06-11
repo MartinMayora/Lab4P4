@@ -156,14 +156,22 @@ std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::str
     return resultado;
 }
 
-/* la tengo  q arreglar
-void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria){
-    Inmobiliaria* inm = this->getInmobiliaria(nicknameInmobiliaria);
-    Usuario* u = getUsuario(nicknameUsuario);
-    Suscriptor* s = dynamic_cast<Suscriptor*>(u);
-    if (s){
-        inm->agregarSuscriptor(s);
-    }
 
+void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria) {
+    Usuario* usuario = NULL;
+    //buscamos al usuario que quiere suscribirse entre clientes o propietarios para chequear 
+    if (this->clientes.find(nicknameUsuario) != this->clientes.end())
+        usuario = this->clientes[nicknameUsuario];
+    else 
+        if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
+            usuario = this->propietarios[nicknameUsuario];
+    //queremos que nos devuelva un puntero al suscriptor para poder agregarlo al set de suscriptores de la inm
+    Suscriptor* suscriptor = dynamic_cast<Suscriptor*>(usuario);
+    Inmobiliaria* inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor)) {
+        inmobiliaria->agregarSuscriptor(suscriptor);
+    }
 }
-*/
+
+
+

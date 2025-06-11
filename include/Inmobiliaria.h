@@ -37,6 +37,9 @@ class Inmobiliaria : public Usuario {
 
         //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
         bool tieneSuscriptor(std::string nickname);
+        bool estaSuscripto(Suscriptor* s) ;
+        void agregarSuscriptor(Suscriptor* s);
+
   
 
 
