@@ -5,6 +5,7 @@
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
 #include "../include/DTUsuario.h"
+#include "../include/DTInmuebleListado.h"
 
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
@@ -94,8 +95,19 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     Inmobiliaria* ci = mU->getInmobiliaria(nicknameInmobiliaria);
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI->getInmueble(codigoInmueble);
+    // tengo que poner lo que dijo el profe de una instancia de controlador fecha actual 
     ci->altaAdministraPropiedad(cin, this->fechaActual);
 }
+
+std::set<DTInmuebleListado> ControladorUsuario::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria)
+{
+    std::set<DTInmuebleListado> listInmuebles;
+    ManejadorUsuario *m = ManejadorUsuario::getInstance();
+    Inmobiliaria *ci = m->getInmobiliaria(nicknameInmobiliaria);
+    listInmuebles = ci->getInmueblesNoAdminPropietario();
+    return listInmuebles;
+}
+
 
 //OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (Cata)
 std::set<std::string> ControladorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario) {
