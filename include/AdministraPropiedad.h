@@ -1,7 +1,7 @@
 #ifndef ADMINISTRAPROPIEDAD_H
 #define ADMINISTRAPROPIEDAD_H
 #include "DTFecha.h"
-#include "Inmobiliaria.h"
+//#include "Inmobiliaria.h"
 #include "Publicacion.h"
 
 class Inmobiliaria;
