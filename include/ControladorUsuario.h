@@ -37,6 +37,7 @@ public:
     //OPERACIONES CASO DE USO ALTA DE ADMINISTRACION DE PROPIEDAD (OLIVIA)
     std::set<DTUsuario> listarInmobiliarias();
     void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
+    std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);
 
     //OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (CATA)
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
