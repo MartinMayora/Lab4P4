@@ -38,3 +38,8 @@ bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int 
     ManejadorUsuario *manejador = ManejadorUsuario::getInstance();
     return manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
+
+std::set<DTInmuebleListado> ControladorInmueble::listarInmuebles(){
+    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
+    return manejador->darInmuebles();
+}

@@ -62,3 +62,7 @@ TipoInmueble getTipoInmueble()
 {
     // ME FALTA ESTO
 }
+
+Propietario* Inmueble::getPropietario() {
+    return propietario;
+}

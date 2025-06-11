@@ -38,6 +38,9 @@ public:
     Inmueble *getInmueble(int codigoInmueble);
 
     std::set<DTPublicacion> getPublicaciones(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
+
+    std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles();
+
 };
 
 #endif

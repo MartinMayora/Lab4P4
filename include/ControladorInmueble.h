@@ -30,6 +30,8 @@ public:
     void eliminarInmueble(int codigoInmueble);
 
     std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);
+
+    std::set<DTInmuebleListado> listarInmuebles();
 };
 
 #endif

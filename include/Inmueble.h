@@ -5,6 +5,7 @@
 #include "AdministraPropiedad.h"
 #include "TipoInmueble.h"
 
+class Propietario;
 class AdministraPropiedad;
 class Inmobiliaria;
 
@@ -17,6 +18,8 @@ private:
     int superficie;
     int anoConstruccion;
     std::set<AdministraPropiedad *> admprop;
+    Propietario* propietario;
+
 
 public:
     Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
@@ -31,6 +34,8 @@ public:
     int getSuperficie();
     int getAnoConstruccion();
     TipoInmueble getTipoInmueble();
+    Propietario* getPropietario();
+
 
     // para func listarInmueblesNoAdministradosInmobiliaria
     bool esAdministrado(Inmobiliaria *i);
