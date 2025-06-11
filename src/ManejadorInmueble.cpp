@@ -3,7 +3,7 @@
 #include "../include/Apartamento.h"
 #include "../include/Propietario.h"
 
-ManejadorInmueble *ManejadorInmueble::instancia = nullptr;
+ManejadorInmueble *ManejadorInmueble::instancia = NULL;
 
 ManejadorInmueble::ManejadorInmueble()
 {
@@ -18,15 +18,14 @@ ManejadorInmueble *ManejadorInmueble::getInstance()
 }
 
 void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario)
+                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario* propietario)
 {
     int codigo = codInc++;
-    Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
-    // agregamos casa al set de inmuebles para propietario
+    Casa* casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     propietario->agregarInmueble(casa);
-    // agregamos casa al map de inmuebles del manejador
     inmuebles[codigo] = casa;
 }
+
 
 void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
                                          int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes,
