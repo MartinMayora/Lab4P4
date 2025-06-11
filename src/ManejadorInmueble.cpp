@@ -75,3 +75,19 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
 
     return resultado;
 }
+
+
+std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles() {
+    std::set<DTInmuebleListado> resultado;
+    // recorro los inmuebles 
+    for (unsigned int i = 0; i < inmuebles.size(); ++i) {
+        Inmueble* in = inmuebles[i];
+        int codigo = in->getCodigo();
+        std::string direccion = in->getDireccion();
+        std::string propietario = in->getPropietario()->getNickname();
+        DTInmuebleListado dtil(codigo, direccion, propietario);
+        resultado.insert(dtil);
+    }
+    return resultado;
+}
+
