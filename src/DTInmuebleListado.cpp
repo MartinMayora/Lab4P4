@@ -1,23 +1,28 @@
 #include "../include/DTInmuebleListado.h"
 
-DTInmuebleListado::DTInmuebleListado(int codigo, std::string direccion, std::string propietario) {
+DTInmuebleListado::DTInmuebleListado(int codigo, std::string direccion, std::string propietario)
+{
     this->codigo = codigo;
     this->direccion = direccion;
     this->propietario = propietario;
 }
 
-int DTInmuebleListado::getCodigo() {
+int DTInmuebleListado::getCodigo()
+{
     return codigo;
 }
 
-std::string DTInmuebleListado::getDireccion() {
+std::string DTInmuebleListado::getDireccion()
+{
     return direccion;
 }
 
-std::string DTInmuebleListado::getPropietario() {
+std::string DTInmuebleListado::getPropietario()
+{
     return propietario;
 }
 
-bool DTInmuebleListado::operator<(const DTInmuebleListado& other) const {
+bool DTInmuebleListado::operator<(const DTInmuebleListado &other) const
+{
     return this->codigo < other.codigo;
 }

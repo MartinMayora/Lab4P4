@@ -4,7 +4,6 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Inmueble.h"
 #include "../include/AdministraPropiedad.h"
-
 #include <string>
 #include <map>
 #include <set>
@@ -18,27 +17,27 @@ ControladorInmueble *ControladorInmueble::getInstance()
     return instancia;
 }
 
-
-
 std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
 {
     ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     return manejador->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
 }
 
-
-std::set<DTInmuebleListado> ControladorInmueble::listarInmuebles(){
+std::set<DTInmuebleListado> ControladorInmueble::listarInmuebles()
+{
     ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     return manejador->darInmuebles();
 }
 
-//OPERACIONES ALTAPUBLICACION
+// OPERACIONES ALTAPUBLICACION
 bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio)
 {
     ManejadorUsuario *manejador = ManejadorUsuario::getInstance();
     return manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
-std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
-    return  ManejadorUsuario::getInstance()->listarInmueblesAdministrados(nicknameInmobiliaria);
+std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrados(std::string nicknameInmobiliaria)
+{
+    return ManejadorUsuario::getInstance()->listarInmueblesAdministrados(nicknameInmobiliaria);
 }
+s

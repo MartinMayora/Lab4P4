@@ -5,7 +5,6 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/DTInmuebleListado.h"
 
-
 ManejadorInmueble *ManejadorInmueble::instancia = NULL;
 
 ManejadorInmueble::ManejadorInmueble()
@@ -21,14 +20,13 @@ ManejadorInmueble *ManejadorInmueble::getInstance()
 }
 
 void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario* propietario)
+                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario)
 {
     int codigo = codInc++;
-    Casa* casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
+    Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     propietario->agregarInmueble(casa);
     inmuebles[codigo] = casa;
 }
-
 
 void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
                                          int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes,
@@ -55,18 +53,18 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
 {
     std::set<DTPublicacion> resultado;
 
-    std::set<Publicacion*>::iterator it;
+    std::set<Publicacion *>::iterator it;
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
-        Publicacion* p = *it;
+        Publicacion *p = *it;
 
         if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
             if (precio >= precioMinimo && precio <= precioMaximo)
             {
-                AdministraPropiedad* admin = p->getAdministraPropiedad();
-                Inmueble* inmueble = admin->getInmueble();
+                AdministraPropiedad *admin = p->getAdministraPropiedad();
+                Inmueble *inmueble = admin->getInmueble();
                 if (inmueble->getTipoInmueble() == tipoInmueble)
                 {
                     std::string nombreInmobiliaria = admin->getInmobiliaria()->getNombre();
@@ -80,14 +78,14 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
     return resultado;
 }
 
-
-
-std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles() {
+std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
+{
     std::set<DTInmuebleListado> resultado;
 
-    std::map<int, Inmueble*>::iterator it;
-    for (it = inmuebles.begin(); it != inmuebles.end(); ++it) {
-        Inmueble* in = it->second;
+    std::map<int, Inmueble *>::iterator it;
+    for (it = inmuebles.begin(); it != inmuebles.end(); ++it)
+    {
+        Inmueble *in = it->second;
 
         int codigo = in->getCodigo();
         std::string direccion = in->getDireccion();
@@ -99,4 +97,3 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles() {
 
     return resultado;
 }
-
