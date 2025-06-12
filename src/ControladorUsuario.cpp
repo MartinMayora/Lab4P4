@@ -97,8 +97,7 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     Inmobiliaria* ci = mU->getInmobiliaria(nicknameInmobiliaria);
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI->getInmueble(codigoInmueble);
-    // tengo que poner lo que dijo el profe de una instancia de controlador fecha actual 
-    //ci->altaAdministraPropiedad(cin, this->fechaActual);
+    ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
 }
 
 std::set<DTInmuebleListado> ControladorUsuario::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria)
