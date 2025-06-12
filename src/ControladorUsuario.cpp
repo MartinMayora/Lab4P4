@@ -78,7 +78,7 @@ void ControladorUsuario::finalizarAltaUsuario(){
 }
 
 //OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
-/*
+
 std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
@@ -90,7 +90,7 @@ std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     }
     return res;
 }
-*/
+
 
 void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
     ManejadorUsuario* mU = ManejadorUsuario::getInstance();
@@ -121,6 +121,7 @@ void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, s
 
 //OPERACION DE ALTAPUBLICACION
 
-std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
+/*std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     return ManejadorUsuario::getInstance()->listarInmobiliarias();
 }
+*/
