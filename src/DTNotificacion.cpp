@@ -25,10 +25,8 @@ TipoInmueble DTNotificacion::getInmueble()  {
 
 
 bool DTNotificacion::operator<(const DTNotificacion& other) const  {
-    // Primero comparo por código
     if (this->codigo != other.codigo)
         return this->codigo < other.codigo;
     
-    // Si el código es igual, comparo por nickname
     return this->nickname < other.nickname;
 }

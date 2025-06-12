@@ -7,7 +7,6 @@
 
 class Suscriptor  {
 private:
-    DTFecha ultimaFechaConsulta;
     std::set<DTNotificacion> notificaciones;
 public:
     Suscriptor();
