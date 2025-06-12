@@ -2,8 +2,8 @@
 #define ADMINISTRAPROPIEDAD_H
 #include "DTFecha.h"
 //#include "Inmobiliaria.h"
-#include "Publicacion.h"
-
+//#include "Publicacion.h"
+class Publicacion;
 class Inmobiliaria;
 class Inmueble;
 

@@ -4,12 +4,13 @@ build/ControladorInmueble.o build/ControladorUsuario.o build/DTApartamento.o \
 build/DTCasa.o build/DTFecha.o build/DTInmueble.o build/DTInmuebleAdministrado.o \
 build/DTInmuebleListado.o build/DTPublicacion.o build/DTUsuario.o build/Factory.o \
 build/Inmobiliaria.o build/Inmueble.o build/main.o build/ManejadorInmueble.o \
-build/ManejadorUsuario.o build/Menu.o build/Propietario.o build/Usuario.o
+build/ManejadorUsuario.o build/Menu.o build/Propietario.o build/Usuario.o build/Suscriptor.o \
+build/Publicacion.o build/DTNotificacion.o
 
 CXX = g++
 OPCIONES = -g -Wall -std=c++98
 
-ejec: $(OBJETOS) main.cpp | build
+ejec: $(OBJETOS) | build
 	$(CXX) $(OPCIONES) $(OBJETOS) -o build/ejec
 
 # CREA .o en Build
@@ -55,6 +56,9 @@ build/DTInmuebleAdministrado.o: include/DTInmuebleAdministrado.h src/DTInmuebleA
 build/DTInmuebleListado.o: include/DTInmuebleListado.h src/DTInmuebleListado.cpp | build
 	$(CXX) $(OPCIONES) -c src/DTInmuebleListado.cpp -o build/DTInmuebleListado.o
 
+build/DTNotificacion.o: include/DTNotificacion.h src/DTNotificacion.cpp | build
+	$(CXX) $(OPCIONES) -c src/DTNotificacion.cpp -o build/DTNotificacion.o
+
 build/DTPublicacion.o: include/DTPublicacion.h src/DTPublicacion.cpp | build
 	$(CXX) $(OPCIONES) -c src/DTPublicacion.cpp -o build/DTPublicacion.o
 
@@ -85,8 +89,15 @@ build/Menu.o: include/Menu.h src/Menu.cpp | build
 build/Propietario.o: include/Propietario.h src/Propietario.cpp | build
 	$(CXX) $(OPCIONES) -c src/Propietario.cpp -o build/Propietario.o
 
+build/Publicacion.o: include/Publicacion.h src/Publicacion.cpp | build
+	$(CXX) $(OPCIONES) -c src/Publicacion.cpp -o build/Publicacion.o
+
 build/Usuario.o: include/Usuario.h src/Usuario.cpp | build
 	$(CXX) $(OPCIONES) -c src/Usuario.cpp -o build/Usuario.o
+
+build/Suscriptor.o: include/Suscriptor.h src/Suscriptor.cpp | build
+	$(CXX) $(OPCIONES) -c src/Suscriptor.cpp -o build/Suscriptor.o
+
 
 build:
 	mkdir -p build

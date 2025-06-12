@@ -29,7 +29,7 @@ class Inmobiliaria : public Usuario {
 
         //Operaciones caso de uso ALTA PUBLICACION 
         void publicarInmueble();
-        std::set<DTInmuebleAdministrado> getAdministrados();
+        //std::set<DTInmuebleAdministrado> getAdministrados();
         //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
         DTUsuario getDTUsuario();
         std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();

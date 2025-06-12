@@ -18,6 +18,10 @@ ControladorInmueble *ControladorInmueble::getInstance()
     return instancia;
 }
 
+ControladorInmueble::ControladorInmueble(){
+    
+}
+
 
 
 std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)

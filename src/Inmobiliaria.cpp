@@ -79,3 +79,7 @@ void Inmobiliaria::agregarSuscriptor(Suscriptor* s){
     suscriptores.insert(s);
 
 }
+
+std::set<Propietario*> Inmobiliaria::getPropietarios() {
+    return this->propietarios; 
+}

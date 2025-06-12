@@ -29,7 +29,7 @@ public:
     std::string getTexto() const;
     float getPrecio() const;
     bool getEstaActiva() const;
-    AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
+    //AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
     DTPublicacion getDataPublicacion(std::string nombreInmobiliaria) const;
 };

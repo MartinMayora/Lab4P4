@@ -5,6 +5,8 @@
 #include <set>
 #include "Inmueble.h"
 #include "DTInmuebleListado.h"
+#include "Suscriptor.h"
+
 
 class Inmueble;
 class Inmobiliaria;

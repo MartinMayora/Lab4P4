@@ -51,7 +51,7 @@ Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
         return NULL;
 }
 
-std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
+/*std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
 {
     std::set<DTPublicacion> resultado;
 
@@ -79,6 +79,7 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
 
     return resultado;
 }
+    */
 
 
 
@@ -97,6 +98,13 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles() {
         resultado.insert(dtil);
     }
 
+    return resultado;
+}
+
+std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
+    TipoPublicacion tipo, float precioMin, float precioMax, TipoInmueble tipoInmueble) {
+
+    std::set<DTPublicacion> resultado;
     return resultado;
 }
 

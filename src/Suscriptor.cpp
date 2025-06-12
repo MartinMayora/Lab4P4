@@ -5,6 +5,9 @@ Suscriptor::Suscriptor(DTFecha ultimaFechaConsulta, std::set<DTNotificacion> not
     this->notificaciones = notificaciones;
 }
 
+Suscriptor::Suscriptor(){
+    
+}
 Suscriptor::~Suscriptor() {
     
 }

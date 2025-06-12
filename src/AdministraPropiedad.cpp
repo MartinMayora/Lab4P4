@@ -3,6 +3,9 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Publicacion.h"
 
+AdministraPropiedad::~AdministraPropiedad() {
+  
+}
 AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha) {
     this->inmobiliaria = i;
     this->inmueble = inm;
