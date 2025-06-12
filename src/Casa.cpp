@@ -9,3 +9,7 @@ Inmueble(codigo,direccion,numeroPuerta,superficie,anoConstruccion),esPH(esPH), t
 Casa::~Casa(){
     
 }
+
+TipoInmueble Casa::getTipoInmueble() {
+    return TipoCasa;
+}

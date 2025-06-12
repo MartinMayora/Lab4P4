@@ -153,7 +153,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
 std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
     Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
-    return adm
+    return adm;
 }
 
 Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria){
@@ -162,7 +162,7 @@ Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
        if (inmobiliariaAux->getNickname() == nicknameInmobiliaria){
-            return inmobiliariaAux
+            return inmobiliariaAux;
        }
     }
 }

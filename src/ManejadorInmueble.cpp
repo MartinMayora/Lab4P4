@@ -2,6 +2,9 @@
 #include "../include/Casa.h"
 #include "../include/Apartamento.h"
 #include "../include/Propietario.h"
+#include "../include/Inmobiliaria.h"
+#include "../include/DTInmuebleListado.h"
+
 
 ManejadorInmueble *ManejadorInmueble::instancia = NULL;
 
@@ -52,16 +55,18 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
 {
     std::set<DTPublicacion> resultado;
 
-    for (Publicacion *p : publicaciones)
+    std::set<Publicacion*>::iterator it;
+    for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
+        Publicacion* p = *it;
+
         if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
             if (precio >= precioMinimo && precio <= precioMaximo)
             {
-                // Acceder al inmueble a través de AdministraPropiedad
-                AdministraPropiedad *admin = p->getAdministraPropiedad();
-                Inmueble *inmueble = admin->getInmueble();
+                AdministraPropiedad* admin = p->getAdministraPropiedad();
+                Inmueble* inmueble = admin->getInmueble();
                 if (inmueble->getTipoInmueble() == tipoInmueble)
                 {
                     std::string nombreInmobiliaria = admin->getInmobiliaria()->getNombre();
@@ -76,17 +81,22 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipo
 }
 
 
+
 std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles() {
     std::set<DTInmuebleListado> resultado;
-    // recorro los inmuebles 
-    for (unsigned int i = 0; i < inmuebles.size(); ++i) {
-        Inmueble* in = inmuebles[i];
+
+    std::map<int, Inmueble*>::iterator it;
+    for (it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+        Inmueble* in = it->second;
+
         int codigo = in->getCodigo();
         std::string direccion = in->getDireccion();
         std::string propietario = in->getPropietario()->getNickname();
+
         DTInmuebleListado dtil(codigo, direccion, propietario);
         resultado.insert(dtil);
     }
+
     return resultado;
 }
 

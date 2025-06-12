@@ -20,6 +20,8 @@ public:
     float getPrecio() const;
     std::string getInmobiliaria();
     ~DTPublicacion();
+    bool operator<(const DTPublicacion& other) const;
+
 };
 
 #endif

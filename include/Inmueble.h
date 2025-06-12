@@ -33,7 +33,7 @@ public:
     int getNumeroPuerta();
     int getSuperficie();
     int getAnoConstruccion();
-    TipoInmueble getTipoInmueble();
+    virtual TipoInmueble getTipoInmueble() = 0;
     Propietario* getPropietario();
 
 

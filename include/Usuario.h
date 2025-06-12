@@ -2,6 +2,8 @@
 #define USUARIO_H
 #include <string>
 
+class Suscriptor;
+
 class Usuario {
     private:
         std::string nickname;
@@ -17,6 +19,7 @@ class Usuario {
         std::string getContrasena();
         std::string getNombre();
         std::string getEmail();
+
 };
 
 #endif

@@ -41,18 +41,18 @@ void Inmobiliaria::publicarInmueble(){
     std::set<AdministraPropiedad*>::iterator administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
         AdministraPropiedad* ap = *administraAux;
-        ap.tieneInmueble(codigoInmueble);
+        //ap->tieneInmueble(codigoInmueble);
     }
 }
 
-std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
+/*std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
     std::set<AdministraPropiedad*>::iterator administraAux;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
         AdministraPropiedad* ap = *administraAux;
-        ap.getFecha();
+        //ap.getFecha();
     }
 }
-
+*/
 
 
 //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES

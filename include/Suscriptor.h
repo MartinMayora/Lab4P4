@@ -10,6 +10,7 @@ private:
     DTFecha ultimaFechaConsulta;
     std::set<DTNotificacion> notificaciones;
 public:
+    Suscriptor();
     Suscriptor(DTFecha ultimaFechaConsulta,std::set<DTNotificacion> notificaciones);
     virtual ~Suscriptor();
     void setUltimaFechaConsulta(DTFecha fecha);

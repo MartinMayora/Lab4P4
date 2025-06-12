@@ -10,3 +10,7 @@ Apartamento::Apartamento(int codigo, std::string direccion, int numeroPuerta, in
 Apartamento::~Apartamento(){
     
 }
+
+TipoInmueble Apartamento::getTipoInmueble()  {
+    return TipoApartamento;
+}

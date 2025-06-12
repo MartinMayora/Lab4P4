@@ -27,6 +27,7 @@ class AdministraPropiedad {
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool inmobiliariaAsociada(Inmobiliaria* i);
 
+
 };
 
 #endif

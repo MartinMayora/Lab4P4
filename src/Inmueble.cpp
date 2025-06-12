@@ -58,10 +58,7 @@ void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap)
     this->admprop.insert(ap);
 }
 
-TipoInmueble getTipoInmueble()
-{
-    // ME FALTA ESTO
-}
+
 
 Propietario* Inmueble::getPropietario() {
     return propietario;

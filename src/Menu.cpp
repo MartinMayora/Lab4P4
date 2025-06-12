@@ -295,9 +295,9 @@ void consultaPublicaciones(){
     std::cin.ignore();
     TipoInmueble tipoInmueble = Todos;
     if(inTipoPublicacion == 1){
-        tipoInmueble = Casa;
+        tipoInmueble = TipoCasa;
     }else if(inTipoPublicacion == 2){
-        tipoInmueble = Apartamento;
+        tipoInmueble = TipoApartamento;
     }
     std::cout << "Publicaciones encontradas:\n";
     //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);

@@ -38,3 +38,7 @@ DTPublicacion::~DTPublicacion()
 {
     delete fecha;
 }
+
+bool DTPublicacion::operator<(const DTPublicacion& other) const {
+    return this->codigo < other.codigo; 
+}

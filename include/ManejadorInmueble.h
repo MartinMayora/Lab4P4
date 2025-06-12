@@ -8,6 +8,8 @@
 #include "DTPublicacion.h"
 #include "TipoInmueble.h"
 #include "Publicacion.h"
+#include "DTInmuebleListado.h"
+
 
 class Inmueble;
 class Casa;
@@ -39,7 +41,7 @@ public:
 
     std::set<DTPublicacion> getPublicaciones(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
 
-    std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles();
+    std::set<DTInmuebleListado> darInmuebles();
 
 };
 
