@@ -1,4 +1,5 @@
 #include "../include/ControladorUsuario.h"
+#include "../include/ControladorFechaActual.h"
 #include "../include/ManejadorUsuario.h"
 #include "../include/ManejadorInmueble.h"
 #include "../include/Cliente.h"
