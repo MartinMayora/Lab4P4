@@ -2,6 +2,7 @@
 #define FACTORY_H
 
 #include "IControladorFechaActual.h"
+#include "IAltaUsuario.h"
 
 class Factory {
     private:
@@ -12,6 +13,7 @@ class Factory {
         static Factory* getInstance();
         IControladorFechaActual* getControladorFechaActual();
         //TODO: Get interfaces de controladores
+        IAltaUsuario* getAltaUsuario();
         ~Factory();
 };
 

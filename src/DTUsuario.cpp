@@ -6,11 +6,11 @@ DTUsuario::DTUsuario(std::string nickname, std::string nombre) {
     this->nombre = nombre;
 }
 
-std::string DTUsuario::getNickname() {
+std::string DTUsuario::getNickname() const {
     return nickname;
 }
 
-std::string DTUsuario::getNombre() {
+std::string DTUsuario::getNombre() const {
     return nombre;
 }
 
