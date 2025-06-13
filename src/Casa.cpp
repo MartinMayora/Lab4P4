@@ -13,3 +13,11 @@ Casa::~Casa(){
 TipoInmueble Casa::getTipoInmueble() {
     return TipoCasa;
 }
+
+bool Casa::getEsPH() const {
+    return this->esPH;
+}
+
+TipoTecho Casa::getTecho() const {
+    return this->techo;
+}

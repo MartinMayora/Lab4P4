@@ -14,6 +14,8 @@ class Casa : public Inmueble {
             bool esPH, TipoTecho techo);
         ~Casa();
         virtual TipoInmueble getTipoInmueble() ;
+        bool getEsPH() const;
+        TipoTecho getTecho() const;
 
 };
 

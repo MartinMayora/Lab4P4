@@ -4,6 +4,8 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Inmueble.h"
 #include "../include/AdministraPropiedad.h"
+#include "../include/DTInmueble.h"
+
 
 #include <string>
 #include <map>
@@ -45,4 +47,8 @@ bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int 
 
 std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
     return  ManejadorUsuario::getInstance()->listarInmueblesAdministrados(nicknameInmobiliaria);
+}
+
+DTInmueble* ControladorInmueble::detalleInmueble(int codigo){
+    return ManejadorInmueble::getInstance()->detalleInmueble(codigo);;
 }

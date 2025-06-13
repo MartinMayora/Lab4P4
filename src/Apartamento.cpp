@@ -14,3 +14,17 @@ Apartamento::~Apartamento(){
 TipoInmueble Apartamento::getTipoInmueble()  {
     return TipoApartamento;
 }
+
+int Apartamento::getPiso() {
+    return this->piso;
+}
+
+bool Apartamento::getTieneAscensor(){
+    return this->tieneAscensor;
+}
+
+float Apartamento::getGastosComunes(){
+    return this->gastosComunes;
+}
+
+
