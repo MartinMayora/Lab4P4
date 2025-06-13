@@ -14,6 +14,9 @@ class Apartamento : public Inmueble {
             int piso, bool tieneAscensor, float gastosComunes);
         ~Apartamento();
         virtual TipoInmueble getTipoInmueble() ;
+        int getPiso();
+        bool getTieneAscensor();
+        float getGastosComunes();
 
 };
 

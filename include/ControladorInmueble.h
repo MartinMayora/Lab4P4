@@ -10,6 +10,8 @@
 #include <set>
 #include "DTPublicacion.h"
 #include "TipoInmueble.h"
+#include "DTInmueble.h"
+
 
 class ControladorInmueble
 {
@@ -29,7 +31,7 @@ public:
 
     void eliminarInmueble(int codigoInmueble);
 
-    
+    DTInmueble* detalleInmueble(int codigo);
 
     std::set<DTInmuebleListado> listarInmuebles();
 };

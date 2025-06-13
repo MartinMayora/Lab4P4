@@ -4,6 +4,12 @@
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
 #include "../include/DTInmuebleListado.h"
+#include "../include/DTInmueble.h"
+#include "../include/DTCasa.h"
+#include "../include/DTApartamento.h"
+
+
+
 
 
 ManejadorInmueble *ManejadorInmueble::instancia = NULL;
@@ -108,3 +114,30 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     return resultado;
 }
 
+DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
+    for (unsigned int i = 0; i < inmuebles.size(); ++i) {
+        Inmueble* in = inmuebles[i];
+        if (in->getCodigo() == codigo) {
+            // comunes
+            int cod = in->getCodigo();
+            std::string dir = in->getDireccion();
+            int puerta = in->getNumeroPuerta();
+            int superficie = in->getSuperficie();
+            int anio = in->getAnoConstruccion();
+
+            // Casa
+            Casa* casa = dynamic_cast<Casa*>(in);
+            if (casa != NULL) {
+                return new DTCasa(cod, dir, puerta, superficie, anio,
+                                  casa->getEsPH(), casa->getTecho());
+            }
+
+            // Apartamento
+            Apartamento* apto = dynamic_cast<Apartamento*>(in);
+            if (apto != NULL) {
+                return new DTApartamento(cod, dir, puerta, superficie, anio,
+                                         apto->getPiso(), apto->getTieneAscensor(), apto->getGastosComunes());
+            }
+        }
+    }
+}
