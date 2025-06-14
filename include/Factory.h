@@ -16,6 +16,7 @@ class Factory {
         //TODO: Get interfaces de controladores
         IAltaUsuario* getAltaUsuario();
         ISuscribirseANotificaciones* getSuscribirseANotificaciones();
+        IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();
         ~Factory();
 };
 

@@ -27,3 +27,7 @@ IAltaUsuario* Factory::getAltaUsuario() {
 ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
     return ControladorUsuario::getInstance();
 }
+
+IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
+    return ControladorUsuario::getInstance();
+}
