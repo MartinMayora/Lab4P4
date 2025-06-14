@@ -1,4 +1,5 @@
 #include "../include/ControladorUsuario.h"
+#include "../include/ControladorFechaActual.h"
 #include "../include/ManejadorUsuario.h"
 #include "../include/ManejadorInmueble.h"
 #include "../include/Cliente.h"
@@ -92,8 +93,8 @@ void ControladorUsuario::finalizarAltaUsuario()
     inmobiliariaRecordada = NULL;
 }
 
-// OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
-/*
+//OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
+
 std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
@@ -105,16 +106,14 @@ std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     }
     return res;
 }
-*/
 
-void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble)
-{
-    ManejadorUsuario *mU = ManejadorUsuario::getInstance();
-    Inmobiliaria *ci = mU->getInmobiliaria(nicknameInmobiliaria);
-    ManejadorInmueble *mI = ManejadorInmueble::getInstance();
-    Inmueble *cin = mI->getInmueble(codigoInmueble);
-    // tengo que poner lo que dijo el profe de una instancia de controlador fecha actual
-    // ci->altaAdministraPropiedad(cin, this->fechaActual);
+
+void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
+    ManejadorUsuario* mU = ManejadorUsuario::getInstance();
+    Inmobiliaria* ci = mU->getInmobiliaria(nicknameInmobiliaria);
+    ManejadorInmueble* mI = ManejadorInmueble::getInstance();
+    Inmueble* cin = mI->getInmueble(codigoInmueble);
+    ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
 }
 
 std::set<DTInmuebleListado> ControladorUsuario::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria)
@@ -139,12 +138,12 @@ void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, s
 
 // OPERACION DE ALTAPUBLICACION
 
-std::set<DTUsuario> ControladorUsuario::listarInmobiliarias()
-{
+/*std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     return ManejadorUsuario::getInstance()->listarInmobiliarias();
-}
+}*/
 
 // OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
+
 std::set<std::string> listarSuscripciones(std::string nickname)
 {
     return ManejadorUsuario::getInstance()->listarSuscripciones(nickname);

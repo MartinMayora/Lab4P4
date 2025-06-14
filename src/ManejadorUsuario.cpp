@@ -151,11 +151,11 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
     }
 }
 
-std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria)
-{
-    Inmobiliaria *i = findInmobiliaria(nicknameInmobiliaria);
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
+    /*Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
-    return adm;
+    return adm;*/
+    return std::vector<DTInmuebleAdministrado*>();
 }
 
 Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria)
