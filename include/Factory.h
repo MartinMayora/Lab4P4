@@ -3,6 +3,7 @@
 
 #include "IControladorFechaActual.h"
 #include "IAltaUsuario.h"
+#include "ISuscribirseANotificaciones.h"
 
 class Factory {
     private:
@@ -14,6 +15,7 @@ class Factory {
         IControladorFechaActual* getControladorFechaActual();
         //TODO: Get interfaces de controladores
         IAltaUsuario* getAltaUsuario();
+        ISuscribirseANotificaciones* getSuscribirseANotificaciones();
         ~Factory();
 };
 

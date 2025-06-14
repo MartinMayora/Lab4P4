@@ -23,3 +23,7 @@ IControladorFechaActual* Factory::getControladorFechaActual(){
 IAltaUsuario* Factory::getAltaUsuario() {
     return ControladorUsuario::getInstance();
 }
+
+ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
+    return ControladorUsuario::getInstance();
+}

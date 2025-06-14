@@ -166,16 +166,21 @@ void altaUsuario(){
             int anoConstruccion;
             while (salir != 0){
                 if (tipoUsuario == 1){
-                    std::cout << "Lista de Propietarios:\n";
-                    std::set<DTUsuario> propietarios = ci->listarPropietarios();
+                std::cout << "Lista de Propietarios:\n";
+                std::set<DTUsuario> propietarios = ci->listarPropietarios();
+                if (propietarios.empty()) {
+                 std::cout << "No hay propietarios registrados. No se puede representar a ninguno.\n";
+                } else {
                     for (std::set<DTUsuario>::iterator it = propietarios.begin(); it != propietarios.end(); ++it) {
-                         std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() << std::endl;
+                        std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() << std::endl;
                     }
                     std::cout << "Nickname propietario a representar: ";
                     std::string nicknamePropietario;
                     std::getline(std::cin, nicknamePropietario);
                     ci->representarPropietario(nicknamePropietario);
-                }else if (tipoUsuario == 2){
+                    }
+                }
+                else if (tipoUsuario == 2){
                     int tipoInmueble;
                     std::cout << "Indique el tipo de inmueble (1: Casa, 0: Apartamento): ";
                     std::cin >> tipoInmueble;
@@ -350,9 +355,47 @@ void eliminarInmueble(){
 
 }
 
-void suscribirseNotificaciones(){
+    void suscribirseNotificaciones() {
+    Factory* factory = Factory::getInstance();
+    ISuscribirseANotificaciones* controlador = factory->getSuscribirseANotificaciones();
 
+    std::string nicknameUsuario;
+    std::cout << "Ingrese su nickname (cliente o propietario): ";
+    std::getline(std::cin, nicknameUsuario);
+
+    int salir = 1;
+    while (salir != 0) {
+        std::set<std::string> inmobiliarias = controlador->listarInmobiliariasNoSuscriptas(nicknameUsuario);
+
+        if (inmobiliarias.empty()) {
+            std::cout << "No hay más inmobiliarias disponibles para suscribirse." << std::endl;
+            return;
+        }
+
+        std::cout << "Inmobiliarias disponibles para suscribirse:\n";
+        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it) {
+            std::cout << "- " << *it << std::endl;
+        }
+
+        std::cout << "Ingrese el nickname de la inmobiliaria a la que desea suscribirse: ";
+        std::string nicknameInmobiliaria;
+        std::getline(std::cin, nicknameInmobiliaria);
+
+        if (inmobiliarias.count(nicknameInmobiliaria) == 0) {
+            std::cout << "Nickname inválido o ya estás suscripto a esta inmobiliaria." << std::endl;
+        } else {
+            controlador->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
+            std::cout << "Suscripción realizada con éxito." << std::endl;
+        }
+
+        std::cout << "¿Desea seguir suscribiéndose? (1: Sí, 0: No): ";
+        std::string input;
+        std::getline(std::cin, input);
+        salir = (input == "1") ? 1 : 0;
+        std::cout << std::endl;
+    }
 }
+
 
 void consultaNotificaciones(){
 
