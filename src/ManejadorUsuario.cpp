@@ -115,13 +115,14 @@ std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias()
 }
 
 // OPERACIONES CASO DE USO ALTA PUBLICACION
-std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias(){
+std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias()
+{
     std::set<DTUsuario> toReturn;
     std::map<std::string, Inmobiliaria *>::iterator inm;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
-        std::string nickname= inmobiliariaAux->getNickname();
+        std::string nickname = inmobiliariaAux->getNickname();
         std::string nombre = inmobiliariaAux->getNombre();
         DTUsuario toAdd = DTUsuario(nickname, nombre);
         toReturn.insert(toAdd);
@@ -149,21 +150,21 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         inmobiliariaAux->publicarInmueble();
     }
 }
+//version minima para q compile
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria) {
+    return std::set<DTInmuebleAdministrado>();
+}
 
-/*std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
-    Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
-    std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
-    return adm;
-}*/
-
-Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria){
+Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria)
+{
     std::map<std::string, Inmobiliaria *>::iterator inm;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
-       if (inmobiliariaAux->getNickname() == nicknameInmobiliaria){
+        if (inmobiliariaAux->getNickname() == nicknameInmobiliaria)
+        {
             return inmobiliariaAux;
-       }
+        }
     }
 }
 
@@ -185,26 +186,51 @@ std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::str
     return resultado;
 }
 
-
-void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria) {
-    Usuario* usuario = NULL;
-    //buscamos al usuario que quiere suscribirse entre clientes o propietarios para chequear 
+void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria)
+{
+    Usuario *usuario = NULL;
+    // buscamos al usuario que quiere suscribirse entre clientes o propietarios para chequear
     if (this->clientes.find(nicknameUsuario) != this->clientes.end())
         usuario = this->clientes[nicknameUsuario];
-    else 
-        if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
-            usuario = this->propietarios[nicknameUsuario];
-    //queremos que nos devuelva un puntero al suscriptor para poder agregarlo al set de suscriptores de la inm
-    Suscriptor* suscriptor = dynamic_cast<Suscriptor*>(usuario);
-    Inmobiliaria* inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
-    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor)) {
+    else if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
+        usuario = this->propietarios[nicknameUsuario];
+    // queremos que nos devuelva un puntero al suscriptor para poder agregarlo al set de suscriptores de la inm
+    Suscriptor *suscriptor = dynamic_cast<Suscriptor *>(usuario);
+    Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor))
+    {
         inmobiliaria->agregarSuscriptor(suscriptor);
     }
 }
 
-
-
-std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nickname) {
-    std::set<DTInmuebleAdministrado> resultado;
+std::set<std::string> ManejadorUsuario::listarSuscripciones(std::string nickname)
+{
+    std::set<std::string> resultado;
+    std::map<std::string, Inmobiliaria *>::iterator inm;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); inm++)
+    {
+        Inmobiliaria *inmo = inm->second;
+        if (inmo->tieneSuscriptor(nickname))
+        {
+            resultado.insert(inmo->getNickname());
+        }
+    }
     return resultado;
+};
+
+void ManejadorUsuario::eliminarSuscripcion(std::string nicknameUsuario, std::string nicknameInmobiliaria)
+{
+    Usuario *usuario = NULL;
+    // buscamos al usuario que quiere desuscribirse entre clientes o propietarios para chequear
+    if (this->clientes.find(nicknameUsuario) != this->clientes.end())
+        usuario = this->clientes[nicknameUsuario];
+    else if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
+        usuario = this->propietarios[nicknameUsuario];
+    // queremos que nos devuelva un puntero al suscriptor para poder agregarlo al set de suscriptores de la inm
+    Suscriptor *suscriptor = dynamic_cast<Suscriptor *>(usuario);
+    Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    if (suscriptor != NULL && inmobiliaria != NULL && inmobiliaria->estaSuscripto(suscriptor))
+    {
+        inmobiliaria->eliminarSuscriptor(suscriptor);
+    }
 }

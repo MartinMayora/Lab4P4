@@ -1,6 +1,7 @@
 #include "../include/DTInmuebleListado.h"
 
-DTInmuebleListado::DTInmuebleListado(int codigo, std::string direccion, std::string propietario) {
+DTInmuebleListado::DTInmuebleListado(int codigo, std::string direccion, std::string propietario)
+{
     this->codigo = codigo;
     this->direccion = direccion;
     this->propietario = propietario;
@@ -18,6 +19,7 @@ std::string DTInmuebleListado::getPropietario() const{
     return propietario;
 }
 
-bool DTInmuebleListado::operator<(const DTInmuebleListado& other) const {
+bool DTInmuebleListado::operator<(const DTInmuebleListado &other) const
+{
     return this->codigo < other.codigo;
 }
