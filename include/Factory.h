@@ -3,6 +3,7 @@
 
 #include "IControladorFechaActual.h"
 #include "IAltaUsuario.h"
+#include "IAltaAdministracionPropiedad.h"
 #include "ISuscribirseANotificaciones.h"
 
 class Factory {

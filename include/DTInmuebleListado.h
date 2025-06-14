@@ -10,9 +10,9 @@ class DTInmuebleListado {
 
     public:
         DTInmuebleListado(int codigo, std::string direccion, std::string propietario);
-        int getCodigo();
-        std::string getDireccion();
-        std::string getPropietario();
+        int getCodigo() const;
+        std::string getDireccion() const;
+        std::string getPropietario() const;
         bool operator<(const DTInmuebleListado& other) const;
 
 };

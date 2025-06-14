@@ -407,20 +407,32 @@ void eliminarSuscripciones(){
 
 void altaAdministracionPropiedad(){
     Factory* factory = Factory::getInstance();
-
+    IAltaAdministracionPropiedad* iap = factory->getAltaAdministracionPropiedad();
     std::cout << "Lista de Inmobiliarias:\n";
+    std::set<DTUsuario> inmobiliarias = iap->listarInmobiliarias();
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+    std::set<DTUsuario>::iterator it;
+    for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
+        std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() <<std::endl;
+    }
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
     //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
+    std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    std::set<DTInmuebleListado>::iterator itInmuebles;
+    for(itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles){
+        std::cout << "- Codigo " << itInmuebles->getCodigo() << ", Direccion: " << itInmuebles->getDireccion() << ", Propietario: " << itInmuebles->getPropietario() << std::endl;
+    }
+
     std::cout << "Codigo del inmueble a administrar: ";
     int codigoInmueble;
     std::cin >> codigoInmueble;
     std::cin.ignore();
     //TODO: Controlador->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
+    iap->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
 }
 
 void cargarDatos(){
