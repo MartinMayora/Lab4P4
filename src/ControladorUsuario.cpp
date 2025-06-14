@@ -64,7 +64,6 @@ void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int s
         ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
                                                     esPH, techo, this->propietarioRecordado);
     }
-    std::cout << "[DEBUG] altaCasa llamada con dirección: " << direccion << std::endl;
 
 }
 
