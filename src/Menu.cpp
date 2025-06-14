@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "../include/Menu.h"
 #include "../include/CargaDatos.h"
 #include "../include/TipoInmueble.h"
