@@ -40,4 +40,3 @@ std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrad
 {
     return ManejadorUsuario::getInstance()->listarInmueblesAdministrados(nicknameInmobiliaria);
 }
-s
