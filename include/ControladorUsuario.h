@@ -33,6 +33,7 @@ public:
     std::set<DTUsuario> listarPropietarios();
     void representarPropietario(std::string nicknamePropietario);
     void finalizarAltaUsuario();
+    void mostrarInmuebles();
 
     // OPERACIONES CASO DE USO ALTA DE ADMINISTRACION DE PROPIEDAD (OLIVIA)
     std::set<DTUsuario> listarInmobiliarias();

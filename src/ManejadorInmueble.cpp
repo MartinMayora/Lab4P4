@@ -7,6 +7,7 @@
 #include "../include/DTInmueble.h"
 #include "../include/DTCasa.h"
 #include "../include/DTApartamento.h"
+#include <iostream>
 
 
 
@@ -33,6 +34,7 @@ void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int s
     Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     propietario->agregarInmueble(casa);
     inmuebles[codigo] = casa;
+
 }
 
 void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
@@ -45,6 +47,44 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
     propietario->agregarInmueble(apto);
     // agregamos casa al map de inmuebles del manejador
     inmuebles[codigo] = apto;
+}
+
+void ManejadorInmueble::listarInmuebles() {
+    if (inmuebles.empty()) {
+        std::cout << "No hay inmuebles registrados." << std::endl;
+        return;
+    }
+
+    std::cout << "Lista de inmuebles registrados:\n";
+
+    for (std::map<int, Inmueble*>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+        Inmueble* inmu = it->second;
+
+        std::cout << "Código: " << it->first
+                  << ", Dirección: " << inmu->getDireccion()
+                  << ", Nro Puerta: " << inmu->getNumeroPuerta()
+                  << ", Superficie: " << inmu->getSuperficie();
+                  
+
+        // Verificamos si es una Casa
+        Casa* casa = dynamic_cast<Casa*>(inmu);
+        if (casa != NULL) {
+            std::cout << " [Casa] - PH: " << (casa->getEsPH() ? "Sí" : "No");
+                      
+        } else {
+            // Verificamos si es un Apartamento
+            Apartamento* apto = dynamic_cast<Apartamento*>(inmu);
+            if (apto != NULL) {
+                std::cout << " [Apartamento] - Piso: " << apto->getPiso()
+                          << ", Ascensor: " << (apto->getTieneAscensor() ? "Sí" : "No")
+                          << ", GC: " << apto->getGastosComunes();
+            } else {
+                std::cout << " [Tipo desconocido]";
+            }
+        }
+
+        std::cout << std::endl;
+    }
 }
 
 Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)

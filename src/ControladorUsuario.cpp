@@ -8,6 +8,7 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/DTUsuario.h"
 #include "../include/DTInmuebleListado.h"
+#include <iostream>
 
 ControladorUsuario *ControladorUsuario::instancia = NULL;
 
@@ -63,6 +64,8 @@ void ControladorUsuario::altaCasa(std::string direccion, int numeroPuerta, int s
         ManejadorInmueble::getInstance()->crearCasa(direccion, numeroPuerta, superficie, anioConstruccion,
                                                     esPH, techo, this->propietarioRecordado);
     }
+    std::cout << "[DEBUG] altaCasa llamada con dirección: " << direccion << std::endl;
+
 }
 
 void ControladorUsuario::altaApartamento(std::string direccion, int numeroPuerta, int superficie,
@@ -92,6 +95,11 @@ void ControladorUsuario::finalizarAltaUsuario()
 {
     propietarioRecordado = NULL;
     inmobiliariaRecordada = NULL;
+}
+
+void ControladorUsuario::mostrarInmuebles() {
+    ManejadorInmueble::getInstance()->listarInmuebles();
+
 }
 
 //OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)

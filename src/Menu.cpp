@@ -236,6 +236,10 @@ void altaUsuario(){
                 std::cout << "¿Quiere seguir ingresando? (1: Si, 0: No): ";
                 std::getline(std::cin, inputSalir);
                 salir = (inputSalir == "1") ? 1 : 0;
+                if (salir == 0) {
+                std::cout << "\n--- Inmuebles registrados hasta el momento ---\n";
+                ci->mostrarInmuebles();
+}
 
             }
             
