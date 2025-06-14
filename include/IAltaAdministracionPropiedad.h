@@ -13,6 +13,6 @@ class IAltaAdministracionPropiedad {
     virtual void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble) = 0;
 
     virtual std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria) = 0;
-}
+};
 
 #endif

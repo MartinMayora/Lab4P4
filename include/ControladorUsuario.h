@@ -3,13 +3,14 @@
 
 #include "ISuscribirseANotificaciones.h"
 #include "IAltaUsuario.h"
+#include "IAltaAdministracionPropiedad.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
 #include <string>
 #include <map>
 
 
-class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones {
+class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones, public IAltaAdministracionPropiedad {
 private:
     static ControladorUsuario* instancia;
 
