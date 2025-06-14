@@ -1,6 +1,6 @@
 #ifndef CONTROLADORINMUEBLE_H
 #define CONTROLADORINMUEBLE_H
-
+#include "IConsultaDePublicaciones.h"
 #include "Inmobiliaria.h"
 #include "Inmueble.h"
 #include "Publicacion.h"
@@ -13,8 +13,7 @@
 #include "DTInmueble.h"
 
 
-class ControladorInmueble
-{
+class ControladorInmueble : public IConsultaDePublicaciones{
 private:
     static ControladorInmueble *instancia;
 
@@ -27,13 +26,14 @@ public:
 
     bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio);
 
-    std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
-
+    
     void eliminarInmueble(int codigoInmueble);
-
+    
     DTInmueble* detalleInmueble(int codigo);
-
     std::set<DTInmuebleListado> listarInmuebles();
-};
 
+    //CASO DE LISTAR PUBLICACION    
+    std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
+    DTInmueble* detalleInmueblePublicacion(int codigoPublicacion);
+};
 #endif

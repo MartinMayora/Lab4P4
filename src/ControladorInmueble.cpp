@@ -26,11 +26,6 @@ ControladorInmueble::ControladorInmueble(){
 
 
 
-std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
-{
-    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
-    return manejador->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
-}
 
 std::set<DTInmuebleListado> ControladorInmueble::listarInmuebles()
 {
@@ -52,4 +47,14 @@ std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrad
 
 DTInmueble* ControladorInmueble::detalleInmueble(int codigo){
     return ManejadorInmueble::getInstance()->detalleInmueble(codigo);;
+}
+
+//CASO DE LISTAR PUBLICACION 
+ std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
+{
+    return ManejadorInmueble::getInstance()->getPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
+ }
+
+DTInmueble* ControladorInmueble::detalleInmueblePublicacion(int codigo){
+    return ManejadorInmueble::getInstance()->detalleInmueble(codigo);
 }
