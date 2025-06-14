@@ -1,6 +1,8 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
 #include <cstddef>
+#include "../include/ControladorUsuario.h"
+
 
 Factory* Factory::instance = NULL;
 
@@ -16,4 +18,16 @@ Factory* Factory::getInstance() {
 
 IControladorFechaActual* Factory::getControladorFechaActual(){
     return ControladorFechaActual::getInstance();
+}
+
+IAltaUsuario* Factory::getAltaUsuario() {
+    return ControladorUsuario::getInstance();
+}
+
+ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
+    return ControladorUsuario::getInstance();
+}
+
+IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
+    return ControladorUsuario::getInstance();
 }

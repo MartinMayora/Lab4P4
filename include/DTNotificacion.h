@@ -23,6 +23,7 @@ public:
     std::string getTexto();
     TipoPublicacion getTipo();
     TipoInmueble getInmueble();
+    bool operator<(const DTNotificacion& other) const;
 
 };
 

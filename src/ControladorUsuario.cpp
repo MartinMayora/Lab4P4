@@ -1,5 +1,6 @@
 #include "../include/ControladorUsuario.h"
 #include "../include/ControladorFechaActual.h"
+#include "../include/ControladorFechaActual.h"
 #include "../include/ManejadorUsuario.h"
 #include "../include/ManejadorInmueble.h"
 #include "../include/Cliente.h"
@@ -95,6 +96,7 @@ void ControladorUsuario::finalizarAltaUsuario()
 
 //OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
 
+
 std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
@@ -108,11 +110,13 @@ std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
 }
 
 
+
 void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
     ManejadorUsuario* mU = ManejadorUsuario::getInstance();
     Inmobiliaria* ci = mU->getInmobiliaria(nicknameInmobiliaria);
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI->getInmueble(codigoInmueble);
+    ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
     ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
 }
 
@@ -144,11 +148,12 @@ void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, s
 
 // OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
 
-std::set<std::string> listarSuscripciones(std::string nickname)
+std::set<std::string> ControladorUsuario::listarSuscripciones(std::string nickname)
 {
     return ManejadorUsuario::getInstance()->listarSuscripciones(nickname);
-};
-void eliminarSuscripcion(std::string nicknameUsuario, std::string nicknameInmobiliaria)
+}
+
+void ControladorUsuario::eliminarSuscripcion(std::string nicknameUsuario, std::string nicknameInmobiliaria)
 {
-    return ManejadorUsuario::getInstance()->eliminarSuscripcion(nicknameUsuario, nicknameInmobiliaria);
-};
+    ManejadorUsuario::getInstance()->eliminarSuscripcion(nicknameUsuario, nicknameInmobiliaria);
+}

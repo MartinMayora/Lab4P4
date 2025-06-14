@@ -4,6 +4,9 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Inmueble.h"
 #include "../include/AdministraPropiedad.h"
+#include "../include/DTInmueble.h"
+
+
 #include <string>
 #include <map>
 #include <set>
@@ -16,6 +19,12 @@ ControladorInmueble *ControladorInmueble::getInstance()
         instancia = new ControladorInmueble();
     return instancia;
 }
+
+ControladorInmueble::ControladorInmueble(){
+    
+}
+
+
 
 std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
 {
@@ -39,4 +48,8 @@ bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int 
 std::set<DTInmuebleAdministrado> ControladorInmueble::listarInmueblesAdministrados(std::string nicknameInmobiliaria)
 {
     return ManejadorUsuario::getInstance()->listarInmueblesAdministrados(nicknameInmobiliaria);
+}
+
+DTInmueble* ControladorInmueble::detalleInmueble(int codigo){
+    return ManejadorInmueble::getInstance()->detalleInmueble(codigo);;
 }

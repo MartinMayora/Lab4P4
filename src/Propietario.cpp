@@ -15,13 +15,12 @@ void Propietario::agregarInmueble(Inmueble* inmueble) {
     inmuebles.insert(inmueble);
 }
 
-//Getters
 std::string Propietario::getNickname() {
-    return getNickname();
+    return Usuario::getNickname();
 }
 
 std::string Propietario::getNombre(){
-    return getNombre();
+    return Usuario::getNombre();
 }
 
 std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
@@ -31,7 +30,7 @@ std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
         Inmueble* in = *it;
         bool administrado = in->esAdministrado(i);
         if (!administrado){
-            listInmueblesPropietario.insert(DTInmuebleListado(in->getCodigo, in->getDireccion, this->getNickname));
+            listInmueblesPropietario.insert(DTInmuebleListado(in->getCodigo(), in->getDireccion(), this->getNickname()));
         }
     }
     return listInmueblesPropietario;

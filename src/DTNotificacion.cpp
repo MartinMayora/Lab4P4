@@ -23,3 +23,10 @@ TipoInmueble DTNotificacion::getInmueble()  {
     return inmueble;
 }
 
+
+bool DTNotificacion::operator<(const DTNotificacion& other) const  {
+    if (this->codigo != other.codigo)
+        return this->codigo < other.codigo;
+    
+    return this->nickname < other.nickname;
+}

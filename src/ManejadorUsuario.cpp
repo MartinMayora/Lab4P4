@@ -150,12 +150,9 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         inmobiliariaAux->publicarInmueble();
     }
 }
-
-std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
-    /*Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
-    std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
-    return adm;*/
-    return std::vector<DTInmuebleAdministrado*>();
+//version minima para q compile
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria) {
+    return std::set<DTInmuebleAdministrado>();
 }
 
 Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria)
