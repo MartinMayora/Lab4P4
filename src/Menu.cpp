@@ -280,53 +280,123 @@ void altaPublicacion(){
     //TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
 }
 
-void consultaPublicaciones(){
-
+void consultaPublicaciones() {
     Factory* factory = Factory::getInstance();
+    IConsultaDePublicaciones* consultaCtrl = factory->getConsultaDePublicaciones();
 
-    int inTipoPublicacion;
-    std::cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
-    std::cin >> inTipoPublicacion;
-    TipoPublicacion tipoPublicacion = Alquiler;
-    if(inTipoPublicacion == 1){
-        tipoPublicacion = Venta;
+    int inTipoPublicacion = -1;
+    while (inTipoPublicacion != 0 && inTipoPublicacion != 1) {
+        std::cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler): ";
+        std::cin >> inTipoPublicacion;
+        if(std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            inTipoPublicacion = -1;
+        }
     }
-    std::cin.ignore();
+    TipoPublicacion tipoPublicacion = (inTipoPublicacion == 1) ? Venta : Alquiler;
+
+    float precioMinimo = 0.0f;
     std::cout << "Precio (Min): ";
-    float precioMinimo;
-    std::cin >> precioMinimo;
-    std::cin.ignore();
+    while(!(std::cin >> precioMinimo)){
+        std::cout << "Entrada invalida. Ingrese un número para Precio (Min): ";
+        std::cin.clear();
+        std::cin.ignore(1000,'\n');
+    }
+
+    float precioMaximo = 0.0f;
     std::cout << "Precio (Max): ";
-    float precioMaximo;
-    std::cin >> precioMaximo;
-    std::cin.ignore();
-    int inTipoInmueble;
-    std::cout << "Tipo de Inmueble: (1: Casa, 2: Apartamento, 0: Todos)";
-    std::cin >> inTipoInmueble;
-    std::cin.ignore();
+    while(!(std::cin >> precioMaximo)){
+        std::cout << "Entrada invalida. Ingrese un número para Precio (Max): ";
+        std::cin.clear();
+        std::cin.ignore(1000,'\n');
+    }
+
+    int inTipoInmueble = -1;
+    while (inTipoInmueble != 0 && inTipoInmueble != 1 && inTipoInmueble != 2) {
+        std::cout << "Tipo de Inmueble: (1: Casa, 2: Apartamento, 0: Todos): ";
+        std::cin >> inTipoInmueble;
+        if(std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            inTipoInmueble = -1;
+        }
+    }
     TipoInmueble tipoInmueble = Todos;
-    if(inTipoPublicacion == 1){
+    if (inTipoInmueble == 1) {
         tipoInmueble = TipoCasa;
-    }else if(inTipoPublicacion == 2){
+    } else if (inTipoInmueble == 2) {
         tipoInmueble = TipoApartamento;
     }
+
+    std::set<DTPublicacion> publicaciones = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
+
+    if (publicaciones.empty()) {
+        std::cout << "No se encontraron publicaciones que coincidan con los filtros.\n";
+        return;
+    }
+
     std::cout << "Publicaciones encontradas:\n";
-    //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
-    //Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
-    int verDetalle;
-    std::cout << "Ver detalle de la publicacion: (1: Si, 0: No)";
-    std::cin >> verDetalle;
-    std::cin.ignore();
-    if (verDetalle == 1){
+    for (std::set<DTPublicacion>::const_iterator it = publicaciones.begin(); it != publicaciones.end(); ++it) {
+        const DTPublicacion& pub = *it;
+        std::cout << "- Código: " << pub.getCodigo()
+                  << ", Fecha: " << pub.getFecha()->toString()
+                  << ", Texto: " << pub.getTexto()
+                  << ", Precio: " << pub.getPrecio()
+                  << ", Inmobiliaria: " << pub.getInmobiliaria()
+                  << std::endl;
+    }
+
+    int verDetalle = -1;
+    while (verDetalle != 0 && verDetalle != 1) {
+        std::cout << "Ver detalle de la publicacion: (1: Si, 0: No): ";
+        std::cin >> verDetalle;
+        if(std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            verDetalle = -1;
+        }
+    }
+
+    if (verDetalle == 1) {
         std::cout << "Codigo de publicacion: ";
         int codigoPublicacion;
-        std::cin >> codigoPublicacion;
-        std::cin.ignore();
+        while(!(std::cin >> codigoPublicacion)){
+            std::cout << "Entrada invalida. Ingrese un código válido: ";
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+        }
+
+        DTInmueble* inmuebleDetalle = consultaCtrl->detalleInmueblePublicacion(codigoPublicacion);
+
+        if (!inmuebleDetalle) {
+            std::cout << "No se encontró el inmueble." << std::endl;
+            return;
+        }
+
         std::cout << "Detalle del inmueble:\n";
-        //TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
-        //Mostrarlo:
-        // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
-        // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
+        std::cout << "Código: " << inmuebleDetalle->getCodigo()
+                  << ", Dirección: " << inmuebleDetalle->getDireccion()
+                  << ", Nro. puerta: " << inmuebleDetalle->getNumeroPuerta()
+                  << ", Superficie: " << inmuebleDetalle->getSuperficie() << " m2"
+                  << ", Construcción: " << inmuebleDetalle->getAnioConstruccion();
+
+        DTCasa* casa = dynamic_cast<DTCasa*>(inmuebleDetalle);
+        if (casa) {
+            std::cout << ", PH: " << (casa->getEsPH() ? "Si" : "No")
+                      << ", Tipo de techo: " << casa->getTecho()
+                      << std::endl;
+        } else {
+            DTApartamento* apto = dynamic_cast<DTApartamento*>(inmuebleDetalle);
+            if (apto) {
+                std::cout << ", Piso: " << apto->getPiso()
+                          << ", Ascensor: " << (apto->getTieneAscensor() ? "Si" : "No")
+                          << ", Gastos comunes: " << apto->getGastosComunes()
+                          << std::endl;
+            }
+        }
+
+        delete inmuebleDetalle;
     }
 }
 
