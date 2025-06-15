@@ -29,13 +29,11 @@ public:
 
     std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
 
-    void eliminarInmueble(int codigoInmueble);
-
     DTInmueble* detalleInmueble(int codigo);
 
     std::set<DTInmuebleListado> listarInmuebles();
 
     void eliminarInmueble(int codigoInmueble);
-    
+
 };
 #endif
