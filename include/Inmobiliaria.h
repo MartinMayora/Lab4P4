@@ -9,7 +9,9 @@
 #include <string>
 #include <set>
 #include "DTInmuebleAdministrado.h"
-
+class AdministraPropiedad;
+class Propietario;
+class Inmueble;
 class Inmobiliaria : public Usuario
 {
 private:
