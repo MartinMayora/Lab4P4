@@ -7,6 +7,9 @@
 #include "../include/DTInmueble.h"
 #include "../include/DTCasa.h"
 #include "../include/DTApartamento.h"
+#include "../include/DTDato.h"
+
+
 
 
 
@@ -56,27 +59,32 @@ Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
         return NULL;
 }
 
-/*std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble)
+std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
+    TipoPublicacion tipoPublicacion,
+    float precioMinimo,
+    float precioMaximo,
+    TipoInmueble tipoInmueble)
 {
     std::set<DTPublicacion> resultado;
 
-    std::set<Publicacion *>::iterator it;
-    for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
+    for (Publicacion* p : publicaciones)
     {
-        Publicacion *p = *it;
-
         if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
             if (precio >= precioMinimo && precio <= precioMaximo)
             {
-                AdministraPropiedad *admin = p->getAdministraPropiedad();
-                Inmueble *inmueble = admin->getInmueble();
-                if (inmueble->getTipoInmueble() == tipoInmueble)
+                DTDato dato = p->getDataPublicacion();
+                if (dato.getTi() == tipoInmueble)
                 {
-                    std::string nombreInmobiliaria = admin->getInmobiliaria()->getNombre();
-                    DTPublicacion dt = p->getDataPublicacion(nombreInmobiliaria);
-                    resultado.insert(dt);
+                    DTPublicacion dtpub(
+                        p->getCodigo(),
+                        p->getFecha(),
+                        p->getTexto(),
+                        p->getPrecio(),
+                        dato.getNombre()
+                    );
+                    resultado.insert(dtpub);
                 }
             }
         }
@@ -84,7 +92,14 @@ Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
 
     return resultado;
 }
-    */
+/*
+std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
+    TipoPublicacion tipo, float precioMin, float precioMax, TipoInmueble tipoInmueble) {
+
+    std::set<DTPublicacion> resultado;
+    return resultado;
+}
+*/
 
 std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 {
@@ -106,12 +121,6 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
     return resultado;
 }
 
-std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
-    TipoPublicacion tipo, float precioMin, float precioMax, TipoInmueble tipoInmueble) {
-
-    std::set<DTPublicacion> resultado;
-    return resultado;
-}
 
 DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
     for (unsigned int i = 0; i < inmuebles.size(); ++i) {
