@@ -45,9 +45,10 @@ public:
     std::set<DTInmuebleListado> darInmuebles();
 
     DTInmueble* detalleInmueble(int codigo);
+
+    void eliminarInmueble(int codigoInmueble);
+
     void listarInmuebles();
-
-
 
 };
 

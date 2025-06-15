@@ -34,6 +34,8 @@ public:
     DTInmueble* detalleInmueble(int codigo);
 
     std::set<DTInmuebleListado> listarInmuebles();
-};
 
+    void eliminarInmueble(int codigoInmueble);
+    
+};
 #endif

@@ -44,3 +44,10 @@ DTPublicacion Publicacion::getDataPublicacion(std::string nombreInmobiliaria) co
 {
     return DTPublicacion(codigo, fecha, texto, precio, nombreInmobiliaria);
 }
+
+void Publicacion::eliminarLinkAgenda() {
+    for (std::set<Agenda*>::iterator it = this->agendas.begin(); it != this->agendas.end(); ++it) { //elimino todas las agendas
+        delete *it;
+    }
+    this->agendas.clear();    
+}
