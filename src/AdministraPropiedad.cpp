@@ -3,7 +3,10 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Publicacion.h"
 
-AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha){
+AdministraPropiedad::~AdministraPropiedad() {
+  
+}
+AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha) {
     this->inmobiliaria = i;
     this->inmueble = inm;
     this->fecha = fecha;
@@ -19,10 +22,16 @@ Inmobiliaria* AdministraPropiedad::getInmobiliaria(){
 Inmueble* AdministraPropiedad::getInmueble(){
     return inmueble;
 }
-Publicacion* AdministraPropiedad::getPub(){
-    return publicacion;
+std::set<Publicacion*> AdministraPropiedad::getPub(){
+    return this->publicaciones;
 }
 
 bool AdministraPropiedad::inmobiliariaAsociada(Inmobiliaria* i){
     return (i == inmobiliaria);
+}
+
+//ALTAPUBLICACION
+bool AdministraPropiedad::tieneInmueble(int codigoInmueble){
+    int codigo = this->inmueble->getCodigo();
+    return codigoInmueble == codigo;
 }

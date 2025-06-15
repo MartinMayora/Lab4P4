@@ -5,8 +5,10 @@
 #include "AdministraPropiedad.h"
 #include "DTUsuario.h"
 #include "DTInmuebleListado.h"
+#include "Suscriptor.h"
 #include <string>
 #include <set>
+#include "DTInmuebleAdministrado.h"
 
 class Inmobiliaria : public Usuario {
     private:
@@ -16,22 +18,30 @@ class Inmobiliaria : public Usuario {
         //agregue set de propietarios
         std::set<Propietario*> propietarios;
         std::set<AdministraPropiedad*> administra;
+        std::set<Suscriptor*> suscriptores;
+        
     public:
         Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
         ~Inmobiliaria();
         //agregue funciones para set de propietarios agregar y get por si desp sirven
         void agregarPropietario(Propietario* p);
         std::set<Propietario*> getPropietarios();
-
-        //funcion utilizada en altaPublicacion
-        void publicarInmueble();
-
+        std::set<AdministraPropiedad*> getAdmins();
+        //Operaciones caso de uso ALTA PUBLICACION 
+        void publicarInmueble(int codigoInmueble);
+        std::set<DTInmuebleAdministrado> getAdministrados();
+        //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
         DTUsuario getDTUsuario();
-        
-        // para func listarInmueblesNoAdministradosInmobiliaria
         std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
-
         void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
+
+        //Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
+        bool tieneSuscriptor(std::string nickname);
+        bool estaSuscripto(Suscriptor* s) ;
+        void agregarSuscriptor(Suscriptor* s);
+
+  
+
 
 };
 
