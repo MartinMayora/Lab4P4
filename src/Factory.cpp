@@ -31,3 +31,7 @@ ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
 IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
     return ControladorUsuario::getInstance();
 }
+
+IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
+    return ControladorUsuario::getInstance();
+}

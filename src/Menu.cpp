@@ -401,9 +401,47 @@ void consultaNotificaciones(){
 
 }
 
-void eliminarSuscripciones(){
+void eliminarSuscripciones() {
+    Factory* factory = Factory::getInstance();
+    IEliminarSuscripciones* controlador = factory->getEliminarSuscripciones();
 
+    std::string nicknameUsuario;
+    std::cout << "Ingrese su nickname (cliente o propietario): ";
+    std::getline(std::cin, nicknameUsuario);
+
+    int salir = 1;
+    while (salir != 0) {
+        std::set<std::string> inmobiliarias = controlador->listarSuscripciones(nicknameUsuario);
+
+        if (inmobiliarias.empty()) {
+            std::cout << "No estás suscripto a ninguna inmobiliaria." << std::endl;
+            return;
+        }
+
+        std::cout << "Inmobiliarias a las que estás suscripto:\n";
+        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it) {
+            std::cout << "- " << *it << std::endl;
+        }
+
+        std::cout << "Ingrese el nickname de la inmobiliaria de la que desea eliminar la suscripción: ";
+        std::string nicknameInmobiliaria;
+        std::getline(std::cin, nicknameInmobiliaria);
+
+        if (inmobiliarias.count(nicknameInmobiliaria) == 0) {
+            std::cout << "Nickname inválido o no estás suscripto a esta inmobiliaria." << std::endl;
+        } else {
+            controlador->eliminarSuscripcion(nicknameUsuario, nicknameInmobiliaria);
+            std::cout << "Suscripción eliminada con éxito." << std::endl;
+        }
+
+        std::cout << "¿Desea eliminar otra suscripción? (1: Sí, 0: No): ";
+        std::string input;
+        std::getline(std::cin, input);
+        salir = (input == "1") ? 1 : 0;
+        std::cout << std::endl;
+    }
 }
+
 
 void altaAdministracionPropiedad(){
     Factory* factory = Factory::getInstance();
