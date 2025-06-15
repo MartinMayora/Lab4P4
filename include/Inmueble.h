@@ -20,7 +20,6 @@ private:
     std::set<AdministraPropiedad *> admprop;
     Propietario* propietario;
 
-
 public:
     Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
     ~Inmueble();
@@ -35,6 +34,7 @@ public:
     int getAnoConstruccion();
     virtual TipoInmueble getTipoInmueble() = 0;
     Propietario* getPropietario();
+    void eliminarLinks();
 
 
     // para func listarInmueblesNoAdministradosInmobiliaria

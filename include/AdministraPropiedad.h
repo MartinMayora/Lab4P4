@@ -1,8 +1,10 @@
 #ifndef ADMINISTRAPROPIEDAD_H
 #define ADMINISTRAPROPIEDAD_H
 #include "DTFecha.h"
-//#include "Inmobiliaria.h"
-//#include "Publicacion.h"
+#include <set>
+
+#include "Inmobiliaria.h"
+#include "Publicacion.h"
 class Publicacion;
 class Inmobiliaria;
 class Inmueble;
@@ -12,7 +14,7 @@ class AdministraPropiedad {
         DTFecha* fecha;
         Inmobiliaria* inmobiliaria;
         Inmueble* inmueble;
-        Publicacion* publicacion;
+        std::set<Publicacion*> publicaciones;
 
     public:
         AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha);
@@ -26,6 +28,8 @@ class AdministraPropiedad {
 
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool inmobiliariaAsociada(Inmobiliaria* i);
+        void eliminarLinkPublicacion();
+        std::set<Publicacion*>& getPublicaciones();
 
 
 };

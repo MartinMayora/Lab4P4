@@ -180,3 +180,15 @@ DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
         }
     }
 }
+
+void ManejadorInmueble::eliminarInmueble(int codigoInmueble) {
+    Inmueble* in = this->getInmueble(codigoInmueble); // igual que find pero ya estaba escrita
+    if (in == NULL)
+       return;
+    else {
+       in->eliminarLinks();
+       this->inmuebles.erase(codigoInmueble);
+       delete in;
+       }
+    }
+    

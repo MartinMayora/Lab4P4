@@ -1,5 +1,7 @@
 #include "../include/Inmueble.h"
 #include "../include/AdministraPropiedad.h"
+#include "../include/Propietario.h"
+#include "../include/AdministraPropiedad.h"
 
 Inmueble::Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion) : codigo(codigo), direccion(direccion), numeroPuerta(numeroPuerta), superficie(superficie), anoConstruccion(anoConstruccion)
 {
@@ -62,4 +64,15 @@ void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap)
 
 Propietario* Inmueble::getPropietario() {
     return propietario;
+}
+
+void Inmueble::eliminarLinks() {
+    this->propietario->eliminarLinkPropietario(this); 
+    this->propietario = NULL;
+    for (std::set<AdministraPropiedad*>::iterator it = this->admprop.begin(); it != this->admprop.end(); ++it) {
+        AdministraPropiedad* admin = *it;
+        admin->eliminarLinkPublicacion();
+        delete admin;
+    }
+    this->admprop.clear();
 }

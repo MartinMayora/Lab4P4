@@ -40,3 +40,8 @@ std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
 void Propietario::agregarInmobiliaria(Inmobiliaria* i) {
     this->inmobiliarias.insert(i);
 }
+
+void Propietario::eliminarLinkPropietario(Inmueble* in) {
+    this->inmuebles.erase(in);
+}
+

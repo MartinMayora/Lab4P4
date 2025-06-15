@@ -15,6 +15,9 @@
 #include "../include/DTUsuario.h"
 #include <string>
 #include <set>
+#include <cstdlib>
+
+
 
 void mostrarMenu() {
     std::cout << "=== Menu de Operaciones ===" << std::endl;
