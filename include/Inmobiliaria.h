@@ -28,13 +28,14 @@ public:
     void agregarPropietario(Propietario *p);
     std::set<Propietario *> getPropietarios();
 
-        //Operaciones caso de uso ALTA PUBLICACION 
-        void publicarInmueble();
-        //std::set<DTInmuebleAdministrado> getAdministrados();
-        //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
-        DTUsuario getDTUsuario();
-        std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
-        void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
+
+    //Operaciones caso de uso ALTA PUBLICACION 
+    void publicarInmueble();
+    //std::set<DTInmuebleAdministrado> getAdministrados();
+    //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
+    DTUsuario getDTUsuario();
+    std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
+    void altaAdministraPropiedad(Inmueble* inmueble, DTFecha* fechaActual);
 
     // Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
     bool tieneSuscriptor(std::string nickname);

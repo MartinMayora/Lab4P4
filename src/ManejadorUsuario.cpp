@@ -86,6 +86,7 @@ void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, I
     {
         Propietario *propietario = p->second;
         propietario->agregarInmobiliaria(inmobiliariaRecordada);
+        inmobiliariaRecordada->agregarPropietario(propietario);
     }
 }
 

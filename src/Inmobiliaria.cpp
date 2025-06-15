@@ -102,3 +102,8 @@ void Inmobiliaria::eliminarSuscriptor(Suscriptor *s)
     suscriptores.erase(s);
     delete s;
 };
+
+//OPERACIONES CASO DE USO ALTA DE USUARIO
+void Inmobiliaria::agregarPropietario(Propietario* propietario) {
+    this->propietarios.insert(propietario); 
+}
