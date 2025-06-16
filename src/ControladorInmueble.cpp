@@ -57,3 +57,7 @@ DTInmueble* ControladorInmueble::detalleInmueblePublicacion(int codigo){
 }
 
 ControladorInmueble::~ControladorInmueble() { }
+
+void ControladorInmueble::eliminarInmueble(int codigoInmueble) {
+    ManejadorInmueble::getInstance()->eliminarInmueble(codigoInmueble);
+}
