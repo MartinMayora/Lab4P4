@@ -10,7 +10,6 @@
 #include "Suscriptor.h"
  
 class AdministraPropiedad;
-class Agenda;
 
 class Publicacion
 {private:
