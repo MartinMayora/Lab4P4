@@ -19,7 +19,7 @@ ManejadorInmueble *ManejadorInmueble::instancia = NULL;
 
 ManejadorInmueble::ManejadorInmueble()
 {
-    codInc = 0;
+    codInc = 1;
 }
 
 ManejadorInmueble *ManejadorInmueble::getInstance()
