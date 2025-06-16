@@ -56,3 +56,13 @@ void Publicacion::eliminarLinkAgenda() {
     }
     this->agendas.clear();    
 }
+//altapublicacionAdd commentMore actions
+bool Publicacion::existeFecha(DTFecha *fechaActual){
+    return this->fecha->operator==(fechaActual);
+}
+bool Publicacion::existeTipoPub(TipoPublicacion TipoPublicacion){
+    return this->getTipoPublicacion() == TipoPublicacion;
+}
+void Publicacion::actiualizarActivo(bool nuevoEstado){
+    this->activa = nuevoEstado;
+}

@@ -24,13 +24,14 @@ class AdministraPropiedad {
         DTFecha* getFecha();
         Inmobiliaria* getInmobiliaria();
         Inmueble* getInmueble();
-        Publicacion* getPub();
+        std::set<Publicacion*> getPubublicaciones();
 
         // para func listarInmueblesNoAdministradosInmobiliaria
         bool inmobiliariaAsociada(Inmobiliaria* i);
         void eliminarLinkPublicacion();
         std::set<Publicacion*>& getPublicaciones();
-
+        //alta publicacionAdd commentMore actions
+        bool tieneInmueble(int codigoInmueble);
 
 };
 

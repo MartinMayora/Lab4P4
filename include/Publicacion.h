@@ -34,6 +34,11 @@ public:
     std::string getTexto() const;
     float getPrecio() const;
     bool getEstaActiva() const;
+    //altapublicacion
+    bool existeFecha(DTFecha* fechaActual);
+    bool existeTipoPub(TipoPublicacion TipoPublicacion);
+    void actiualizarActivo(bool nuevoEstado);
+
     //AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
     DTDato getDataPublicacion() const;

@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include "DTInmuebleAdministrado.h"
+
 class Usuario;
 class Cliente;
 class Propietario;

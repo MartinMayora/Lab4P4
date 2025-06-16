@@ -3,7 +3,7 @@
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
 #include "../include/DTUsuario.h"
-
+#include "../include/ControladorFechaActual.h"
 ManejadorUsuario *ManejadorUsuario::instancia = NULL;
 
 ManejadorUsuario::ManejadorUsuario() {}
@@ -145,31 +145,69 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
     {
         return false;
     }
-    std::map<std::string, Inmobiliaria *>::iterator inm;
-    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
-    {
-        Inmobiliaria *inmobiliariaAux = inm->second;
-        inmobiliariaAux->publicarInmueble();
-    }
-}
-//version minima para q compile
-std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria) {
-    return std::set<DTInmuebleAdministrado>();
-}
 
-Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria)
-{
     std::map<std::string, Inmobiliaria *>::iterator inm;
-    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
+    std::set<AdministraPropiedad*> admins;
+    std::set<AdministraPropiedad*>::iterator administraAux;
+    bool encontrado = false;
+    AdministraPropiedad* ap;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end() && !encontrado; ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
-        if (inmobiliariaAux->getNickname() == nicknameInmobiliaria)
-        {
-            return inmobiliariaAux;
+        admins = inmobiliariaAux->getAdmins();
+        for(administraAux = admins.begin(); administraAux != admins.end() && !encontrado; ++administraAux){
+            AdministraPropiedad* ap = *administraAux;
+            if (ap->tieneInmueble(codigoInmueble)){
+                encontrado = true;
+            }
         }
     }
+    DTFecha* fechaActual = ControladorFechaActual::getInstance()->getFechaActual();
+    std::set<Publicacion*> publicacion = ap->getPublicaciones();
+    std::set<Publicacion*>::iterator publicacionAux;
+    for(publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux){
+        Publicacion* pub = *publicacionAux;
+        bool e1 = pub->existeFecha(fechaActual);
+        bool e2 = pub->existeTipoPub(tipoPublicacion);
+        if(e1 && e2){
+            return false;
+        }
+    }
+    bool pactivo=false;
+    for(publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux){
+        Publicacion* pu = *publicacionAux;
+        TipoPublicacion puTipo = pu->getTipoPublicacion();
+        bool puActivo = pu->getEstaActiva();
+        if(puTipo == tipoPublicacion && puActivo){
+            pu->actiualizarActivo(false);
+            pactivo= true;
+        }
+    }
+
+    int ultimaPublicacion = 1; //temporal
+    Publicacion* pubAgregar = new Publicacion(ultimaPublicacion + 1, fechaActual, tipoPublicacion, texto, precio, pactivo);
+    publicacion.insert(pubAgregar);
+    ultimaPublicacion = pubAgregar->getCodigo();
+    return true;
 }
 
+
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
+    Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
+    std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
+    return adm;
+}
+
+Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria){
+    std::map<std::string, Inmobiliaria *>::iterator inm;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
+    {
+        Inmobiliaria *inmobiliariaAux = inm->second;
+       if (inmobiliariaAux->getNickname() == nicknameInmobiliaria){
+            return inmobiliariaAux;
+       }
+    }
+}
 // OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
 
 std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario)

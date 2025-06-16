@@ -16,6 +16,11 @@ Inmobiliaria::~Inmobiliaria()
 {
 }
 
+//getters
+std::set<AdministraPropiedad*> Inmobiliaria::getAdmins(){
+    return this->administra;
+}
+
 // Operaciones caso de uso ALTA ADMINISTRA PROPIEDAD
 DTUsuario Inmobiliaria::getDTUsuario()
 {
@@ -43,24 +48,22 @@ void Inmobiliaria::altaAdministraPropiedad(Inmueble *inmueble, DTFecha *fechaAct
 }
 
 // Operaciones caso de uso ALTA DE PUBLICACION
-void Inmobiliaria::publicarInmueble()
-{
-    std::set<AdministraPropiedad *>::iterator administraAux;
-    for (administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux)
-    {
-        AdministraPropiedad *ap = *administraAux;
-        // ap->tieneInmueble(codigoInmueble);
-    }
-}
 
-/*std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
+std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
     std::set<AdministraPropiedad*>::iterator administraAux;
+    std::set<DTInmuebleAdministrado> aReturn;
     for(administraAux = this->administra.begin(); administraAux != this->administra.end(); ++administraAux){
         AdministraPropiedad* ap = *administraAux;
-        //ap.getFecha();
+        DTFecha* fecha = (*ap).getFecha();
+        Inmueble* inm = (*ap).getInmueble();
+        int codigo = inm->getCodigo();
+        std::string direccion = inm->getDireccion();
+        DTInmuebleAdministrado* aAgregar = new DTInmuebleAdministrado(codigo, direccion, fecha);
+        aReturn.insert(*aAgregar);
     }
+    return aReturn;
 }
-*/
+
 
 // Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
 bool Inmobiliaria::tieneSuscriptor(std::string nickname)

@@ -29,11 +29,11 @@ public:
     // agregue funciones para set de propietarios agregar y get por si desp sirven
     void agregarPropietario(Propietario *p);
     std::set<Propietario *> getPropietarios();
+    std::set<AdministraPropiedad*> getAdmins();
 
 
     //Operaciones caso de uso ALTA PUBLICACION 
-    void publicarInmueble();
-    //std::set<DTInmuebleAdministrado> getAdministrados();
+    std::set<DTInmuebleAdministrado> getAdministrados();
     //Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
     DTUsuario getDTUsuario();
     std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
