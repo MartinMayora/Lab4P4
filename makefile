@@ -5,7 +5,7 @@ build/DTCasa.o build/DTFecha.o build/DTInmueble.o build/DTInmuebleAdministrado.o
 build/DTInmuebleListado.o build/DTPublicacion.o build/DTUsuario.o build/Factory.o \
 build/Inmobiliaria.o build/Inmueble.o build/main.o build/ManejadorInmueble.o \
 build/ManejadorUsuario.o build/Menu.o build/Propietario.o build/Usuario.o build/Suscriptor.o \
-build/Publicacion.o build/DTNotificacion.o build/DTDato.o build/Agenda.o
+build/Publicacion.o build/DTNotificacion.o build/DTDato.o 
 
 
 
@@ -103,8 +103,7 @@ build/Suscriptor.o: include/Suscriptor.h src/Suscriptor.cpp | build
 build/DTDato.o: include/DTDato.h src/DTDato.cpp | build
 	$(CXX) $(OPCIONES) -c src/DTDato.cpp -o build/DTDato.o
 
-build/Agenda.o: include/Agenda.h src/Agenda.cpp | build
-	$(CXX) $(OPCIONES) -c src/Agenda.cpp -o build/Agenda.o
+
 
 build:
 	mkdir -p build
