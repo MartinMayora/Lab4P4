@@ -128,6 +128,7 @@ std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias()
         DTUsuario toAdd = DTUsuario(nickname, nombre);
         toReturn.insert(toAdd);
     }
+    return toReturn;
 }
 bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria)
 {

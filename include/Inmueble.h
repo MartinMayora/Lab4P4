@@ -22,7 +22,7 @@ private:
 
 public:
     Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
-    ~Inmueble();
+    virtual ~Inmueble();
 
     std::set<AdministraPropiedad *> getAdministraPropiedad();
 
