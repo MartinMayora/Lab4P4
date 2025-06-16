@@ -272,17 +272,16 @@ void altaPublicacion(){
     std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado>::iterator ite;
     std::cout << listaInmAdm.size();
-    for(ite = listaInmAdm.begin(); ite!= listaInmAdm.end(); ++it){
-        std::cout<< "anted de codigo";
-        std::cout << "- Codigo:" << (*ite).getCodigo() <<", Direccion: "<< (*ite).getDireccion() <<", Propietario: ";
+    for(ite = listaInmAdm.begin(); ite!= listaInmAdm.end(); ++ite){
+        std::cout << "- Codigo:" << (*ite).getCodigo() <<", Direccion: "<< (*ite).getDireccion() <<", Propietario: \n";
     }
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
-    std::cout << "sdad Inmueble: ";
+    std::cout << "Inmueble: ";
     std::cin >> codigoInmueble;
     std::cin.ignore();
     int inTipoPublicacion;
-    std::cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
+    std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler)";
     std::cin >> inTipoPublicacion;
     TipoPublicacion tipoPublicacion = Alquiler;
     if(inTipoPublicacion == 1){
