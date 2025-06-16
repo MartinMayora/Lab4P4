@@ -106,8 +106,10 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
 {
     std::set<DTPublicacion> resultado;
 
-    for (Publicacion* p : publicaciones)
+    std::set<Publicacion*>::iterator it;
+    for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
+        Publicacion* p = *it;
         if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
@@ -131,6 +133,7 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
 
     return resultado;
 }
+
 
 std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 {
