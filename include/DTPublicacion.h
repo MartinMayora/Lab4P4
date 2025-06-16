@@ -14,11 +14,11 @@ private:
 
 public:
     DTPublicacion(int codigo, DTFecha *fecha, std::string texto, float precio, std::string inmobiliaria);
-    int getCodigo();
-    DTFecha *getFecha();
-    std::string getTexto();
+    int getCodigo() const;
+    DTFecha *getFecha() const;
+    std::string getTexto() const;
     float getPrecio() const;
-    std::string getInmobiliaria();
+    std::string getInmobiliaria() const;
     ~DTPublicacion();
     bool operator<(const DTPublicacion& other) const;
 

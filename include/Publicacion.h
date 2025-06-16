@@ -2,6 +2,7 @@
 #define PUBLICACION_H
 
 #include "DTFecha.h"
+#include "DTDato.h"
 #include "TipoPublicacion.h"
 #include "DTPublicacion.h"
 #include "AdministraPropiedad.h"
@@ -35,7 +36,7 @@ public:
     bool getEstaActiva() const;
     //AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
-    DTPublicacion getDataPublicacion(std::string nombreInmobiliaria) const;
+    DTDato getDataPublicacion() const;
     void eliminarLinkAgenda();
 };
 

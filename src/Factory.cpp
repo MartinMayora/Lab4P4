@@ -2,7 +2,7 @@
 #include "../include/ControladorFechaActual.h"
 #include <cstddef>
 #include "../include/ControladorUsuario.h"
-
+#include "../include/ControladorInmueble.h"
 
 Factory* Factory::instance = NULL;
 
@@ -30,4 +30,12 @@ ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
 
 IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
     return ControladorUsuario::getInstance();
+}
+
+IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
+    return ControladorUsuario::getInstance();
+}
+
+IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
+    return ControladorInmueble::getInstance();
 }

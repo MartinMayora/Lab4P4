@@ -5,7 +5,8 @@
 #include "IAltaUsuario.h"
 #include "IAltaAdministracionPropiedad.h"
 #include "ISuscribirseANotificaciones.h"
-
+#include "IEliminarSuscripciones.h"
+#include "IConsultaDePublicaciones.h"
 class Factory {
     private:
         static Factory* instance;
@@ -18,6 +19,8 @@ class Factory {
         IAltaUsuario* getAltaUsuario();
         ISuscribirseANotificaciones* getSuscribirseANotificaciones();
         IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();
+        IEliminarSuscripciones* getEliminarSuscripciones();
+        IConsultaDePublicaciones* getConsultaDePublicaciones();
         ~Factory();
 };
 

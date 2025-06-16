@@ -1,5 +1,8 @@
 #include "../include/Publicacion.h"
 #include "../include/DTPublicacion.h"
+#include "../include/Inmobiliaria.h"
+#include "../include/Inmueble.h"
+#include "../include/AdministraPropiedad.h"
 
 Publicacion::Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa)
     : codigo(codigo), fecha(fecha), tipo(tipo), texto(texto), precio(precio), activa(activa) {}
@@ -40,9 +43,11 @@ bool Publicacion::getEstaActiva() const
     return activa;
 }
 
-DTPublicacion Publicacion::getDataPublicacion(std::string nombreInmobiliaria) const
-{
-    return DTPublicacion(codigo, fecha, texto, precio, nombreInmobiliaria);
+DTDato Publicacion::getDataPublicacion() const {
+    std::string nombre = admin->getInmobiliaria()->getNombre();
+    TipoInmueble ti = admin->getInmueble()->getTipoInmueble();
+
+    return DTDato(nombre, ti);
 }
 
 void Publicacion::eliminarLinkAgenda() {
