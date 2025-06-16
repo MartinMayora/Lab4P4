@@ -409,30 +409,69 @@ void consultaPublicaciones() {
     }
 }
 
-void eliminarInmueble(){
-
+void eliminarInmueble() {
     Factory* factory = Factory::getInstance();
+    IEliminarInmueble* ci = factory->getEliminarInmueble();
     std::cout << "Listado de inmuebles:\n";
-    //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmuebles();
-    //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
+    std::set<DTInmuebleListado> inmuebles = ci->listarInmuebles();
+
+    if (inmuebles.empty()) {
+        std::cout << "No hay inmuebles disponibles.\n";
+        return;
+    }
+
+    for (std::set<DTInmuebleListado>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+        std::cout << "- Codigo: " << it->getCodigo()
+                  << ", Direccion: " << it->getDireccion()
+                  << ", Propietario: " << it->getPropietario() << std::endl;
+    }
     std::cout << "Codigo del inmueble a eliminar: ";
     int codigoInmueble;
     std::cin >> codigoInmueble;
     std::cin.ignore();
     std::cout << "Detalle del inmueble:\n";
-    //TODO: DTInmueble = Controlador->detalleInmueble(codigoInmueble)
-    //Mostrarlo:
-    // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
-    // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
-    int deseaEliminar;
-    std::cout << "¿Desea eliminar?: (1: Si, 0: No)";
-    std::cin >> deseaEliminar;
-    std::cin.ignore();
-    if (deseaEliminar == 1){
-        //TODO: Controlador->eliminarInmueble(codigoInmueble)
+    DTInmueble* detalle = ci->detalleInmueble(codigoInmueble);
+
+    if (!detalle) {
+        std::cout << "Codigo no valido. No se encontro el inmueble.\n";
+        return;
     }
 
+    DTCasa* casa = dynamic_cast<DTCasa*>(detalle);
+    if (casa) {
+        std::cout << "Codigo: " << casa->getCodigo()
+                  << ", Direccion: " << casa->getDireccion()
+                  << ", Nro. puerta: " << casa->getNumeroPuerta()
+                  << ", Superficie: " << casa->getSuperficie() << " m2"
+                  << ", Construccion: " << casa->getAnioConstruccion()
+                  << ", PH: " << (casa->getEsPH() ? "Si" : "No")
+                  << ", Tipo de techo: " << casa->getTecho() << std::endl;
+    } else 
+    {
+        DTApartamento* apto = dynamic_cast<DTApartamento*>(detalle);
+        if (apto) {
+            std::cout << "Codigo: " << apto->getCodigo()
+                      << ", Direccion: " << apto->getDireccion()
+                      << ", Nro. puerta: " << apto->getNumeroPuerta()
+                      << ", Superficie: " << apto->getSuperficie() << " m2"
+                      << ", Construccion: " << apto->getAnioConstruccion()
+                      << ", Piso: " << apto->getPiso()
+                      << ", Ascensor: " << (apto->getTieneAscensor() ? "Si" : "No")
+                      << ", Gastos comunes: " << apto->getGastosComunes() << std::endl;
+        }
+    }
+
+    delete detalle;
+    int deseaEliminar;
+    std::cout << "¿Desea eliminar?: (1: Si, 0: No): ";
+    std::cin >> deseaEliminar;
+    std::cin.ignore();
+    if (deseaEliminar == 1) {
+        ci->eliminarInmueble(codigoInmueble);
+        std::cout << "Inmueble eliminado con exito.\n";
+    }
 }
+
 
     void suscribirseNotificaciones() {
     Factory* factory = Factory::getInstance();
@@ -583,63 +622,3 @@ void cargarDatos(){
     cfecha->setNewFechaActual(dia, mes, ano);
  }
 
- void eliminarInmueble(){
-    Factory* factory = Factory::getInstance();
-    IEliminarInmueble* ci = factory->getEliminarInmueble(); // Cambiado
-    std::set<DTInmuebleListado> inmuebles = ci->listarInmuebles();
-
-    if (inmuebles.empty()) {
-        std::cout << "No hay inmuebles disponibles.\n";
-        return;
-    }
-
-    std::cout << "\n--- Inmuebles disponibles ---\n";
-    for (std::set<DTInmuebleListado>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
-        std::cout << "- Código: " << it->getCodigo()
-                  << ", Dirección: " << it->getDireccion()
-                  << ", Propietario: " << it->getPropietario() << std::endl;
-    }
-
-    std::cout << "Ingrese el código del inmueble que quiere eliminar: ";
-    int codigo;
-    std::cin >> codigo;
-    std::cin.ignore();
-
-    DTInmueble* detalle = ci->detalleInmueble(codigo);
-    if (!detalle) {
-        std::cout << "Código no válido. No se encontró el inmueble.\n";
-        return;
-    }
-
-    std::cout << "\n--- Detalle del inmueble ---\n";
-    std::cout << "Código: " << detalle->getCodigo()
-              << ", Dirección: " << detalle->getDireccion()
-              << ", Nro. puerta: " << detalle->getNumeroPuerta()
-              << ", Superficie: " << detalle->getSuperficie()
-              << ", Construcción: " << detalle->getAnioConstruccion();
-    DTCasa* casa = dynamic_cast<DTCasa*>(detalle);
-    if (casa) {
-        std::cout << ", PH: " << (casa->getEsPH() ? "Sí" : "No")
-                  << ", Techo: " << casa->getTecho() << std::endl;
-    } else {
-        DTApartamento* apto = dynamic_cast<DTApartamento*>(detalle);
-        if (apto) {
-            std::cout << ", Piso: " << apto->getPiso()
-                      << ", Ascensor: " << (apto->getTieneAscensor() ? "Sí" : "No")
-                      << ", Gastos comunes: " << apto->getGastosComunes() << std::endl;
-        }
-    }
-    delete detalle;
-
-    std::cout << "\n¿Desea eliminar este inmueble? (1: Sí, 0: No): ";
-    int confirmacion;
-    std::cin >> confirmacion;
-    std::cin.ignore();
-
-    if (confirmacion == 1) {
-        ci->eliminarInmueble(codigo);
-        std::cout << "Inmueble eliminado con éxito.\n";
-    } else {
-        std::cout << "Operación cancelada.\n";
-    }
-}
