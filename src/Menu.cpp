@@ -419,15 +419,9 @@ void consultaPublicaciones() {
     }
 }
 
-<<<<<<< HEAD
-void eliminarInmueble(){
-
-    //Factory* factory = Factory::getInstance();
-=======
 void eliminarInmueble() {
     Factory* factory = Factory::getInstance();
     IEliminarInmueble* ci = factory->getEliminarInmueble();
->>>>>>> marcos
     std::cout << "Listado de inmuebles:\n";
     std::set<DTInmuebleListado> inmuebles = ci->listarInmuebles();
 

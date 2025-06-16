@@ -7,11 +7,8 @@
 #include "ISuscribirseANotificaciones.h"
 #include "IEliminarSuscripciones.h"
 #include "IConsultaDePublicaciones.h"
-<<<<<<< HEAD
 #include "IAltaPublicacion.h"
-=======
 #include "IEliminarInmueble.h"
->>>>>>> marcos
 class Factory {
     private:
         static Factory* instance;

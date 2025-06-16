@@ -15,7 +15,7 @@
 #include "IEliminarInmueble.h"
 
 
-class ControladorInmueble : public IConsultaDePublicaciones, public IEliminarInmueble{
+class ControladorInmueble : public IConsultaDePublicaciones, public IEliminarInmueble, public IAltaPublicacion{
 private:
     static ControladorInmueble *instancia;
     ControladorInmueble();

@@ -41,13 +41,10 @@ IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
 IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
     return ControladorInmueble::getInstance();
 }
-<<<<<<< HEAD
 IAltaPublicacion* Factory::getAltaPublicacion(){
     return ControladorInmueble::getInstance();
 }
-=======
 
 IEliminarInmueble* Factory::getEliminarInmueble() {
     return ControladorInmueble::getInstance(); 
 }
->>>>>>> marcos
