@@ -33,10 +33,10 @@ std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario()
     std::set<DTInmuebleListado> listInmueblesPropietario;
 
     std::set<Propietario *>::iterator it;
-
+    std::set<Propietario *> propietariosfor = this->getPropietarios();
     std::cout << "[DEBUG] La inmobiliaria representa " << this->getPropietarios().size() << " propietarios." << std::endl;
 
-    for (it = this->getPropietarios().begin(); it != this->getPropietarios().end(); ++it)
+    for (it = propietariosfor.begin(); it != propietariosfor.end(); ++it)
     {
         Propietario *p = *it;
         std::cout << "[DEBUG] Revisando propietario: " << p->getNickname()
