@@ -21,7 +21,7 @@ class IAltaUsuario {
 
         virtual std::set<DTUsuario> listarPropietarios() = 0;
 
-        virtual void representarPropietario(std::string nicknamePropietario) = 0;
+        virtual bool representarPropietario(std::string nicknamePropietario) = 0;
 
         virtual void finalizarAltaUsuario() = 0;
 

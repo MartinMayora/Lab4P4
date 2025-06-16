@@ -180,7 +180,9 @@ void altaUsuario(){
                     std::cout << "Nickname propietario a representar: ";
                     std::string nicknamePropietario;
                     std::getline(std::cin, nicknamePropietario);
-                    ci->representarPropietario(nicknamePropietario);
+                    if (ci->representarPropietario(nicknamePropietario)) {
+                         std::cout << "Propietario representado con éxito.\n";
+                    }
                     }
                 }
                 else if (tipoUsuario == 2){
@@ -535,6 +537,7 @@ void altaAdministracionPropiedad(){
     //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
     std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    std::cout << "[DEBUG] Cantidad de inmuebles no administrados recibidos: " << inmuebles.size() << std::endl;
     std::set<DTInmuebleListado>::iterator itInmuebles;
     for(itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles){
         std::cout << "- Codigo " << itInmuebles->getCodigo() << ", Direccion: " << itInmuebles->getDireccion() << ", Propietario: " << itInmuebles->getPropietario() << std::endl;

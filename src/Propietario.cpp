@@ -45,3 +45,7 @@ void Propietario::eliminarLinkPropietario(Inmueble* in) {
     this->inmuebles.erase(in);
 }
 
+std::set<Inmueble*> Propietario::getInmuebles() {
+    return this->inmuebles;
+}
+

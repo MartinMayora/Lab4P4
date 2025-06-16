@@ -31,7 +31,7 @@ public:
     void altaCasa(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion, bool esPH, TipoTecho techo);
     void altaApartamento(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes);
     std::set<DTUsuario> listarPropietarios();
-    void representarPropietario(std::string nicknamePropietario);
+    bool representarPropietario(std::string nicknamePropietario);
     void finalizarAltaUsuario();
     void mostrarInmuebles();
 

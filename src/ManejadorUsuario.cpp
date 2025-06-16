@@ -4,6 +4,8 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/DTUsuario.h"
 #include "../include/ControladorFechaActual.h"
+#include <iostream>
+
 ManejadorUsuario *ManejadorUsuario::instancia = NULL;
 
 ManejadorUsuario::ManejadorUsuario() {}
@@ -79,7 +81,7 @@ std::set<DTUsuario> ManejadorUsuario::listarPropietarios()
     return resu;
 }
 
-void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria *inmobiliariaRecordada)
+bool ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria *inmobiliariaRecordada)
 {
     std::map<std::string, Propietario *>::iterator p = propietarios.find(nicknamePropietario);
     if (p != propietarios.end())
@@ -87,6 +89,12 @@ void ManejadorUsuario::representarPropietario(std::string nicknamePropietario, I
         Propietario *propietario = p->second;
         propietario->agregarInmobiliaria(inmobiliariaRecordada);
         inmobiliariaRecordada->agregarPropietario(propietario);
+        return true;
+    }
+    else
+    {
+        std::cout << "El propietario '" << nicknamePropietario << "' no existe. No se pudo asociar." << std::endl;
+        return false;
     }
 }
 
