@@ -271,12 +271,14 @@ void altaPublicacion(){
     std::getline(std::cin, nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado>::iterator ite;
+    std::cout << listaInmAdm.size();
     for(ite = listaInmAdm.begin(); ite!= listaInmAdm.end(); ++it){
+        std::cout<< "anted de codigo";
         std::cout << "- Codigo:" << (*ite).getCodigo() <<", Direccion: "<< (*ite).getDireccion() <<", Propietario: ";
     }
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
-    std::cout << "Inmueble: ";
+    std::cout << "sdad Inmueble: ";
     std::cin >> codigoInmueble;
     std::cin.ignore();
     int inTipoPublicacion;

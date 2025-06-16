@@ -202,6 +202,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
 
 std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
     Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
+    std::cout<< nicknameInmobiliaria;
     std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
     return adm;
 }
@@ -215,6 +216,7 @@ Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
             return inmobiliariaAux;
        }
     }
+    return NULL;
 }
 // OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
 
