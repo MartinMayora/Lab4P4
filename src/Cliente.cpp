@@ -11,3 +11,7 @@ Cliente::Cliente(std::string nickname, std::string contrasena, std::string nombr
 Cliente::~Cliente(){
 
 }
+
+ std::string Cliente::getNickname()  {
+    return Usuario::getNickname(); 
+}

@@ -68,25 +68,17 @@ std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
 
 
 // Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
-bool Inmobiliaria::tieneSuscriptor(std::string nickname)
-{
-    // para cada suscriptor del set chequea si es cliente o propietario y si el nickname coincide
-    std::set<Suscriptor *>::iterator it;
-    for (it = suscriptores.begin(); it != suscriptores.end(); ++it)
-    {
-        Cliente *c = dynamic_cast<Cliente *>(*it);
-        if (c != NULL && c->getNickname() == nickname)
-            return true;
-
-        Propietario *p = dynamic_cast<Propietario *>(*it);
-        if (p != NULL && p->getNickname() == nickname)
+bool Inmobiliaria::tieneSuscriptor(std::string nickname) {
+    for (std::set<Suscriptor*>::iterator it = suscriptores.begin(); it != suscriptores.end(); it++) {
+        if ((*it)->getNickname() == nickname)
             return true;
     }
     return false;
 }
 
-bool Inmobiliaria::estaSuscripto(Suscriptor *s)
-{
+
+
+bool Inmobiliaria::estaSuscripto(Suscriptor *s){
     return this->suscriptores.find(s) != this->suscriptores.end();
 }
 

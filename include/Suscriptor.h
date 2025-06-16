@@ -16,6 +16,7 @@ public:
     DTFecha getUltimaFechaConsulta();
     void agregarNotificacion(DTNotificacion notif);
     std::set<DTNotificacion> getNotificaciones();
+    virtual std::string getNickname() = 0;
 
 };
 
