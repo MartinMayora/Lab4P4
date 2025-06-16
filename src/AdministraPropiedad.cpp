@@ -4,7 +4,11 @@
 #include "../include/Publicacion.h"
 
 AdministraPropiedad::~AdministraPropiedad() {
-  
+    this->eliminarLinkPublicacion();
+    if (this->fecha != NULL) {
+        delete this->fecha;
+        this->fecha = NULL;
+    }
 }
 AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha) {
     this->inmobiliaria = i;

@@ -139,19 +139,21 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 {
     std::set<DTInmuebleListado> resultado;
 
-    std::map<int, Inmueble *>::iterator it;
-    for (it = inmuebles.begin(); it != inmuebles.end(); ++it)
+    for (std::map<int, Inmueble *>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it)
     {
         Inmueble *in = it->second;
 
-        int codigo = in->getCodigo();
-        std::string direccion = in->getDireccion();
-        std::string propietario = in->getPropietario()->getNickname();
+        if (in == NULL)
+            continue;
 
-        DTInmuebleListado dtil(codigo, direccion, propietario);
+        std::string propietario = "Desconocido";
+        if (in->getPropietario() != NULL) {
+            propietario = in->getPropietario()->getNickname();
+        }
+
+        DTInmuebleListado dtil(in->getCodigo(), in->getDireccion(), propietario);
         resultado.insert(dtil);
     }
-
     return resultado;
 }
 

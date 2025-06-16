@@ -67,12 +67,17 @@ Propietario* Inmueble::getPropietario() {
 }
 
 void Inmueble::eliminarLinks() {
-    this->propietario->eliminarLinkPropietario(this); 
-    this->propietario = NULL;
+    if (this->propietario != NULL) {
+        this->propietario->eliminarLinkPropietario(this);
+        this->propietario = NULL;
+    }
+
     for (std::set<AdministraPropiedad*>::iterator it = this->admprop.begin(); it != this->admprop.end(); ++it) {
         AdministraPropiedad* admin = *it;
-        admin->eliminarLinkPublicacion();
-        delete admin;
+        if (admin != NULL) {
+            admin->eliminarLinkPublicacion(); 
+            delete admin;
+        }
     }
     this->admprop.clear();
 }
