@@ -3,6 +3,8 @@
 #include <cstddef>
 #include "../include/ControladorUsuario.h"
 #include "../include/ControladorInmueble.h"
+#include "../include/IEliminarInmueble.h"
+
 
 Factory* Factory::instance = NULL;
 
@@ -39,6 +41,13 @@ IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
 IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
     return ControladorInmueble::getInstance();
 }
+<<<<<<< HEAD
 IAltaPublicacion* Factory::getAltaPublicacion(){
     return ControladorInmueble::getInstance();
 }
+=======
+
+IEliminarInmueble* Factory::getEliminarInmueble() {
+    return ControladorInmueble::getInstance(); 
+}
+>>>>>>> marcos

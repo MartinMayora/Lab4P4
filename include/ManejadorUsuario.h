@@ -24,6 +24,7 @@ private:
 
     static ManejadorUsuario *instancia;
 
+    int ultimaPub;
     ManejadorUsuario();
     ~ManejadorUsuario();
 

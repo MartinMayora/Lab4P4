@@ -192,10 +192,9 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         }
     }
 
-    int ultimaPublicacion = 1; //temporal
-    Publicacion* pubAgregar = new Publicacion(ultimaPublicacion + 1, fechaActual, tipoPublicacion, texto, precio, pactivo);
+    int ultimaPublicacion = this->ultimaPub; 
+    Publicacion* pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
     publicacion.insert(pubAgregar);
-    ultimaPublicacion = pubAgregar->getCodigo();
     return true;
 }
 

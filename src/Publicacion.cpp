@@ -50,12 +50,6 @@ DTDato Publicacion::getDataPublicacion() const {
     return DTDato(nombre, ti);
 }
 
-void Publicacion::eliminarLinkAgenda() {
-    for (std::set<Agenda*>::iterator it = this->agendas.begin(); it != this->agendas.end(); ++it) { //elimino todas las agendas
-        delete *it;
-    }
-    this->agendas.clear();    
-}
 //altapublicacionAdd commentMore actions
 bool Publicacion::existeFecha(DTFecha *fechaActual){
     return this->fecha->operator==(fechaActual);

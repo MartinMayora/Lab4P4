@@ -8,10 +8,8 @@
 #include "AdministraPropiedad.h"
 #include <string>
 #include "Suscriptor.h"
-#include "Agenda.h"
  
 class AdministraPropiedad;
-class Agenda;
 
 class Publicacion
 {private:
@@ -22,7 +20,6 @@ class Publicacion
     float precio;
     bool activa;
     AdministraPropiedad *admin;
-    std::set<Agenda*> agendas;
 
 public:
     Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa);
@@ -42,7 +39,6 @@ public:
     //AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
     DTDato getDataPublicacion() const;
-    void eliminarLinkAgenda();
 };
 
 #endif

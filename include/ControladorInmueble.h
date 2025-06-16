@@ -12,8 +12,10 @@
 #include "TipoInmueble.h"
 #include "DTInmueble.h"
 #include "IAltaPublicacion.h"
+#include "IEliminarInmueble.h"
 
-class ControladorInmueble : public IConsultaDePublicaciones, public IAltaPublicacion{
+
+class ControladorInmueble : public IConsultaDePublicaciones, public IEliminarInmueble{
 private:
     static ControladorInmueble *instancia;
     ControladorInmueble();
@@ -35,5 +37,6 @@ public:
     std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueblePublicacion(int codigoPublicacion);
 
+    virtual ~ControladorInmueble();
 };
 #endif
