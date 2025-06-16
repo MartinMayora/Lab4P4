@@ -8,7 +8,7 @@ CargaDatos::CargaDatos() {
     Factory* f = Factory::getInstance();
     IAltaUsuario* altaUsuario= f->getAltaUsuario();
     IAltaAdministracionPropiedad* altaAdministraPropiedad=f->getAltaAdministracionPropiedad();
-    //IAltaPublicacion* altaPublicacion = f->getAltaPublicacion();
+    IAltaPublicacion* altaPublicacion = f->getAltaPublicacion();
     ControladorFechaActual* controladorFecha = ControladorFechaActual::getInstance();
     ISuscribirseANotificaciones* suscripcionCtrl = f->getSuscribirseANotificaciones();
 
