@@ -158,7 +158,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
     std::set<AdministraPropiedad*> admins;
     std::set<AdministraPropiedad*>::iterator administraAux;
     bool encontrado = false;
-    AdministraPropiedad* ap;
+    AdministraPropiedad* ap=NULL;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end() && !encontrado; ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
