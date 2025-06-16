@@ -183,6 +183,7 @@ DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
             }
         }
     }
+    return NULL;
 }
 
 void ManejadorInmueble::eliminarInmueble(int codigoInmueble) {
