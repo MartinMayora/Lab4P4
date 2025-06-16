@@ -31,25 +31,13 @@ DTUsuario Inmobiliaria::getDTUsuario()
 std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario()
 {
     std::set<DTInmuebleListado> listInmueblesPropietario;
-
     std::set<Propietario *>::iterator it;
     std::set<Propietario *> propietariosfor = this->getPropietarios();
-    std::cout << "[DEBUG] La inmobiliaria representa " << this->getPropietarios().size() << " propietarios." << std::endl;
-
-    for (it = propietariosfor.begin(); it != propietariosfor.end(); ++it)
-    {
+    for (it = propietariosfor.begin(); it != propietariosfor.end(); ++it){
         Propietario *p = *it;
-        std::cout << "[DEBUG] Revisando propietario: " << p->getNickname()
-                  << " con " << p->getInmuebles().size() << " inmuebles." << std::endl;
-
         std::set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
-        std::cout << "[DEBUG] Inmuebles no administrados por esta inmobiliaria: " << aux.size() << std::endl;
-
         listInmueblesPropietario.insert(aux.begin(), aux.end());
     }
-
-    std::cout << "[DEBUG] Total de inmuebles no administrados encontrados: " << listInmueblesPropietario.size() << std::endl;
-
     return listInmueblesPropietario;
 }
 
