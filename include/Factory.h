@@ -7,6 +7,7 @@
 #include "ISuscribirseANotificaciones.h"
 #include "IEliminarSuscripciones.h"
 #include "IConsultaDePublicaciones.h"
+#include "IAltaPublicacion.h"
 class Factory {
     private:
         static Factory* instance;
@@ -16,6 +17,8 @@ class Factory {
         static Factory* getInstance();
         IControladorFechaActual* getControladorFechaActual();
         //TODO: Get interfaces de controladores
+
+        IAltaPublicacion* getAltaPublicacion();
         IAltaUsuario* getAltaUsuario();
         ISuscribirseANotificaciones* getSuscribirseANotificaciones();
         IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();

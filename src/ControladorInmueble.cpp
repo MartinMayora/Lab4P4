@@ -32,6 +32,11 @@ std::set<DTInmuebleListado> ControladorInmueble::listarInmuebles()
 }
 
 //OPERACIONES ALTAPUBLICACION
+std::set<DTUsuario> ControladorInmueble::listarInmobiliarias(){
+    ManejadorUsuario *manejador = ManejadorUsuario::getInstance();
+    return manejador->listarInmobiliarias();
+}
+
 bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio)
 {
     ManejadorUsuario *manejador = ManejadorUsuario::getInstance();

@@ -255,14 +255,23 @@ void altaUsuario(){
 void altaPublicacion(){
 
     Factory* factory = Factory::getInstance();
+    IAltaPublicacion* controlador = factory->getAltaPublicacion();
 
     std::cout << "Lista de Inmobiliarias:\n";
-    //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
+    std::set<DTUsuario> Usuarios = controlador->listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+        std::set<DTUsuario>::iterator it;
+    for(it = Usuarios.begin(); it != Usuarios.end(); ++it){
+        std::cout << "-nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre();
+    }
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
-    //TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    std::set<DTInmuebleAdministrado>::iterator ite;
+    for(ite = listaInmAdm.begin(); ite!= listaInmAdm.end(); ++it){
+        std::cout << "- Codigo:" << (*ite).getCodigo() <<", Direccion: "<< (*ite).getDireccion() <<", Propietario: ";
+    }
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
     std::cout << "Inmueble: ";
@@ -283,7 +292,7 @@ void altaPublicacion(){
     float precio;
     std::cin >> precio;
     std::cin.ignore();
-    //TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
+    controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 void consultaPublicaciones() {
     Factory* factory = Factory::getInstance();

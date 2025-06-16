@@ -6,11 +6,11 @@ DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion
     this->fechaComienzo = new DTFecha(fechaComienzo);
 }
 
-int DTInmuebleAdministrado::getCodigo() {
+int DTInmuebleAdministrado::getCodigo() const{
     return codigo;
 }
 
-std::string DTInmuebleAdministrado::getDireccion() {
+std::string DTInmuebleAdministrado::getDireccion() const{
     return direccion;
 }
 

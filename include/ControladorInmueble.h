@@ -11,19 +11,18 @@
 #include "DTPublicacion.h"
 #include "TipoInmueble.h"
 #include "DTInmueble.h"
+#include "IAltaPublicacion.h"
 
-
-class ControladorInmueble : public IConsultaDePublicaciones{
+class ControladorInmueble : public IConsultaDePublicaciones, public IAltaPublicacion{
 private:
     static ControladorInmueble *instancia;
-
     ControladorInmueble();
 
 public:
     static ControladorInmueble *getInstance();
 
+    std::set<DTUsuario> listarInmobiliarias();
     std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
-
     bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio);
 
 
@@ -35,5 +34,6 @@ public:
     //CASO DE LISTAR PUBLICACION    
     std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueblePublicacion(int codigoPublicacion);
+
 };
 #endif

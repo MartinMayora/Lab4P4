@@ -39,3 +39,6 @@ IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
 IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
     return ControladorInmueble::getInstance();
 }
+IAltaPublicacion* Factory::getAltaPublicacion(){
+    return ControladorInmueble::getInstance();
+}
