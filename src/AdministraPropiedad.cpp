@@ -34,8 +34,7 @@ bool AdministraPropiedad::inmobiliariaAsociada(Inmobiliaria* i){
 void AdministraPropiedad::eliminarLinkPublicacion() {
     for (std::set<Publicacion*>::iterator it = this->publicaciones.begin(); it != this->publicaciones.end(); ++it) {
         Publicacion* pub = *it;
-        pub->eliminarLinkAgenda(); // elimina las agendas asociadas
-        delete pub;                // elimina la publicación
+        delete pub;
     }
     this->publicaciones.clear();
 }
