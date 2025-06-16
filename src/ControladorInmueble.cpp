@@ -55,3 +55,5 @@ DTInmueble* ControladorInmueble::detalleInmueble(int codigo){
 DTInmueble* ControladorInmueble::detalleInmueblePublicacion(int codigo){
     return ManejadorInmueble::getInstance()->detalleInmueble(codigo);
 }
+
+ControladorInmueble::~ControladorInmueble() { }

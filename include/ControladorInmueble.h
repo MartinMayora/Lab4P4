@@ -35,5 +35,7 @@ public:
     //CASO DE LISTAR PUBLICACION    
     std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueblePublicacion(int codigoPublicacion);
+
+    virtual ~ControladorInmueble();
 };
 #endif
