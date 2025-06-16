@@ -164,7 +164,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         Inmobiliaria *inmobiliariaAux = inm->second;
         admins = inmobiliariaAux->getAdmins();
         for(administraAux = admins.begin(); administraAux != admins.end() && !encontrado; ++administraAux){
-            AdministraPropiedad* ap = *administraAux;
+            ap = *administraAux;
             if (ap->tieneInmueble(codigoInmueble)){
                 encontrado = true;
             }
