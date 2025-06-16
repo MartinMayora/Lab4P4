@@ -82,13 +82,15 @@ std::set<DTUsuario> ControladorUsuario::listarPropietarios()
     return ManejadorUsuario::getInstance()->listarPropietarios();
 }
 
-void ControladorUsuario::representarPropietario(std::string nicknamePropietario)
+bool ControladorUsuario::representarPropietario(std::string nicknamePropietario)
 {
     if (inmobiliariaRecordada != NULL)
     {
-        ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
+        return ManejadorUsuario::getInstance()->representarPropietario(nicknamePropietario, inmobiliariaRecordada);
     }
+    return false;
 }
+
 
 void ControladorUsuario::finalizarAltaUsuario()
 {

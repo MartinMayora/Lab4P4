@@ -33,6 +33,8 @@ class Propietario : public Usuario, public Suscriptor{
         // para func listarInmueblesNoAdministradosInmobiliaria
         std::set<DTInmuebleListado> getInmueblesNoAdmin(Inmobiliaria* i);
         void eliminarLinkPropietario(Inmueble* in);
+        std::set<Inmueble*> getInmuebles();
+
 
 };
 

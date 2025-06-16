@@ -3,6 +3,7 @@
 #include "../include/DTInmuebleListado.h"
 #include "../include/Propietario.h"
 #include "../include/Cliente.h"
+#include <iostream>
 
 // Constructor
 Inmobiliaria::Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email,
@@ -30,15 +31,28 @@ DTUsuario Inmobiliaria::getDTUsuario()
 std::set<DTInmuebleListado> Inmobiliaria::getInmueblesNoAdminPropietario()
 {
     std::set<DTInmuebleListado> listInmueblesPropietario;
+
     std::set<Propietario *>::iterator it;
+
+    std::cout << "[DEBUG] La inmobiliaria representa " << this->getPropietarios().size() << " propietarios." << std::endl;
+
     for (it = this->getPropietarios().begin(); it != this->getPropietarios().end(); ++it)
     {
         Propietario *p = *it;
+        std::cout << "[DEBUG] Revisando propietario: " << p->getNickname()
+                  << " con " << p->getInmuebles().size() << " inmuebles." << std::endl;
+
         std::set<DTInmuebleListado> aux = p->getInmueblesNoAdmin(this);
+        std::cout << "[DEBUG] Inmuebles no administrados por esta inmobiliaria: " << aux.size() << std::endl;
+
         listInmueblesPropietario.insert(aux.begin(), aux.end());
     }
+
+    std::cout << "[DEBUG] Total de inmuebles no administrados encontrados: " << listInmueblesPropietario.size() << std::endl;
+
     return listInmueblesPropietario;
 }
+
 
 void Inmobiliaria::altaAdministraPropiedad(Inmueble *inmueble, DTFecha *fechaActual)
 {
