@@ -420,7 +420,7 @@ void consultaPublicaciones() {
 
 void eliminarInmueble(){
 
-    Factory* factory = Factory::getInstance();
+    //Factory* factory = Factory::getInstance();
     std::cout << "Listado de inmuebles:\n";
     //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmuebles();
     //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
