@@ -11,9 +11,9 @@
 #include "DTPublicacion.h"
 #include "TipoInmueble.h"
 #include "DTInmueble.h"
+#include "IEliminarInmueble.h"
 
-
-class ControladorInmueble : public IConsultaDePublicaciones{
+class ControladorInmueble : public IConsultaDePublicaciones, public IEliminarInmueble{
 private:
     static ControladorInmueble *instancia;
 

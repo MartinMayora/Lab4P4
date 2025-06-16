@@ -16,6 +16,8 @@
 #include <string>
 #include <set>
 #include <cstdlib>
+#include "../include/IEliminarInmueble.h"
+
 
 
 
@@ -580,3 +582,64 @@ void cargarDatos(){
     std::cin.ignore();
     cfecha->setNewFechaActual(dia, mes, ano);
  }
+
+ void eliminarInmueble(){
+    Factory* factory = Factory::getInstance();
+    IEliminarInmueble* ci = factory->getEliminarInmueble(); // Cambiado
+    std::set<DTInmuebleListado> inmuebles = ci->listarInmuebles();
+
+    if (inmuebles.empty()) {
+        std::cout << "No hay inmuebles disponibles.\n";
+        return;
+    }
+
+    std::cout << "\n--- Inmuebles disponibles ---\n";
+    for (std::set<DTInmuebleListado>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+        std::cout << "- Código: " << it->getCodigo()
+                  << ", Dirección: " << it->getDireccion()
+                  << ", Propietario: " << it->getPropietario() << std::endl;
+    }
+
+    std::cout << "Ingrese el código del inmueble que quiere eliminar: ";
+    int codigo;
+    std::cin >> codigo;
+    std::cin.ignore();
+
+    DTInmueble* detalle = ci->detalleInmueble(codigo);
+    if (!detalle) {
+        std::cout << "Código no válido. No se encontró el inmueble.\n";
+        return;
+    }
+
+    std::cout << "\n--- Detalle del inmueble ---\n";
+    std::cout << "Código: " << detalle->getCodigo()
+              << ", Dirección: " << detalle->getDireccion()
+              << ", Nro. puerta: " << detalle->getNumeroPuerta()
+              << ", Superficie: " << detalle->getSuperficie()
+              << ", Construcción: " << detalle->getAnioConstruccion();
+    DTCasa* casa = dynamic_cast<DTCasa*>(detalle);
+    if (casa) {
+        std::cout << ", PH: " << (casa->getEsPH() ? "Sí" : "No")
+                  << ", Techo: " << casa->getTecho() << std::endl;
+    } else {
+        DTApartamento* apto = dynamic_cast<DTApartamento*>(detalle);
+        if (apto) {
+            std::cout << ", Piso: " << apto->getPiso()
+                      << ", Ascensor: " << (apto->getTieneAscensor() ? "Sí" : "No")
+                      << ", Gastos comunes: " << apto->getGastosComunes() << std::endl;
+        }
+    }
+    delete detalle;
+
+    std::cout << "\n¿Desea eliminar este inmueble? (1: Sí, 0: No): ";
+    int confirmacion;
+    std::cin >> confirmacion;
+    std::cin.ignore();
+
+    if (confirmacion == 1) {
+        ci->eliminarInmueble(codigo);
+        std::cout << "Inmueble eliminado con éxito.\n";
+    } else {
+        std::cout << "Operación cancelada.\n";
+    }
+}
