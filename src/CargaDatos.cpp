@@ -1,6 +1,6 @@
 #include "../include/CargaDatos.h"
 #include <cstddef>
-
+#include <iostream>
 
 CargaDatos* CargaDatos::instance = NULL;
 
@@ -8,7 +8,7 @@ CargaDatos::CargaDatos() {
     Factory* f = Factory::getInstance();
     IAltaUsuario* altaUsuario= f->getAltaUsuario();
     IAltaAdministracionPropiedad* altaAdministraPropiedad=f->getAltaAdministracionPropiedad();
-    IAltaPublicacion* altaPublicacion = f->getAltaPublicacion();
+    //IAltaPublicacion* altaPublicacion = f->getAltaPublicacion();
     ControladorFechaActual* controladorFecha = ControladorFechaActual::getInstance();
     ISuscribirseANotificaciones* suscripcionCtrl = f->getSuscribirseANotificaciones();
 
@@ -91,6 +91,7 @@ CargaDatos::CargaDatos() {
     altaAdministraPropiedad->altaAdministraPropiedad("vivaurbana", 8);
 
     //GENERACION DE PUBLICACIONES
+    /*
      controladorFecha->setNewFechaActual(9, 10, 2011);
     altaPublicacion->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 
@@ -141,6 +142,7 @@ CargaDatos::CargaDatos() {
 
     controladorFecha->setNewFechaActual(1, 8, 2024);
     altaPublicacion->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
+    */
 
     suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "casasur123");
     suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "idealhome");
