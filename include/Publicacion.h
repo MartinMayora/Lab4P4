@@ -8,11 +8,12 @@
 #include "AdministraPropiedad.h"
 #include <string>
 #include "Suscriptor.h"
- 
+
 class AdministraPropiedad;
 
 class Publicacion
-{private:
+{
+private:
     int codigo;
     DTFecha *fecha;
     TipoPublicacion tipo;
@@ -31,15 +32,16 @@ public:
     std::string getTexto() const;
     float getPrecio() const;
     bool getEstaActiva() const;
-    
-    //CASO DE USO ALTA PUBLICACION
-    bool existeFecha(DTFecha* fechaActual);
+
+    // CASO DE USO ALTA PUBLICACION
+    bool existeFecha(DTFecha *fechaActual);
     bool existeTipoPub(TipoPublicacion TipoPublicacion);
     void actiualizarActivo(bool nuevoEstado);
 
-    //AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
+    // AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
 
     DTDato getDataPublicacion() const;
+    void setAdministra(AdministraPropiedad *a);
 };
 
 #endif

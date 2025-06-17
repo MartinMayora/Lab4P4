@@ -18,10 +18,8 @@
 #include <cstdlib>
 #include "../include/IEliminarInmueble.h"
 
-
-
-
-void mostrarMenu() {
+void mostrarMenu()
+{
     std::cout << "=== Menu de Operaciones ===" << std::endl;
     std::cout << "1. Alta de Usuario" << std::endl;
     std::cout << "2. Alta de Publicacion" << std::endl;
@@ -38,83 +36,88 @@ void mostrarMenu() {
     std::cout << "Ingrese el codigo de operacion: ";
 }
 
-int obtenerOpcion() {
+int obtenerOpcion()
+{
     int opcion;
     std::cin >> opcion;
     std::cin.ignore();
     return opcion;
 }
 
-void ejecutarOpcion(int opcion) {
-    switch (opcion) {
-        case 1:
-            std::cout << " - ALTA DE USUARIO - " << std::endl;
-            altaUsuario();
-            break;
-        case 2:
-            std::cout << " - ALTA DE PUBLICACION - " << std::endl;
-            altaPublicacion();
-            break;
-        case 3:
-            std::cout << " - CONSULTA DE PUBLICACIONES - " << std::endl;
-            consultaPublicaciones();
-            break;
-        case 4:
-            std::cout << " - ELIMINAR INMUEBLE - " << std::endl;
-            eliminarInmueble();
-            break;
-        case 5:
-            std::cout << " - SUSCRIBIRSE A NOTIFICACIONES - " << std::endl;
-            suscribirseNotificaciones();
-            break;
-        case 6:
-            std::cout << " - CONSLTAR NOTIFICACIONES - " << std::endl;
-            consultaNotificaciones();
-            break;
-        case 7:
-            std::cout << " - ELIMINAR SUSCRIPCIONES - " << std::endl;
-            eliminarSuscripciones();
-            break;
-        case 8:
-            std::cout << " - ALTA ADMINISTRACION DE PROPIEDAD - " << std::endl;
-            altaAdministracionPropiedad();
-            break;
-        case 9:
-            std::cout << " - CARGAR DATOS - " << std::endl;
-            cargarDatos();
-            break;
-        case 10:
-            std::cout << " - VER FECHA ACTUAL - " << std::endl;
-            verFechaActual();
-            break;
-        case 11:
-            std::cout << " - ASIGNAR FECHA ACTUAL - " << std::endl;
-            asignarFechaActual();
-            break;
-        case 0:
-            std::cout << "Saliendo del programa..." << std::endl;
-            exit(0);
-        default:
-            std::cout << "Opcion no valida. Intente de nuevo." << std::endl;
+void ejecutarOpcion(int opcion)
+{
+    switch (opcion)
+    {
+    case 1:
+        std::cout << " - ALTA DE USUARIO - " << std::endl;
+        altaUsuario();
+        break;
+    case 2:
+        std::cout << " - ALTA DE PUBLICACION - " << std::endl;
+        altaPublicacion();
+        break;
+    case 3:
+        std::cout << " - CONSULTA DE PUBLICACIONES - " << std::endl;
+        consultaPublicaciones();
+        break;
+    case 4:
+        std::cout << " - ELIMINAR INMUEBLE - " << std::endl;
+        eliminarInmueble();
+        break;
+    case 5:
+        std::cout << " - SUSCRIBIRSE A NOTIFICACIONES - " << std::endl;
+        suscribirseNotificaciones();
+        break;
+    case 6:
+        std::cout << " - CONSLTAR NOTIFICACIONES - " << std::endl;
+        consultaNotificaciones();
+        break;
+    case 7:
+        std::cout << " - ELIMINAR SUSCRIPCIONES - " << std::endl;
+        eliminarSuscripciones();
+        break;
+    case 8:
+        std::cout << " - ALTA ADMINISTRACION DE PROPIEDAD - " << std::endl;
+        altaAdministracionPropiedad();
+        break;
+    case 9:
+        std::cout << " - CARGAR DATOS - " << std::endl;
+        cargarDatos();
+        break;
+    case 10:
+        std::cout << " - VER FECHA ACTUAL - " << std::endl;
+        verFechaActual();
+        break;
+    case 11:
+        std::cout << " - ASIGNAR FECHA ACTUAL - " << std::endl;
+        asignarFechaActual();
+        break;
+    case 0:
+        std::cout << "Saliendo del programa..." << std::endl;
+        exit(0);
+    default:
+        std::cout << "Opcion no valida. Intente de nuevo." << std::endl;
     }
 }
 
-void altaUsuario(){
+void altaUsuario()
+{
 
-    Factory* factory = Factory::getInstance();
-    IAltaUsuario* ci = factory->getAltaUsuario();
+    Factory *factory = Factory::getInstance();
+    IAltaUsuario *ci = factory->getAltaUsuario();
 
     std::cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
     std::cin >> tipoUsuario;
     std::cin.ignore();
-    if (tipoUsuario < 0 || tipoUsuario > 2){
+    if (tipoUsuario < 0 || tipoUsuario > 2)
+    {
         std::cout << "Opcion no valida. Intente de nuevo." << std::endl;
         return;
     }
 
     bool usuarioOk = false;
-    
+
     std::string nickname;
     std::string contrasena;
     std::string nombre;
@@ -125,7 +128,7 @@ void altaUsuario(){
     std::string telefono;
     std::string direccion;
     std::string cuentaBancaria;
-    
+
     std::cout << "Nickname: ";
     std::getline(std::cin, nickname);
     std::cout << "Contrasena: ";
@@ -135,14 +138,16 @@ void altaUsuario(){
     std::cout << "Email: ";
     std::getline(std::cin, email);
 
-    if (tipoUsuario == 0){
+    if (tipoUsuario == 0)
+    {
         std::cout << "Apellido: ";
         std::getline(std::cin, apellido);
         std::cout << "Documento: ";
         std::getline(std::cin, documento);
         usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
-
-    }else if (tipoUsuario == 1){
+    }
+    else if (tipoUsuario == 1)
+    {
         std::cout << "Direccion: ";
         std::getline(std::cin, direccion);
         std::cout << "URL: ";
@@ -150,17 +155,19 @@ void altaUsuario(){
         std::cout << "Telefono: ";
         std::getline(std::cin, telefono);
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
-
-    }else if (tipoUsuario == 2){
+    }
+    else if (tipoUsuario == 2)
+    {
         std::cout << "Cuenta Bancaria: ";
         std::getline(std::cin, cuentaBancaria);
         std::cout << "Telefono: ";
         std::getline(std::cin, telefono);
         usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
-
     }
-    if (usuarioOk){
-        if (tipoUsuario == 1 || tipoUsuario == 2){
+    if (usuarioOk)
+    {
+        if (tipoUsuario == 1 || tipoUsuario == 2)
+        {
             int salir = 1;
             std::cout << "¿Quiere ingresar los datos relacionados? (1: Si, 0: No): ";
             std::cin >> salir;
@@ -169,35 +176,43 @@ void altaUsuario(){
             int numeroPuerta;
             int superficie;
             int anoConstruccion;
-            while (salir != 0){
-                if (tipoUsuario == 1){
-                std::cout << "Lista de Propietarios:\n";
-                std::set<DTUsuario> propietarios = ci->listarPropietarios();
-                if (propietarios.empty()) {
-                 std::cout << "No hay propietarios registrados. No se puede representar a ninguno.\n";
-                } else {
-                    for (std::set<DTUsuario>::iterator it = propietarios.begin(); it != propietarios.end(); ++it) {
-                        std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() << std::endl;
+            while (salir != 0)
+            {
+                if (tipoUsuario == 1)
+                {
+                    std::cout << "Lista de Propietarios:\n";
+                    std::set<DTUsuario> propietarios = ci->listarPropietarios();
+                    if (propietarios.empty())
+                    {
+                        std::cout << "No hay propietarios registrados. No se puede representar a ninguno.\n";
                     }
-                    std::cout << "Nickname propietario a representar: ";
-                    std::string nicknamePropietario;
-                    std::getline(std::cin, nicknamePropietario);
-                    if (ci->representarPropietario(nicknamePropietario)) {
-                         std::cout << "Propietario representado con éxito.\n";
-                    }
+                    else
+                    {
+                        for (std::set<DTUsuario>::iterator it = propietarios.begin(); it != propietarios.end(); ++it)
+                        {
+                            std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() << std::endl;
+                        }
+                        std::cout << "Nickname propietario a representar: ";
+                        std::string nicknamePropietario;
+                        std::getline(std::cin, nicknamePropietario);
+                        if (ci->representarPropietario(nicknamePropietario))
+                        {
+                            std::cout << "Propietario representado con éxito.\n";
+                        }
                     }
                 }
-                else if (tipoUsuario == 2){
+                else if (tipoUsuario == 2)
+                {
                     int tipoInmueble;
                     std::cout << "Indique el tipo de inmueble (1: Casa, 0: Apartamento): ";
                     std::cin >> tipoInmueble;
                     std::cin.ignore();
-    
+
                     std::cout << "Direccion: ";
                     std::getline(std::cin, inmuebleDireccion);
                     std::cout << "Numero de Puerta: ";
                     std::cin >> numeroPuerta;
-                    std::cin.ignore(); 
+                    std::cin.ignore();
                     std::cout << "Superficie: ";
                     std::cin >> superficie;
                     std::cin.ignore();
@@ -205,7 +220,8 @@ void altaUsuario(){
                     std::cin >> anoConstruccion;
                     std::cin.ignore();
 
-                    if (tipoInmueble == 1){
+                    if (tipoInmueble == 1)
+                    {
                         std::cout << "Es PH (1 para si, 0 para no): ";
                         int inEsPH;
                         std::cin >> inEsPH;
@@ -216,13 +232,18 @@ void altaUsuario(){
                         std::cin >> inTipoTecho;
                         std::cin.ignore();
                         TipoTecho techo = Liviano;
-                        if(inTipoTecho == 1){
+                        if (inTipoTecho == 1)
+                        {
                             techo = A_dos_aguas;
-                        }else if (inTipoTecho == 2){
+                        }
+                        else if (inTipoTecho == 2)
+                        {
                             techo = Plano;
                         }
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
-                    }else{
+                    }
+                    else
+                    {
                         int piso;
                         std::cout << "Piso: ";
                         std::cin >> piso;
@@ -239,33 +260,35 @@ void altaUsuario(){
                         ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
                     }
                 }
-               std::string inputSalir;
+                std::string inputSalir;
                 std::cout << "¿Quiere seguir ingresando? (1: Si, 0: No): ";
                 std::getline(std::cin, inputSalir);
                 salir = (inputSalir == "1") ? 1 : 0;
-                if (salir == 0) {
-                std::cout << "\n--- Inmuebles registrados hasta el momento ---\n";
-                
-}
-
+                if (salir == 0)
+                {
+                    std::cout << "\n--- Inmuebles registrados hasta el momento ---\n";
+                }
             }
-            
         }
         ci->finalizarAltaUsuario();
-    }else{
+    }
+    else
+    {
         std::cout << "Error al crear el usuario" << std::endl;
     }
 }
-void altaPublicacion(){
+void altaPublicacion()
+{
 
-    Factory* factory = Factory::getInstance();
-    IAltaPublicacion* controlador = factory->getAltaPublicacion();
+    Factory *factory = Factory::getInstance();
+    IAltaPublicacion *controlador = factory->getAltaPublicacion();
 
     std::cout << "Lista de Inmobiliarias:\n";
     std::set<DTUsuario> Usuarios = controlador->listarInmobiliarias();
-    //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
-        std::set<DTUsuario>::iterator it;
-    for(it = Usuarios.begin(); it != Usuarios.end(); ++it){
+    // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+    std::set<DTUsuario>::iterator it;
+    for (it = Usuarios.begin(); it != Usuarios.end(); ++it)
+    {
         std::cout << "-nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre();
     }
     std::cout << "Nickname de la inmobiliaria: ";
@@ -274,10 +297,11 @@ void altaPublicacion(){
     std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     std::set<DTInmuebleAdministrado>::iterator ite;
     std::cout << listaInmAdm.size();
-    for(ite = listaInmAdm.begin(); ite!= listaInmAdm.end(); ++ite){
-        std::cout << "- Codigo:" << (*ite).getCodigo() <<", Direccion: "<< (*ite).getDireccion() <<", Propietario: \n";
+    for (ite = listaInmAdm.begin(); ite != listaInmAdm.end(); ++ite)
+    {
+        std::cout << "- Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Propietario: \n";
     }
-    //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
+    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
     std::cout << "Inmueble: ";
     std::cin >> codigoInmueble;
@@ -286,7 +310,8 @@ void altaPublicacion(){
     std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler)";
     std::cin >> inTipoPublicacion;
     TipoPublicacion tipoPublicacion = Alquiler;
-    if(inTipoPublicacion == 1){
+    if (inTipoPublicacion == 1)
+    {
         tipoPublicacion = Venta;
     }
     std::cin.ignore();
@@ -299,17 +324,20 @@ void altaPublicacion(){
     std::cin.ignore();
     controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
-void consultaPublicaciones() {
-    Factory* factory = Factory::getInstance();
-    IConsultaDePublicaciones* consultaCtrl = factory->getConsultaDePublicaciones();
+void consultaPublicaciones()
+{
+    Factory *factory = Factory::getInstance();
+    IConsultaDePublicaciones *consultaCtrl = factory->getConsultaDePublicaciones();
 
     int inTipoPublicacion = -1;
-    while (inTipoPublicacion != 0 && inTipoPublicacion != 1) {
+    while (inTipoPublicacion != 0 && inTipoPublicacion != 1)
+    {
         std::cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler): ";
         std::cin >> inTipoPublicacion;
-        if(std::cin.fail()) {
+        if (std::cin.fail())
+        {
             std::cin.clear();
-            std::cin.ignore(1000,'\n');
+            std::cin.ignore(1000, '\n');
             inTipoPublicacion = -1;
         }
     }
@@ -317,47 +345,56 @@ void consultaPublicaciones() {
 
     float precioMinimo = 0.0f;
     std::cout << "Precio (Min): ";
-    while(!(std::cin >> precioMinimo)){
+    while (!(std::cin >> precioMinimo))
+    {
         std::cout << "Entrada invalida. Ingrese un número para Precio (Min): ";
         std::cin.clear();
-        std::cin.ignore(1000,'\n');
+        std::cin.ignore(1000, '\n');
     }
 
     float precioMaximo = 0.0f;
     std::cout << "Precio (Max): ";
-    while(!(std::cin >> precioMaximo)){
+    while (!(std::cin >> precioMaximo))
+    {
         std::cout << "Entrada invalida. Ingrese un número para Precio (Max): ";
         std::cin.clear();
-        std::cin.ignore(1000,'\n');
+        std::cin.ignore(1000, '\n');
     }
 
     int inTipoInmueble = -1;
-    while (inTipoInmueble != 0 && inTipoInmueble != 1 && inTipoInmueble != 2) {
+    while (inTipoInmueble != 0 && inTipoInmueble != 1 && inTipoInmueble != 2)
+    {
         std::cout << "Tipo de Inmueble: (1: Casa, 2: Apartamento, 0: Todos): ";
         std::cin >> inTipoInmueble;
-        if(std::cin.fail()) {
+        if (std::cin.fail())
+        {
             std::cin.clear();
-            std::cin.ignore(1000,'\n');
+            std::cin.ignore(1000, '\n');
             inTipoInmueble = -1;
         }
     }
     TipoInmueble tipoInmueble = Todos;
-    if (inTipoInmueble == 1) {
+    if (inTipoInmueble == 1)
+    {
         tipoInmueble = TipoCasa;
-    } else if (inTipoInmueble == 2) {
+    }
+    else if (inTipoInmueble == 2)
+    {
         tipoInmueble = TipoApartamento;
     }
 
     std::set<DTPublicacion> publicaciones = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
 
-    if (publicaciones.empty()) {
+    if (publicaciones.empty())
+    {
         std::cout << "No se encontraron publicaciones que coincidan con los filtros.\n";
         return;
     }
 
     std::cout << "Publicaciones encontradas:\n";
-    for (std::set<DTPublicacion>::const_iterator it = publicaciones.begin(); it != publicaciones.end(); ++it) {
-        const DTPublicacion& pub = *it;
+    for (std::set<DTPublicacion>::const_iterator it = publicaciones.begin(); it != publicaciones.end(); ++it)
+    {
+        const DTPublicacion &pub = *it;
         std::cout << "- Código: " << pub.getCodigo()
                   << ", Fecha: " << pub.getFecha()->toString()
                   << ", Texto: " << pub.getTexto()
@@ -367,28 +404,33 @@ void consultaPublicaciones() {
     }
 
     int verDetalle = -1;
-    while (verDetalle != 0 && verDetalle != 1) {
+    while (verDetalle != 0 && verDetalle != 1)
+    {
         std::cout << "Ver detalle de la publicacion: (1: Si, 0: No): ";
         std::cin >> verDetalle;
-        if(std::cin.fail()) {
+        if (std::cin.fail())
+        {
             std::cin.clear();
-            std::cin.ignore(1000,'\n');
+            std::cin.ignore(1000, '\n');
             verDetalle = -1;
         }
     }
 
-    if (verDetalle == 1) {
+    if (verDetalle == 1)
+    {
         std::cout << "Codigo de publicacion: ";
         int codigoPublicacion;
-        while(!(std::cin >> codigoPublicacion)){
+        while (!(std::cin >> codigoPublicacion))
+        {
             std::cout << "Entrada invalida. Ingrese un código válido: ";
             std::cin.clear();
-            std::cin.ignore(1000,'\n');
+            std::cin.ignore(1000, '\n');
         }
 
-        DTInmueble* inmuebleDetalle = consultaCtrl->detalleInmueblePublicacion(codigoPublicacion);
+        DTInmueble *inmuebleDetalle = consultaCtrl->detalleInmueblePublicacion(codigoPublicacion);
 
-        if (!inmuebleDetalle) {
+        if (!inmuebleDetalle)
+        {
             std::cout << "No se encontró el inmueble." << std::endl;
             return;
         }
@@ -400,14 +442,18 @@ void consultaPublicaciones() {
                   << ", Superficie: " << inmuebleDetalle->getSuperficie() << " m2"
                   << ", Construcción: " << inmuebleDetalle->getAnioConstruccion();
 
-        DTCasa* casa = dynamic_cast<DTCasa*>(inmuebleDetalle);
-        if (casa) {
+        DTCasa *casa = dynamic_cast<DTCasa *>(inmuebleDetalle);
+        if (casa)
+        {
             std::cout << ", PH: " << (casa->getEsPH() ? "Si" : "No")
                       << ", Tipo de techo: " << casa->getTecho()
                       << std::endl;
-        } else {
-            DTApartamento* apto = dynamic_cast<DTApartamento*>(inmuebleDetalle);
-            if (apto) {
+        }
+        else
+        {
+            DTApartamento *apto = dynamic_cast<DTApartamento *>(inmuebleDetalle);
+            if (apto)
+            {
                 std::cout << ", Piso: " << apto->getPiso()
                           << ", Ascensor: " << (apto->getTieneAscensor() ? "Si" : "No")
                           << ", Gastos comunes: " << apto->getGastosComunes()
@@ -415,22 +461,25 @@ void consultaPublicaciones() {
             }
         }
 
-        delete inmuebleDetalle;
+        // delete inmuebleDetalle;
     }
 }
 
-void eliminarInmueble() {
-    Factory* factory = Factory::getInstance();
-    IEliminarInmueble* ci = factory->getEliminarInmueble();
+void eliminarInmueble()
+{
+    Factory *factory = Factory::getInstance();
+    IEliminarInmueble *ci = factory->getEliminarInmueble();
     std::cout << "Listado de inmuebles:\n";
     std::set<DTInmuebleListado> inmuebles = ci->listarInmuebles();
 
-    if (inmuebles.empty()) {
+    if (inmuebles.empty())
+    {
         std::cout << "No hay inmuebles disponibles.\n";
         return;
     }
 
-    for (std::set<DTInmuebleListado>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+    for (std::set<DTInmuebleListado>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it)
+    {
         std::cout << "- Codigo: " << it->getCodigo()
                   << ", Direccion: " << it->getDireccion()
                   << ", Propietario: " << it->getPropietario() << std::endl;
@@ -440,15 +489,17 @@ void eliminarInmueble() {
     std::cin >> codigoInmueble;
     std::cin.ignore();
     std::cout << "Detalle del inmueble:\n";
-    DTInmueble* detalle = ci->detalleInmueble(codigoInmueble);
+    DTInmueble *detalle = ci->detalleInmueble(codigoInmueble);
 
-    if (!detalle) {
+    if (!detalle)
+    {
         std::cout << "Codigo no valido. No se encontro el inmueble.\n";
         return;
     }
 
-    DTCasa* casa = dynamic_cast<DTCasa*>(detalle);
-    if (casa) {
+    DTCasa *casa = dynamic_cast<DTCasa *>(detalle);
+    if (casa)
+    {
         std::cout << "Codigo: " << casa->getCodigo()
                   << ", Direccion: " << casa->getDireccion()
                   << ", Nro. puerta: " << casa->getNumeroPuerta()
@@ -456,10 +507,12 @@ void eliminarInmueble() {
                   << ", Construccion: " << casa->getAnioConstruccion()
                   << ", PH: " << (casa->getEsPH() ? "Si" : "No")
                   << ", Tipo de techo: " << casa->getTecho() << std::endl;
-    } else 
+    }
+    else
     {
-        DTApartamento* apto = dynamic_cast<DTApartamento*>(detalle);
-        if (apto) {
+        DTApartamento *apto = dynamic_cast<DTApartamento *>(detalle);
+        if (apto)
+        {
             std::cout << "Codigo: " << apto->getCodigo()
                       << ", Direccion: " << apto->getDireccion()
                       << ", Nro. puerta: " << apto->getNumeroPuerta()
@@ -476,32 +529,36 @@ void eliminarInmueble() {
     std::cout << "¿Desea eliminar?: (1: Si, 0: No): ";
     std::cin >> deseaEliminar;
     std::cin.ignore();
-    if (deseaEliminar == 1) {
+    if (deseaEliminar == 1)
+    {
         ci->eliminarInmueble(codigoInmueble);
         std::cout << "Inmueble eliminado con exito.\n";
     }
 }
 
-
-void suscribirseNotificaciones() {
-    Factory* factory = Factory::getInstance();
-    ISuscribirseANotificaciones* controlador = factory->getSuscribirseANotificaciones();
+void suscribirseNotificaciones()
+{
+    Factory *factory = Factory::getInstance();
+    ISuscribirseANotificaciones *controlador = factory->getSuscribirseANotificaciones();
 
     std::string nicknameUsuario;
     std::cout << "Ingrese su nickname (cliente o propietario): ";
     std::getline(std::cin, nicknameUsuario);
 
     int salir = 1;
-    while (salir != 0) {
+    while (salir != 0)
+    {
         std::set<std::string> inmobiliarias = controlador->listarInmobiliariasNoSuscriptas(nicknameUsuario);
 
-        if (inmobiliarias.empty()) {
+        if (inmobiliarias.empty())
+        {
             std::cout << "No hay más inmobiliarias disponibles para suscribirse." << std::endl;
             return;
         }
 
         std::cout << "Inmobiliarias disponibles para suscribirse:\n";
-        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it) {
+        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+        {
             std::cout << "- " << *it << std::endl;
         }
 
@@ -509,9 +566,12 @@ void suscribirseNotificaciones() {
         std::string nicknameInmobiliaria;
         std::getline(std::cin, nicknameInmobiliaria);
 
-        if (inmobiliarias.count(nicknameInmobiliaria) == 0) {
+        if (inmobiliarias.count(nicknameInmobiliaria) == 0)
+        {
             std::cout << "Nickname inválido o ya estás suscripto a esta inmobiliaria." << std::endl;
-        } else {
+        }
+        else
+        {
             controlador->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
             std::cout << "Suscripción realizada con éxito." << std::endl;
         }
@@ -524,30 +584,33 @@ void suscribirseNotificaciones() {
     }
 }
 
-
-void consultaNotificaciones(){
-    
+void consultaNotificaciones()
+{
 }
 
-void eliminarSuscripciones() {
-    Factory* factory = Factory::getInstance();
-    IEliminarSuscripciones* controlador = factory->getEliminarSuscripciones();
+void eliminarSuscripciones()
+{
+    Factory *factory = Factory::getInstance();
+    IEliminarSuscripciones *controlador = factory->getEliminarSuscripciones();
 
     std::string nicknameUsuario;
     std::cout << "Ingrese su nickname (cliente o propietario): ";
     std::getline(std::cin, nicknameUsuario);
 
     int salir = 1;
-    while (salir != 0) {
+    while (salir != 0)
+    {
         std::set<std::string> inmobiliarias = controlador->listarSuscripciones(nicknameUsuario);
 
-        if (inmobiliarias.empty()) {
+        if (inmobiliarias.empty())
+        {
             std::cout << "No estás suscripto a ninguna inmobiliaria." << std::endl;
             return;
         }
 
         std::cout << "Inmobiliarias a las que estás suscripto:\n";
-        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it) {
+        for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+        {
             std::cout << "- " << *it << std::endl;
         }
 
@@ -555,9 +618,12 @@ void eliminarSuscripciones() {
         std::string nicknameInmobiliaria;
         std::getline(std::cin, nicknameInmobiliaria);
 
-        if (inmobiliarias.count(nicknameInmobiliaria) == 0) {
+        if (inmobiliarias.count(nicknameInmobiliaria) == 0)
+        {
             std::cout << "Nickname inválido o no estás suscripto a esta inmobiliaria." << std::endl;
-        } else {
+        }
+        else
+        {
             controlador->eliminarSuscripcion(nicknameUsuario, nicknameInmobiliaria);
             std::cout << "Suscripción eliminada con éxito." << std::endl;
         }
@@ -570,27 +636,29 @@ void eliminarSuscripciones() {
     }
 }
 
-
-void altaAdministracionPropiedad(){
-    Factory* factory = Factory::getInstance();
-    IAltaAdministracionPropiedad* iap = factory->getAltaAdministracionPropiedad();
+void altaAdministracionPropiedad()
+{
+    Factory *factory = Factory::getInstance();
+    IAltaAdministracionPropiedad *iap = factory->getAltaAdministracionPropiedad();
     std::cout << "Lista de Inmobiliarias:\n";
     std::set<DTUsuario> inmobiliarias = iap->listarInmobiliarias();
-    //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
-    //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+    // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
+    // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
     std::set<DTUsuario>::iterator it;
-    for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
-        std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() <<std::endl;
+    for (it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+    {
+        std::cout << "- Nickname: " << it->getNickname() << ", Nombre: " << it->getNombre() << std::endl;
     }
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
-    //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
-    //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
+    // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
     std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     std::cout << "[DEBUG] Cantidad de inmuebles no administrados recibidos: " << inmuebles.size() << std::endl;
     std::set<DTInmuebleListado>::iterator itInmuebles;
-    for(itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles){
+    for (itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles)
+    {
         std::cout << "- Codigo " << itInmuebles->getCodigo() << ", Direccion: " << itInmuebles->getDireccion() << ", Propietario: " << itInmuebles->getPropietario() << std::endl;
     }
 
@@ -598,25 +666,28 @@ void altaAdministracionPropiedad(){
     int codigoInmueble;
     std::cin >> codigoInmueble;
     std::cin.ignore();
-    //TODO: Controlador->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
+    // TODO: Controlador->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
     iap->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
 }
 
-void cargarDatos(){
+void cargarDatos()
+{
     CargaDatos::getInstance();
 }
 
- void verFechaActual(){
-    Factory* factory = Factory::getInstance();
-    IControladorFechaActual* cfecha = factory->getControladorFechaActual();
-    DTFecha* fechaActual = cfecha->getFechaActual();
+void verFechaActual()
+{
+    Factory *factory = Factory::getInstance();
+    IControladorFechaActual *cfecha = factory->getControladorFechaActual();
+    DTFecha *fechaActual = cfecha->getFechaActual();
     std::cout << "fecha actual: " << fechaActual;
     delete fechaActual;
- }
+}
 
- void asignarFechaActual(){
-    Factory* factory = Factory::getInstance();
-    IControladorFechaActual* cfecha = factory->getControladorFechaActual();
+void asignarFechaActual()
+{
+    Factory *factory = Factory::getInstance();
+    IControladorFechaActual *cfecha = factory->getControladorFechaActual();
     std::cout << "dia: ";
     int dia;
     std::cin >> dia;
@@ -630,5 +701,4 @@ void cargarDatos(){
     std::cin >> ano;
     std::cin.ignore();
     cfecha->setNewFechaActual(dia, mes, ano);
- }
-
+}
