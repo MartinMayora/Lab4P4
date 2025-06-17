@@ -30,7 +30,8 @@ class AdministraPropiedad {
         bool inmobiliariaAsociada(Inmobiliaria* i);
         void eliminarLinkPublicacion();
         std::set<Publicacion*>& getPublicaciones();
-        //alta publicacionAdd commentMore actions
+        
+        //CASO DE USO ALTA PUBLICACION
         bool tieneInmueble(int codigoInmueble);
 
 };

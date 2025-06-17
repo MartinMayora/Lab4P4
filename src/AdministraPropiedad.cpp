@@ -43,7 +43,7 @@ void AdministraPropiedad::eliminarLinkPublicacion() {
     this->publicaciones.clear();
 }
 
-//ALTAPUBLICACIONAdd commentMore actions
+//CASO DE USO ALTA PUBLICACION
 bool AdministraPropiedad::tieneInmueble(int codigoInmueble){
     int codigo = this->inmueble->getCodigo();
     return codigoInmueble == codigo;

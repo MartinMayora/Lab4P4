@@ -22,21 +22,21 @@ private:
 
 public:
     static ControladorInmueble *getInstance();
-
+    virtual ~ControladorInmueble();
+    
+    //CASO DE USO ALTA PUBLICACION
     std::set<DTUsuario> listarInmobiliarias();
     std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
     bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio);
 
-
-    void eliminarInmueble(int codigoInmueble);
-    
-    DTInmueble* detalleInmueble(int codigo);
-    std::set<DTInmuebleListado> listarInmuebles();
-
-    //CASO DE LISTAR PUBLICACION    
+    //CASO DE USO CONSULTA DE PUBLICACIONES   
     std::set<DTPublicacion> listarPublicacion(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueblePublicacion(int codigoPublicacion);
 
-    virtual ~ControladorInmueble();
+    //CASO DE USO ELIMINAR INMUEBLE
+    std::set<DTInmuebleListado> listarInmuebles();
+    DTInmueble* detalleInmueble(int codigo);
+    void eliminarInmueble(int codigoInmueble);
+    
 };
 #endif

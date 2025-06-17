@@ -50,7 +50,7 @@ DTDato Publicacion::getDataPublicacion() const {
     return DTDato(nombre, ti);
 }
 
-//altapublicacionAdd commentMore actions
+//CASO DE USO ALTA PUBLICACION
 bool Publicacion::existeFecha(DTFecha *fechaActual){
     return this->fecha->operator==(fechaActual);
 }

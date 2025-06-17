@@ -32,23 +32,23 @@ public:
     static ManejadorInmueble *getInstance();
     static void deleteInstance();
 
+    //CASO DE USO ALTA USUARIO 
     void crearCasa(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
                    bool esPH, TipoTecho techo, Propietario *propietario);
 
     void crearApartamento(std::string direccion, int numeroPuerta, int superficie, int anioConstruccion,
                           int piso, bool tieneAscensor, float gastosComunes, Propietario *propietario);
 
-    Inmueble *getInmueble(int codigoInmueble);
-
+    //CASO DE USO CONSULTA DE NOTIFICACIONES
     std::set<DTPublicacion> getPublicaciones(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
-
-    std::set<DTInmuebleListado> darInmuebles();
-
     DTInmueble* detalleInmueble(int codigo);
 
+    //CASO DE USO ELIMINAR INMUEBLE
+    std::set<DTInmuebleListado> darInmuebles();
     void eliminarInmueble(int codigoInmueble);
 
-    void listarInmuebles();
+    Inmueble *getInmueble(int codigoInmueble);
+    
 
 };
 

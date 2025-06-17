@@ -26,7 +26,7 @@ public:
 
     std::set<AdministraPropiedad *> getAdministraPropiedad();
 
-    // getters
+    //getters
     int getCodigo();
     std::string getDireccion();
     int getNumeroPuerta();
@@ -37,10 +37,9 @@ public:
     void eliminarLinks();
 
 
-    // para func listarInmueblesNoAdministradosInmobiliaria
-    bool esAdministrado(Inmobiliaria *i);
-
+    //CASO DE USO ALTA ADMINISTRACION PROPIEDAD
     void asociarAdministracionPropiedad(AdministraPropiedad *ap);
+    bool esAdministrado(Inmobiliaria *i);
 };
 
 #endif

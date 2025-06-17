@@ -25,8 +25,6 @@ class IAltaUsuario {
 
         virtual void finalizarAltaUsuario() = 0;
 
-        virtual void mostrarInmuebles()=0;
-
         virtual ~IAltaUsuario() {}
 };
 

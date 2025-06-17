@@ -8,11 +8,7 @@
 #include "../include/DTCasa.h"
 #include "../include/DTApartamento.h"
 #include "../include/DTDato.h"
-
 #include <iostream>
-
-
-
 
 
 ManejadorInmueble *ManejadorInmueble::instancia = NULL;
@@ -29,20 +25,18 @@ ManejadorInmueble *ManejadorInmueble::getInstance()
     return instancia;
 }
 
+//CASO DE USO ALTA USUARIO
 void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario)
-{
+                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario){
     int codigo = codInc++;
     Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     propietario->agregarInmueble(casa);
     inmuebles[codigo] = casa;
-
 }
 
 void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
                                          int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes,
-                                         Propietario *propietario)
-{
+                                         Propietario *propietario){
     int codigo = codInc++;
     Apartamento *apto = new Apartamento(codigo, direccion, numeroPuerta, superficie, anioConstruccion, piso, tieneAscensor, gastosComunes);
     // agregamos casa al set de inmuebles para propietario
@@ -51,53 +45,7 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
     inmuebles[codigo] = apto;
 }
 
-void ManejadorInmueble::listarInmuebles() {
-    if (inmuebles.empty()) {
-        std::cout << "No hay inmuebles registrados." << std::endl;
-        return;
-    }
-
-    std::cout << "Lista de inmuebles registrados:\n";
-
-    for (std::map<int, Inmueble*>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
-        Inmueble* inmu = it->second;
-
-        std::cout << "Código: " << it->first
-                  << ", Dirección: " << inmu->getDireccion()
-                  << ", Nro Puerta: " << inmu->getNumeroPuerta()
-                  << ", Superficie: " << inmu->getSuperficie();
-                  
-
-        // Verificamos si es una Casa
-        Casa* casa = dynamic_cast<Casa*>(inmu);
-        if (casa != NULL) {
-            std::cout << " [Casa] - PH: " << (casa->getEsPH() ? "Sí" : "No");
-                      
-        } else {
-            // Verificamos si es un Apartamento
-            Apartamento* apto = dynamic_cast<Apartamento*>(inmu);
-            if (apto != NULL) {
-                std::cout << " [Apartamento] - Piso: " << apto->getPiso()
-                          << ", Ascensor: " << (apto->getTieneAscensor() ? "Sí" : "No")
-                          << ", GC: " << apto->getGastosComunes();
-            } else {
-                std::cout << " [Tipo desconocido]";
-            }
-        }
-
-        std::cout << std::endl;
-    }
-}
-
-Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
-{
-    std::map<int, Inmueble *>::iterator iter = this->inmuebles.find(codigoInmueble);
-    if (iter != this->inmuebles.end())
-        return iter->second;
-    else
-        return NULL;
-}
-
+//CASO DE USO CONSULTA DE PUBLICACIONES
 std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     TipoPublicacion tipoPublicacion,
     float precioMinimo,
@@ -134,30 +82,6 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     return resultado;
 }
 
-
-std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
-{
-    std::set<DTInmuebleListado> resultado;
-
-    for (std::map<int, Inmueble *>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it)
-    {
-        Inmueble *in = it->second;
-
-        if (in == NULL)
-            continue;
-
-        std::string propietario = "Desconocido";
-        if (in->getPropietario() != NULL) {
-            propietario = in->getPropietario()->getNickname();
-        }
-
-        DTInmuebleListado dtil(in->getCodigo(), in->getDireccion(), propietario);
-        resultado.insert(dtil);
-    }
-    return resultado;
-}
-
-
 DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
     std::map<int, Inmueble*>::iterator it = inmuebles.find(codigo);
     if (it == inmuebles.end())
@@ -188,6 +112,31 @@ DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
     return NULL;
 }
 
+
+//CASO DE USO ELIMINAR INMUEBLE
+std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
+{
+    std::set<DTInmuebleListado> resultado;
+
+    for (std::map<int, Inmueble *>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it)
+    {
+        Inmueble *in = it->second;
+
+        if (in == NULL)
+            continue;
+
+        std::string propietario = "Desconocido";
+        if (in->getPropietario() != NULL) {
+            propietario = in->getPropietario()->getNickname();
+        }
+
+        DTInmuebleListado dtil(in->getCodigo(), in->getDireccion(), propietario);
+        resultado.insert(dtil);
+    }
+    return resultado;
+}
+
+
 void ManejadorInmueble::eliminarInmueble(int codigoInmueble) {
     Inmueble* in = this->getInmueble(codigoInmueble); // igual que find pero ya estaba escrita
     if (in == NULL)
@@ -199,3 +148,12 @@ void ManejadorInmueble::eliminarInmueble(int codigoInmueble) {
        }
     }
   
+
+Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
+{
+    std::map<int, Inmueble *>::iterator iter = this->inmuebles.find(codigoInmueble);
+    if (iter != this->inmuebles.end())
+        return iter->second;
+    else
+        return NULL;
+}
