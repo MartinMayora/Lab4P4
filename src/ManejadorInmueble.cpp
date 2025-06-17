@@ -64,7 +64,7 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
         Publicacion *p = *it;
-        if (/*p->getEstaActiva() && */ p->getTipoPublicacion() == tipoPublicacion)
+        if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
             if (precio >= precioMinimo && precio <= precioMaximo)

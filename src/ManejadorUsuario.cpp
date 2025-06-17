@@ -222,16 +222,21 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
             return false;
         }
     }
-    bool pactivo = false;
+    bool pactivo = true;
     for (publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux)
     {
         Publicacion *pu = *publicacionAux;
         TipoPublicacion puTipo = pu->getTipoPublicacion();
         bool puActivo = pu->getEstaActiva();
-        if (puTipo == tipoPublicacion && puActivo && pu->getFecha()->operator<(fechaActual))
+        if (puTipo == tipoPublicacion && puActivo)
         {
-            pu->actiualizarActivo(false);
-            pactivo = true;
+            if (pu->getFecha()->operator<(fechaActual))
+            {
+                pu->actiualizarActivo(false);
+                pactivo = true;
+            }
+            else
+                pactivo = false;
         }
     }
 
