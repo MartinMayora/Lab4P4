@@ -153,18 +153,16 @@ void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, s
     ManejadorUsuario::getInstance()->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
 }
 
-// OPERACION DE ALTAPUBLICACION
 
-/*std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
-    return ManejadorUsuario::getInstance()->listarInmobiliarias();
-}*/
-
-// OPERACIONES CASO DE USO Consultar Notificaciones
-std::set<DTNotificacion> ControladorUsuario::consultaNotificaciones(std::string nickname){
-    return ManejadorUsuario::getInstance()->consultaNotificaciones(nickname);
+//CASO DE USO CONSULTAR NOTIFICACIONES
+std::set<DTNotificacion> ControladorUsuario::listarNotificaciones(std::string nickname) {
+    return ManejadorUsuario::getInstance()->obtenerNotificaciones(nickname);
 }
 
-// OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
+void ControladorUsuario::eliminarNotificaciones(std::string nickname) {
+    ManejadorUsuario::getInstance()->borrarNotificaciones(nickname);
+}
+
 
 //CASO DE USO ELIMINAR SUSCRIPCIONES
 std::set<std::string> ControladorUsuario::listarSuscripciones(std::string nickname)

@@ -59,8 +59,10 @@ public:
     // Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
     void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
+
     // Operaciones caso de uso CONSULTA DE NOTIFICACIONES
-    std::set<DTNotificacion> consultaNotificaciones(std::string nickname);
+    std::set<DTNotificacion> obtenerNotificaciones(std::string nickname);
+    void borrarNotificaciones(std::string nickname);
 
     // Operaciones caso de uso ELIMINAR SUSCRIPCIONES
     std::set<std::string> listarSuscripciones(std::string nickname);

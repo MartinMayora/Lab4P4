@@ -19,3 +19,7 @@ void Suscriptor::agregarNotificacion(DTNotificacion notif) {
 std::set<DTNotificacion> Suscriptor::getNotificaciones(){
     return this->notificaciones;
 }
+
+void Suscriptor::borrarNotificaciones() {
+    this->notificaciones.clear();
+}

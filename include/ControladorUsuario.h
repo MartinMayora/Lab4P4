@@ -39,8 +39,9 @@ public:
     void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
     std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);
 
-    // OPERACION CONSULTA NOTIFICAIONES
-     std::set<DTNotificacion> consultaNotificaciones(std::string nickname);
+    //CASO DE USO CONSULTA NOTIFICAIONES
+    std::set<DTNotificacion> listarNotificaciones(std::string nickname);
+    void eliminarNotificaciones(std::string nickname);
 
     //CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
