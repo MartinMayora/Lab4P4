@@ -40,8 +40,8 @@ public:
                           int piso, bool tieneAscensor, float gastosComunes, Propietario *propietario);
 
     //CASO DE USO ALTAPUBLICACION
-
     void agregarPub(Publicacion *aAgregar);
+    
     //CASO DE USO CONSULTA DE NOTIFICACIONES
     std::set<DTPublicacion> getPublicaciones(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueble(int codigo);
