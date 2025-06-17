@@ -155,6 +155,11 @@ void ControladorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, s
     return ManejadorUsuario::getInstance()->listarInmobiliarias();
 }*/
 
+// OPERACIONES CASO DE USO Consultar Notificaciones
+std::set<DTNotificacion> ControladorUsuario::consultaNotificaciones(std::string nickname){
+    return ManejadorUsuario::getInstance()->consultaNotificaciones(nickname);
+}
+
 // OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
 
 std::set<std::string> ControladorUsuario::listarSuscripciones(std::string nickname)

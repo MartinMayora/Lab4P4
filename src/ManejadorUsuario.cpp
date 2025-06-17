@@ -194,7 +194,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
 
     int ultimaPublicacion = this->ultimaPub; 
     Publicacion* pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
-    publicacion.insert(pubAgregar);
+    ap->agregarPublicacion(pubAgregar);
     return true;
 }
 
@@ -217,6 +217,21 @@ Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
     }
     return NULL;
 }
+//CONSULTA DE NOTIFICACION
+std::set<DTNotificacion> ManejadorUsuario::consultaNotificaciones(std::string nickname){
+    std::set<DTNotificacion> resultado;
+    Suscriptor* suscriptor = NULL;
+    if (clientes.find(nickname) != clientes.end()) {
+        suscriptor = clientes[nickname];
+    } 
+    else 
+        if (propietarios.find(nickname) != propietarios.end()) {
+            suscriptor = propietarios[nickname];
+        } 
+    resultado = suscriptor->getNotificaciones();
+    //FALTA LA PARTE DE BORRAR NOTIFICACIONES!
+    return resultado;
+}   
 // OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
 
 std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){

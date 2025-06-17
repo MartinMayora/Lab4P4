@@ -526,7 +526,7 @@ void eliminarInmueble() {
 
 
 void consultaNotificaciones(){
-
+    
 }
 
 void eliminarSuscripciones() {

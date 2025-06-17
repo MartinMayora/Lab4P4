@@ -6,6 +6,7 @@
 #include "IAltaAdministracionPropiedad.h"
 #include "ISuscribirseANotificaciones.h"
 #include "IEliminarSuscripciones.h"
+#include "IConsultaDeNotificaciones.h"
 #include "IConsultaDePublicaciones.h"
 #include "IAltaPublicacion.h"
 #include "IEliminarInmueble.h"
@@ -26,6 +27,7 @@ class Factory {
         IEliminarSuscripciones* getEliminarSuscripciones();
         IConsultaDePublicaciones* getConsultaDePublicaciones();
         IEliminarInmueble* getEliminarInmueble();
+        IConsultaDeNotificaciones* getConsultaDeNotificaciones();
         ~Factory();
 };
 

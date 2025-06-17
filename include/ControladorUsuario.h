@@ -5,13 +5,14 @@
 #include "IAltaUsuario.h"
 #include "IEliminarSuscripciones.h"
 #include "IAltaAdministracionPropiedad.h"
+#include "IConsultaDeNotificaciones.h"
 #include "Propietario.h"
 #include "Inmobiliaria.h"
 #include <string>
 #include <map>
 
 
-class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones, public IAltaAdministracionPropiedad, public IEliminarSuscripciones{
+class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones, public IAltaAdministracionPropiedad, public IEliminarSuscripciones, public IConsultaDeNotificaciones{
 private:
     static ControladorUsuario *instancia;
 
@@ -39,6 +40,9 @@ public:
     std::set<DTUsuario> listarInmobiliarias();
     void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
     std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);
+
+    // OPERACION CONSULTA NOTIFICAIONES
+     std::set<DTNotificacion> consultaNotificaciones(std::string nickname);
 
     // OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (CATA)
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
