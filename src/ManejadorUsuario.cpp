@@ -206,14 +206,16 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
             return false;
         }
     }
-    bool pactivo=false;
+    bool pactivo=true;
     for(publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux){
         Publicacion* pu = *publicacionAux;
         TipoPublicacion puTipo = pu->getTipoPublicacion();
         bool puActivo = pu->getEstaActiva();
-        if(puTipo == tipoPublicacion && puActivo && pu->getFecha()->operator<(fechaActual)){
+        if(puTipo == tipoPublicacion && puActivo){
+            if(pu->getFecha()->operator<(fechaActual)){
             pu->actiualizarActivo(false);
-            pactivo= true;
+            pactivo= true;}
+            else pactivo = false;
         }
     }
 
@@ -235,36 +237,21 @@ Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
     }
     return NULL;
 }
-//CASO DE USO CONSULTA DE NOTIFICACIONES
-std::set<DTNotificacion> ManejadorUsuario::obtenerNotificaciones(std::string nickname) {
+//CONSULTA DE NOTIFICACION
+std::set<DTNotificacion> ManejadorUsuario::consultaNotificaciones(std::string nickname){
+    std::set<DTNotificacion> resultado;
     Suscriptor* suscriptor = NULL;
     if (clientes.find(nickname) != clientes.end()) {
         suscriptor = clientes[nickname];
     } 
     else 
-        if (propietarios.find(nickname) != propietarios.end()){
-        suscriptor = propietarios[nickname];
-        }
-    if (suscriptor != NULL)
-        return suscriptor->getNotificaciones();
-
-    else 
-        return std::set<DTNotificacion>();  
-}
-
-void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
-    Suscriptor* suscriptor = NULL;
-    if (clientes.find(nickname) != clientes.end()){
-        suscriptor = clientes[nickname];
-    }else 
-        if (propietarios.find(nickname) != propietarios.end()){
+        if (propietarios.find(nickname) != propietarios.end()) {
             suscriptor = propietarios[nickname];
-        }
-    if (suscriptor != NULL)
-        suscriptor->borrarNotificaciones();
-}
-
-
+        } 
+    resultado = suscriptor->getNotificaciones();
+    //FALTA LA PARTE DE BORRAR NOTIFICACIONES!
+    return resultado;
+}   
 // CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
 std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias(){
     return this->inmobiliarias;
