@@ -44,7 +44,10 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
     // agregamos casa al map de inmuebles del manejador
     inmuebles[codigo] = apto;
 }
-
+//CASO DE ALTA PUBLICACIO
+void ManejadorInmueble::agregarPub(Publicacion* aAgregar){
+    this->publicaciones.insert(aAgregar);
+}
 //CASO DE USO CONSULTA DE PUBLICACIONES
 std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     TipoPublicacion tipoPublicacion,

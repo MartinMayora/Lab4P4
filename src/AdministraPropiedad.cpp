@@ -2,6 +2,7 @@
 #include "../include/Inmueble.h"
 #include "../include/Inmobiliaria.h"
 #include "../include/Publicacion.h"
+#include "../include/ManejadorInmueble.h"
 
 AdministraPropiedad::~AdministraPropiedad() {
     this->eliminarLinkPublicacion();
@@ -54,4 +55,6 @@ bool AdministraPropiedad::tieneInmueble(int codigoInmueble){
 
 void AdministraPropiedad::agregarPublicacion(Publicacion* aAgregar){
     this->publicaciones.insert(aAgregar);
+    ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
+    manejador->agregarPub(aAgregar);
 }
