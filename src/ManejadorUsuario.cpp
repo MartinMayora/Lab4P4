@@ -238,7 +238,7 @@ Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
     return NULL;
 }
 //CONSULTA DE NOTIFICACION
-std::set<DTNotificacion> ManejadorUsuario::consultaNotificaciones(std::string nickname){
+std::set<DTNotificacion> ManejadorUsuario::obtenerNotificaciones(std::string nickname){
     std::set<DTNotificacion> resultado;
     Suscriptor* suscriptor = NULL;
     if (clientes.find(nickname) != clientes.end()) {
@@ -252,6 +252,7 @@ std::set<DTNotificacion> ManejadorUsuario::consultaNotificaciones(std::string ni
     //FALTA LA PARTE DE BORRAR NOTIFICACIONES!
     return resultado;
 }   
+
 // CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
 std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias(){
     return this->inmobiliarias;

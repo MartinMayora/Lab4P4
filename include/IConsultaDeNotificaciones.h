@@ -9,6 +9,5 @@ class IConsultaDeNotificaciones{
         virtual std::set<DTNotificacion> listarNotificaciones(std::string nickname)=0;
         virtual void eliminarNotificaciones(std::string nickname)=0;
 
-
 };
 #endif
