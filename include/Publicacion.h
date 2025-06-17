@@ -31,7 +31,8 @@ public:
     std::string getTexto() const;
     float getPrecio() const;
     bool getEstaActiva() const;
-    //altapublicacion
+    
+    //CASO DE USO ALTA PUBLICACION
     bool existeFecha(DTFecha* fechaActual);
     bool existeTipoPub(TipoPublicacion TipoPublicacion);
     void actiualizarActivo(bool nuevoEstado);

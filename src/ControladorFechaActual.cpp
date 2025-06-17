@@ -24,5 +24,11 @@ void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio){
 
 ControladorFechaActual::~ControladorFechaActual(){
     delete fechaActual;
-    instance = NULL;
+}
+
+void ControladorFechaActual::deleteInstance() {
+    if (instance != NULL) {
+        delete instance;
+        instance = NULL;
+    }
 }

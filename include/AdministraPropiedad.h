@@ -20,19 +20,23 @@ class AdministraPropiedad {
         AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha);
         ~AdministraPropiedad();
 
-        //getters
+        //Getters
         DTFecha* getFecha();
         Inmobiliaria* getInmobiliaria();
         Inmueble* getInmueble();
         std::set<Publicacion*> getPubublicaciones();
-
-        // para func listarInmueblesNoAdministradosInmobiliaria
-        bool inmobiliariaAsociada(Inmobiliaria* i);
-        void eliminarLinkPublicacion();
         std::set<Publicacion*>& getPublicaciones();
-        //alta publicacion
-        void agregarPublicacion(Publicacion* aAgregar);
+        
+        //CASO DE USO ALTA ADMINISTRACION PROPIEDAD
+        bool inmobiliariaAsociada(Inmobiliaria* i);
+    
+        //CASO DE USO ELIMINAR INMUEBLE
+        void eliminarLinkPublicacion();
+        
+        //CASO DE USO ALTA PUBLICACION
         bool tieneInmueble(int codigoInmueble);
+        void agregarPublicacion(Publicacion* aAgregar);
+
 
 };
 

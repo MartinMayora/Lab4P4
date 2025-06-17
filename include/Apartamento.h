@@ -13,7 +13,7 @@ class Apartamento : public Inmueble {
         Apartamento(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion,
             int piso, bool tieneAscensor, float gastosComunes);
         ~Apartamento();
-        virtual TipoInmueble getTipoInmueble() ;
+        virtual TipoInmueble getTipoInmueble();
         int getPiso();
         bool getTieneAscensor();
         float getGastosComunes();

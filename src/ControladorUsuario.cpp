@@ -25,7 +25,19 @@ ControladorUsuario *ControladorUsuario::getInstance()
     return instancia;
 }
 
-// OPERACIONES DE CASO DE USO ALTA USUARIO (Cata)
+ControladorUsuario::~ControladorUsuario(){
+    
+}
+
+void ControladorUsuario::deleteInstance() {
+    if (instancia != NULL) {
+        delete instancia;
+        instancia = NULL;
+    }
+}
+
+
+//CASO DE USO ALTA USUARIO 
 bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena, std::string nombre,
                                      std::string email, std::string apellido, std::string documento)
 {
@@ -98,14 +110,9 @@ void ControladorUsuario::finalizarAltaUsuario()
     inmobiliariaRecordada = NULL;
 }
 
-void ControladorUsuario::mostrarInmuebles() {
-    ManejadorInmueble::getInstance()->listarInmuebles();
-
-}
-
-//OPERACIONES CASO DE USO ALTA DE ADMINISTRA PROPIEDAD (Olivia)
 
 
+//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
 std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     std::set<DTUsuario> res;
     ManejadorUsuario* m = ManejadorUsuario::getInstance();
@@ -117,8 +124,6 @@ std::set<DTUsuario> ControladorUsuario::listarInmobiliarias(){
     }
     return res;
 }
-
-
 
 void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble){
     ManejadorUsuario* mU = ManejadorUsuario::getInstance();
@@ -138,7 +143,7 @@ std::set<DTInmuebleListado> ControladorUsuario::listarInmueblesNoAdministradosIn
     return listInmuebles;
 }
 
-// OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (Cata)
+//CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
 std::set<std::string> ControladorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario)
 {
     return ManejadorUsuario::getInstance()->listarInmobiliariasNoSuscriptas(nicknameUsuario);
@@ -162,6 +167,7 @@ std::set<DTNotificacion> ControladorUsuario::consultaNotificaciones(std::string 
 
 // OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
 
+//CASO DE USO ELIMINAR SUSCRIPCIONES
 std::set<std::string> ControladorUsuario::listarSuscripciones(std::string nickname)
 {
     return ManejadorUsuario::getInstance()->listarSuscripciones(nickname);

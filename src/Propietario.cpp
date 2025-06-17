@@ -8,14 +8,11 @@ Propietario::Propietario(std::string nickname, std::string contrasena, std::stri
 }
 
 //Destructor 
-Propietario::~Propietario() { }
-
-
-void Propietario::agregarInmueble(Inmueble* inmueble) {
-    inmuebles.insert(inmueble);
+Propietario::~Propietario(){ 
 }
 
-std::string Propietario::getNickname() {
+//Getters
+std::string Propietario::getNickname(){
     return Usuario::getNickname();
 }
 
@@ -23,6 +20,22 @@ std::string Propietario::getNombre(){
     return Usuario::getNombre();
 }
 
+std::set<Inmueble*> Propietario::getInmuebles() {
+    return this->inmuebles;
+}
+
+
+//CASO DE USO ALTA USUARIO
+void Propietario::agregarInmueble(Inmueble* inmueble) {
+    inmuebles.insert(inmueble);
+}
+
+void Propietario::agregarInmobiliaria(Inmobiliaria* i) {
+    this->inmobiliarias.insert(i);
+}
+
+
+//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
 std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
     std::set<DTInmuebleListado> listInmueblesPropietario;
     std::set<Inmueble*>::iterator it;
@@ -37,15 +50,9 @@ std::set<DTInmuebleListado> Propietario::getInmueblesNoAdmin(Inmobiliaria* i){
 }
 
 
-void Propietario::agregarInmobiliaria(Inmobiliaria* i) {
-    this->inmobiliarias.insert(i);
-}
-
+//CASO DE USO ELIMINAR INMUEBLE
 void Propietario::eliminarLinkPropietario(Inmueble* in) {
     this->inmuebles.erase(in);
 }
 
-std::set<Inmueble*> Propietario::getInmuebles() {
-    return this->inmuebles;
-}
 

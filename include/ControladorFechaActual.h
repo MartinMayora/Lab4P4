@@ -15,6 +15,7 @@ class ControladorFechaActual : public IControladorFechaActual  {
         DTFecha* getFechaActual();
         void setNewFechaActual(int dia, int mes, int anio);
         ~ControladorFechaActual();
+        static void deleteInstance();
 };
 
 #endif

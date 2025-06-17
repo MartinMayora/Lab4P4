@@ -26,13 +26,22 @@ IAltaUsuario* Factory::getAltaUsuario() {
     return ControladorUsuario::getInstance();
 }
 
+IAltaPublicacion* Factory::getAltaPublicacion(){
+    return ControladorInmueble::getInstance();
+}
+
+IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
+    return ControladorInmueble::getInstance();
+}
+
+IEliminarInmueble* Factory::getEliminarInmueble() {
+    return ControladorInmueble::getInstance(); 
+}
+
 ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
     return ControladorUsuario::getInstance();
 }
 IConsultaDeNotificaciones* Factory::getConsultaDeNotificaciones(){
-    return ControladorUsuario::getInstance();
-}
-IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
     return ControladorUsuario::getInstance();
 }
 
@@ -40,13 +49,22 @@ IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
     return ControladorUsuario::getInstance();
 }
 
-IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
-    return ControladorInmueble::getInstance();
-}
-IAltaPublicacion* Factory::getAltaPublicacion(){
-    return ControladorInmueble::getInstance();
+IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
+    return ControladorUsuario::getInstance();
 }
 
-IEliminarInmueble* Factory::getEliminarInmueble() {
-    return ControladorInmueble::getInstance(); 
+void Factory::deleteInstance(){
+    if (instance != NULL) {
+        delete instance; //aca llama al destructor ~Factory()
+        instance = NULL;      
+    }
+}
+
+void Factory::eliminarControladores(){
+    ControladorFechaActual::deleteInstance();
+    ControladorInmueble::deleteInstance();
+    ControladorUsuario::deleteInstance();
+}
+
+Factory::~Factory(){
 }

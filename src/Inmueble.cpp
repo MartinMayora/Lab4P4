@@ -11,36 +11,55 @@ Inmueble::~Inmueble()
 {
 }
 
-// getters
-
-int Inmueble::getCodigo()
-{
+//Getters
+int Inmueble::getCodigo(){
     return codigo;
 }
 
-std::string Inmueble::getDireccion()
-{
+std::string Inmueble::getDireccion(){
     return direccion;
 }
 
-int Inmueble::getNumeroPuerta()
-{
+int Inmueble::getNumeroPuerta(){
     return numeroPuerta;
 }
 
-int Inmueble::getSuperficie()
-{
+int Inmueble::getSuperficie(){
     return superficie;
 }
 
-int Inmueble::getAnoConstruccion()
-{
+int Inmueble::getAnoConstruccion(){
     return anoConstruccion;
 }
 
-std::set<AdministraPropiedad *> Inmueble::getAdministraPropiedad()
-{
+std::set<AdministraPropiedad *> Inmueble::getAdministraPropiedad(){
     return admprop;
+}
+
+Propietario* Inmueble::getPropietario() {
+    return propietario;
+}
+
+//CASO DE USO ELIMINAR INMUEBLE
+void Inmueble::eliminarLinks() {
+    if (this->propietario != NULL) {
+        this->propietario->eliminarLinkPropietario(this);
+        this->propietario = NULL;
+    }
+
+    for (std::set<AdministraPropiedad*>::iterator it = this->admprop.begin(); it != this->admprop.end(); ++it) {
+        AdministraPropiedad* admin = *it;
+        if (admin != NULL) {
+            admin->eliminarLinkPublicacion(); 
+            delete admin;
+        }
+    }
+    this->admprop.clear();
+}
+
+//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
+void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap){
+    this->admprop.insert(ap);
 }
 
 bool Inmueble::esAdministrado(Inmobiliaria *i)
@@ -55,24 +74,4 @@ bool Inmueble::esAdministrado(Inmobiliaria *i)
     return administra;
 }
 
-void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap)
-{
-    this->admprop.insert(ap);
-}
 
-
-
-Propietario* Inmueble::getPropietario() {
-    return propietario;
-}
-
-void Inmueble::eliminarLinks() {
-    this->propietario->eliminarLinkPropietario(this); 
-    this->propietario = NULL;
-    for (std::set<AdministraPropiedad*>::iterator it = this->admprop.begin(); it != this->admprop.end(); ++it) {
-        AdministraPropiedad* admin = *it;
-        admin->eliminarLinkPublicacion();
-        delete admin;
-    }
-    this->admprop.clear();
-}

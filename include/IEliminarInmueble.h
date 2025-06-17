@@ -11,6 +11,7 @@ public:
     virtual std::set<DTInmuebleListado> listarInmuebles() = 0;
     virtual DTInmueble* detalleInmueble(int codigo) = 0;
     virtual void eliminarInmueble(int codigo) = 0;
+    virtual ~IEliminarInmueble(){};
 };
 
 #endif

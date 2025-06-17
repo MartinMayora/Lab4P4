@@ -47,18 +47,21 @@ public:
 
     // Operaciones caso de uso ALTA PUBLICACION
     std::set<DTUsuario> listarInmobiliarias();
+    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
     bool existeInmobiliaria(std::string nicknameInmobiliaria);
     bool darInmobiliaria(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion,
                          std::string texto, float precio);
-    std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria);
+    Inmobiliaria *findInmobiliaria(std::string nicknameInmobiliaria);
+
     // Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
     std::map<std::string, Inmobiliaria *> &getInmobiliarias();
-    Inmobiliaria *findInmobiliaria(std::string nicknameInmobiliaria);
+
     // Operaciones caso de uso SUSCRIBIRSE A NOTIFICACIONES
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
     void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
     // Operaciones caso de uso CONSULTA DE NOTIFICACIONES
     std::set<DTNotificacion> consultaNotificaciones(std::string nickname);
+
     // Operaciones caso de uso ELIMINAR SUSCRIPCIONES
     std::set<std::string> listarSuscripciones(std::string nickname);
     void eliminarSuscripcion(std::string nicknameUsuario, std::string nicknameInmobiliaria);

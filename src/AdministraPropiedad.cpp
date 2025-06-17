@@ -4,7 +4,11 @@
 #include "../include/Publicacion.h"
 
 AdministraPropiedad::~AdministraPropiedad() {
-  
+    this->eliminarLinkPublicacion();
+    if (this->fecha != NULL) {
+        delete this->fecha;
+        this->fecha = NULL;
+    }
 }
 AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha) {
     this->inmobiliaria = i;
@@ -12,6 +16,7 @@ AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha
     this->fecha = fecha;
 }
 
+//Getters
 DTFecha* AdministraPropiedad::getFecha(){
     return fecha;
 }
@@ -27,10 +32,12 @@ std::set<Publicacion*>& AdministraPropiedad::getPublicaciones(){
     return this->publicaciones;
 }
 
+//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
 bool AdministraPropiedad::inmobiliariaAsociada(Inmobiliaria* i){
     return (i == inmobiliaria);
 }
 
+//CASO DE USO ELIMINAR INMUEBLE
 void AdministraPropiedad::eliminarLinkPublicacion() {
     for (std::set<Publicacion*>::iterator it = this->publicaciones.begin(); it != this->publicaciones.end(); ++it) {
         Publicacion* pub = *it;
@@ -39,7 +46,7 @@ void AdministraPropiedad::eliminarLinkPublicacion() {
     this->publicaciones.clear();
 }
 
-//ALTAPUBLICACION
+//CASO DE USO ALTA PUBLICACION
 bool AdministraPropiedad::tieneInmueble(int codigoInmueble){
     int codigo = this->inmueble->getCodigo();
     return codigoInmueble == codigo;

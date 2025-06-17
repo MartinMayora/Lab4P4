@@ -15,17 +15,16 @@
 class ControladorUsuario : public IAltaUsuario, public ISuscribirseANotificaciones, public IAltaAdministracionPropiedad, public IEliminarSuscripciones, public IConsultaDeNotificaciones{
 private:
     static ControladorUsuario *instancia;
-
-    // Referencias temporales para dar de alta los inmuebles y representar propietarios
     Propietario *propietarioRecordado;
     Inmobiliaria *inmobiliariaRecordada;
-
     ControladorUsuario();
 
 public:
     static ControladorUsuario *getInstance();
+    virtual ~ControladorUsuario();
+    static void deleteInstance();
 
-    // OPERACIONES CASO DE USO ALTA USUARIO (CATA)
+    //CASO DE USO ALTA USUARIO
     bool altaCliente(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string apellido, std::string documento);
     bool altaPropietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
     bool altaInmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
@@ -34,9 +33,8 @@ public:
     std::set<DTUsuario> listarPropietarios();
     bool representarPropietario(std::string nicknamePropietario);
     void finalizarAltaUsuario();
-    void mostrarInmuebles();
-
-    // OPERACIONES CASO DE USO ALTA DE ADMINISTRACION DE PROPIEDAD (OLIVIA)
+    
+    //CASO DE USO ALTA DE ADMINISTRACION DE PROPIEDAD 
     std::set<DTUsuario> listarInmobiliarias();
     void altaAdministraPropiedad(std::string nicknameInmobiliaria, int codigoInmueble);
     std::set<DTInmuebleListado> listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria);
@@ -44,11 +42,11 @@ public:
     // OPERACION CONSULTA NOTIFICAIONES
      std::set<DTNotificacion> consultaNotificaciones(std::string nickname);
 
-    // OPERACIONES CASO DE USO SUSCRIBIRSE A NOTIFICACIONES (CATA)
+    //CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);
     void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
 
-    // OPERACIONES CASO DE USO Eliminar Suscripciones (marcelo)
+    //CASO DE USO ELIMINAR SUSCRIPCIONES
     std::set<std::string> listarSuscripciones(std::string nickname);
     void eliminarSuscripcion(std::string nicknameUsuario, std::string nicknameInmobiliaria);
 };
