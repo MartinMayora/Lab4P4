@@ -280,7 +280,18 @@ std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::str
     return resultado;
 }
 
-
+void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
+    Suscriptor* suscriptor = NULL;
+    if (clientes.find(nickname) != clientes.end()){
+        suscriptor = clientes[nickname];
+    }else 
+        if (propietarios.find(nickname) != propietarios.end()){
+            suscriptor = propietarios[nickname];
+    }
+    if (suscriptor != NULL){
+        suscriptor->borrarNotificaciones();
+    }
+}
 void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria)
 {
     Suscriptor* suscriptor = NULL;
