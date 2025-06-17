@@ -131,7 +131,6 @@ void ControladorUsuario::altaAdministraPropiedad(std::string nicknameInmobiliari
     ManejadorInmueble* mI = ManejadorInmueble::getInstance();
     Inmueble* cin = mI->getInmueble(codigoInmueble);
     ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
-    ci->altaAdministraPropiedad(cin, ControladorFechaActual::getInstance()->getFechaActual());
 }
 
 std::set<DTInmuebleListado> ControladorUsuario::listarInmueblesNoAdministradosInmobiliaria(std::string nicknameInmobiliaria)
