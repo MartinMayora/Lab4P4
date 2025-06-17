@@ -8,7 +8,7 @@
 
 ManejadorUsuario *ManejadorUsuario::instancia = NULL;
 
-ManejadorUsuario::ManejadorUsuario() {}
+ManejadorUsuario::ManejadorUsuario() : ultimaPub(0){}
 
 ManejadorUsuario *ManejadorUsuario::getInstance()
 {
@@ -217,7 +217,8 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         }
     }
 
-    int ultimaPublicacion = this->ultimaPub; 
+    int ultimaPublicacion = this->ultimaPub + 1; 
+    this->ultimaPub += 1;
     Publicacion* pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
     ap->agregarPublicacion(pubAgregar);
     return true;

@@ -46,6 +46,7 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
 }
 //CASO DE ALTA PUBLICACIO
 void ManejadorInmueble::agregarPub(Publicacion* aAgregar){
+    std::cout << aAgregar->getCodigo() << "AGREGADO \n";
     this->publicaciones.insert(aAgregar);
 }
 //CASO DE USO CONSULTA DE PUBLICACIONES
