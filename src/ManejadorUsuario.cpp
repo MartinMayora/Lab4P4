@@ -211,7 +211,7 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
         Publicacion* pu = *publicacionAux;
         TipoPublicacion puTipo = pu->getTipoPublicacion();
         bool puActivo = pu->getEstaActiva();
-        if(puTipo == tipoPublicacion && puActivo){
+        if(puTipo == tipoPublicacion && puActivo && pu->getFecha()->operator<(fechaActual)){
             pu->actiualizarActivo(false);
             pactivo= true;
         }
