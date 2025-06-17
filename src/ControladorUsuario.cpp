@@ -25,6 +25,10 @@ ControladorUsuario *ControladorUsuario::getInstance()
     return instancia;
 }
 
+ControladorUsuario::~ControladorUsuario(){
+    
+}
+
 //CASO DE USO ALTA USUARIO 
 bool ControladorUsuario::altaCliente(std::string nickname, std::string contrasena, std::string nombre,
                                      std::string email, std::string apellido, std::string documento)

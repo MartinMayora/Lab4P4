@@ -46,7 +46,6 @@ public:
     //CASO DE USO ELIMINAR INMUEBLE
     std::set<DTInmuebleListado> darInmuebles();
     void eliminarInmueble(int codigoInmueble);
-
     Inmueble *getInmueble(int codigoInmueble);
     
 

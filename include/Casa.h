@@ -9,11 +9,9 @@ class Casa : public Inmueble {
         TipoTecho techo;
 
     public:
-        //modifico el constructor q venia en los zip
-        Casa(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion,
-            bool esPH, TipoTecho techo);
+        Casa(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho techo);
         ~Casa();
-        virtual TipoInmueble getTipoInmueble() ;
+        virtual TipoInmueble getTipoInmueble();
         bool getEsPH() const;
         TipoTecho getTecho() const;
 

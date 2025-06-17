@@ -8,13 +8,11 @@
 #include "TipoPublicacion.h"
 
 class IAltaPublicacion {
-    //en las interfaces agregamos todas las operaciones que corresponden al caso de uso 
     public:
-    virtual std::set<DTUsuario> listarInmobiliarias() = 0;
-
-    virtual std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria) = 0;
-
-    virtual bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio) = 0;
+        virtual std::set<DTUsuario> listarInmobiliarias() = 0;
+        virtual std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria) = 0;
+        virtual bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio) = 0;
+        virtual ~IAltaPublicacion(){};
 };
 
 

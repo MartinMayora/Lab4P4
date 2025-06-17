@@ -26,7 +26,24 @@ IAltaUsuario* Factory::getAltaUsuario() {
     return ControladorUsuario::getInstance();
 }
 
+IAltaPublicacion* Factory::getAltaPublicacion(){
+    return ControladorInmueble::getInstance();
+}
+
+IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
+    return ControladorInmueble::getInstance();
+}
+
+IEliminarInmueble* Factory::getEliminarInmueble() {
+    return ControladorInmueble::getInstance(); 
+}
+
 ISuscribirseANotificaciones* Factory::getSuscribirseANotificaciones(){
+    return ControladorUsuario::getInstance();
+}
+
+
+IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
     return ControladorUsuario::getInstance();
 }
 
@@ -34,17 +51,3 @@ IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
     return ControladorUsuario::getInstance();
 }
 
-IEliminarSuscripciones* Factory::getEliminarSuscripciones(){
-    return ControladorUsuario::getInstance();
-}
-
-IConsultaDePublicaciones* Factory::getConsultaDePublicaciones(){
-    return ControladorInmueble::getInstance();
-}
-IAltaPublicacion* Factory::getAltaPublicacion(){
-    return ControladorInmueble::getInstance();
-}
-
-IEliminarInmueble* Factory::getEliminarInmueble() {
-    return ControladorInmueble::getInstance(); 
-}

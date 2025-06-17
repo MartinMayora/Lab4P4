@@ -245,7 +245,7 @@ void altaUsuario(){
                 salir = (inputSalir == "1") ? 1 : 0;
                 if (salir == 0) {
                 std::cout << "\n--- Inmuebles registrados hasta el momento ---\n";
-                ci->mostrarInmuebles();
+                
 }
 
             }
@@ -483,7 +483,7 @@ void eliminarInmueble() {
 }
 
 
-    void suscribirseNotificaciones() {
+void suscribirseNotificaciones() {
     Factory* factory = Factory::getInstance();
     ISuscribirseANotificaciones* controlador = factory->getSuscribirseANotificaciones();
 

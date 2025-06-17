@@ -9,6 +9,7 @@
 #include "IConsultaDePublicaciones.h"
 #include "IAltaPublicacion.h"
 #include "IEliminarInmueble.h"
+
 class Factory {
     private:
         static Factory* instance;
@@ -17,15 +18,15 @@ class Factory {
     public:
         static Factory* getInstance();
         IControladorFechaActual* getControladorFechaActual();
-        //TODO: Get interfaces de controladores
-
-        IAltaPublicacion* getAltaPublicacion();
+        //Interfaces casos de uso, falta la de consultar suscripciones
         IAltaUsuario* getAltaUsuario();
-        ISuscribirseANotificaciones* getSuscribirseANotificaciones();
-        IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();
-        IEliminarSuscripciones* getEliminarSuscripciones();
+        IAltaPublicacion* getAltaPublicacion();
         IConsultaDePublicaciones* getConsultaDePublicaciones();
         IEliminarInmueble* getEliminarInmueble();
+        ISuscribirseANotificaciones* getSuscribirseANotificaciones();
+        IEliminarSuscripciones* getEliminarSuscripciones();
+        IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();
+        
         ~Factory();
 };
 

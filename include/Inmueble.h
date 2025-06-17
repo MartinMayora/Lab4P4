@@ -24,18 +24,18 @@ public:
     Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
     virtual ~Inmueble();
 
-    std::set<AdministraPropiedad *> getAdministraPropiedad();
-
-    //getters
+    //Getters
     int getCodigo();
     std::string getDireccion();
     int getNumeroPuerta();
     int getSuperficie();
     int getAnoConstruccion();
+    std::set<AdministraPropiedad *> getAdministraPropiedad();
     virtual TipoInmueble getTipoInmueble() = 0;
     Propietario* getPropietario();
-    void eliminarLinks();
 
+    //CASO DE USO ELIMINAR INMUEBLE
+    void eliminarLinks();
 
     //CASO DE USO ALTA ADMINISTRACION PROPIEDAD
     void asociarAdministracionPropiedad(AdministraPropiedad *ap);

@@ -11,61 +11,36 @@ Inmueble::~Inmueble()
 {
 }
 
-// getters
-
-int Inmueble::getCodigo()
-{
+//Getters
+int Inmueble::getCodigo(){
     return codigo;
 }
 
-std::string Inmueble::getDireccion()
-{
+std::string Inmueble::getDireccion(){
     return direccion;
 }
 
-int Inmueble::getNumeroPuerta()
-{
+int Inmueble::getNumeroPuerta(){
     return numeroPuerta;
 }
 
-int Inmueble::getSuperficie()
-{
+int Inmueble::getSuperficie(){
     return superficie;
 }
 
-int Inmueble::getAnoConstruccion()
-{
+int Inmueble::getAnoConstruccion(){
     return anoConstruccion;
 }
 
-std::set<AdministraPropiedad *> Inmueble::getAdministraPropiedad()
-{
+std::set<AdministraPropiedad *> Inmueble::getAdministraPropiedad(){
     return admprop;
 }
-
-bool Inmueble::esAdministrado(Inmobiliaria *i)
-{
-    std::set<AdministraPropiedad *>::iterator it;
-    bool administra = false;
-    for (it = admprop.begin(); it != admprop.end() && !administra; ++it)
-    {
-        AdministraPropiedad *ap = *it;
-        administra = ap->inmobiliariaAsociada(i);
-    }
-    return administra;
-}
-
-void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap)
-{
-    this->admprop.insert(ap);
-}
-
-
 
 Propietario* Inmueble::getPropietario() {
     return propietario;
 }
 
+//CASO DE USO ELIMINAR INMUEBLE
 void Inmueble::eliminarLinks() {
     if (this->propietario != NULL) {
         this->propietario->eliminarLinkPropietario(this);
@@ -81,3 +56,22 @@ void Inmueble::eliminarLinks() {
     }
     this->admprop.clear();
 }
+
+//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
+void Inmueble::asociarAdministracionPropiedad(AdministraPropiedad *ap){
+    this->admprop.insert(ap);
+}
+
+bool Inmueble::esAdministrado(Inmobiliaria *i)
+{
+    std::set<AdministraPropiedad *>::iterator it;
+    bool administra = false;
+    for (it = admprop.begin(); it != admprop.end() && !administra; ++it)
+    {
+        AdministraPropiedad *ap = *it;
+        administra = ap->inmobiliariaAsociada(i);
+    }
+    return administra;
+}
+
+
