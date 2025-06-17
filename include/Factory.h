@@ -27,6 +27,8 @@ class Factory {
         IEliminarSuscripciones* getEliminarSuscripciones();
         IAltaAdministracionPropiedad* getAltaAdministracionPropiedad();
         
+        static void deleteInstance();
+        void eliminarControladores();
         ~Factory();
 };
 

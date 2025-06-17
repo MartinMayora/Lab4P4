@@ -17,6 +17,36 @@ ManejadorUsuario *ManejadorUsuario::getInstance()
     return instancia;
 }
 
+ManejadorUsuario::~ManejadorUsuario() {
+    //Eliminar clientes
+    std::map<std::string, Cliente*>::iterator itC;
+    for (itC = clientes.begin(); itC != clientes.end(); itC++){
+        delete itC->second;
+    }
+    //Eliminar propietarios
+    std::map<std::string, Propietario*>::iterator itP;
+    for (itP = propietarios.begin(); itP != propietarios.end(); itP++){
+        delete itP->second;
+    }
+    //Eliminar inmobiliarias
+    std::map<std::string, Inmobiliaria*>::iterator itI;
+    for (itI = inmobiliarias.begin(); itI != inmobiliarias.end(); itI++){
+        delete itI->second;
+    }
+    usuarios.clear();
+    clientes.clear();
+    propietarios.clear();
+    inmobiliarias.clear();
+}
+
+void ManejadorUsuario::deleteInstance(){
+    if (instancia!=NULL){
+        delete instancia;
+        instancia=NULL;
+    }
+}
+
+
 //CASO DE USO ALTA USUARIO
 bool ManejadorUsuario::existeUsuario(std::string nickname)
 {

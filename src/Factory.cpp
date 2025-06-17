@@ -51,3 +51,18 @@ IAltaAdministracionPropiedad* Factory::getAltaAdministracionPropiedad(){
     return ControladorUsuario::getInstance();
 }
 
+void Factory::deleteInstance(){
+    if (instance != NULL) {
+        delete instance; //aca llama al destructor ~Factory()
+        instance = NULL;      
+    }
+}
+
+void Factory::eliminarControladores(){
+    ControladorFechaActual::deleteInstance();
+    ControladorInmueble::deleteInstance();
+    ControladorUsuario::deleteInstance();
+}
+
+Factory::~Factory(){
+}

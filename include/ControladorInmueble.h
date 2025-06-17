@@ -19,10 +19,10 @@ class ControladorInmueble : public IConsultaDePublicaciones, public IEliminarInm
 private:
     static ControladorInmueble *instancia;
     ControladorInmueble();
-
 public:
     static ControladorInmueble *getInstance();
     virtual ~ControladorInmueble();
+    static void deleteInstance();
     
     //CASO DE USO ALTA PUBLICACION
     std::set<DTUsuario> listarInmobiliarias();

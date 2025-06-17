@@ -26,6 +26,12 @@ ControladorInmueble *ControladorInmueble::getInstance(){
 ControladorInmueble::~ControladorInmueble(){ 
 }
 
+void ControladorInmueble::deleteInstance() {
+    if (instancia != NULL) {
+        delete instancia;  
+        instancia = NULL;
+    }
+}
 
 //CASO DE USO ALTA PUBLICACION
 std::set<DTUsuario> ControladorInmueble::listarInmobiliarias(){
