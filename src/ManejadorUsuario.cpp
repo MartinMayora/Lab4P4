@@ -249,9 +249,21 @@ std::set<DTNotificacion> ManejadorUsuario::obtenerNotificaciones(std::string nic
             suscriptor = propietarios[nickname];
         } 
     resultado = suscriptor->getNotificaciones();
-    //FALTA LA PARTE DE BORRAR NOTIFICACIONES!
     return resultado;
 }   
+
+void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
+    Suscriptor* suscriptor = NULL;
+    if (clientes.find(nickname) != clientes.end()){
+        suscriptor = clientes[nickname];
+    }else 
+        if (propietarios.find(nickname) != propietarios.end()){
+            suscriptor = propietarios[nickname];
+    }
+    if (suscriptor != NULL){
+        suscriptor->borrarNotificaciones();
+    }
+}
 
 // CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
 std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias(){
@@ -280,18 +292,7 @@ std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::str
     return resultado;
 }
 
-void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
-    Suscriptor* suscriptor = NULL;
-    if (clientes.find(nickname) != clientes.end()){
-        suscriptor = clientes[nickname];
-    }else 
-        if (propietarios.find(nickname) != propietarios.end()){
-            suscriptor = propietarios[nickname];
-    }
-    if (suscriptor != NULL){
-        suscriptor->borrarNotificaciones();
-    }
-}
+
 void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria)
 {
     Suscriptor* suscriptor = NULL;
