@@ -158,33 +158,33 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 }
 
 
-
 DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
-    for (unsigned int i = 0; i < inmuebles.size(); ++i) {
-        Inmueble* in = inmuebles[i];
-        if (in->getCodigo() == codigo) {
-            // comunes
-            int cod = in->getCodigo();
-            std::string dir = in->getDireccion();
-            int puerta = in->getNumeroPuerta();
-            int superficie = in->getSuperficie();
-            int anio = in->getAnoConstruccion();
+    std::map<int, Inmueble*>::iterator it = inmuebles.find(codigo);
+    if (it == inmuebles.end())
+        return NULL;
 
-            // Casa
-            Casa* casa = dynamic_cast<Casa*>(in);
-            if (casa != NULL) {
-                return new DTCasa(cod, dir, puerta, superficie, anio,
-                                  casa->getEsPH(), casa->getTecho());
-            }
+    Inmueble* in = it->second;
+    if (in == NULL)
+        return NULL;
 
-            // Apartamento
-            Apartamento* apto = dynamic_cast<Apartamento*>(in);
-            if (apto != NULL) {
-                return new DTApartamento(cod, dir, puerta, superficie, anio,
-                                         apto->getPiso(), apto->getTieneAscensor(), apto->getGastosComunes());
-            }
-        }
+    int cod = in->getCodigo();
+    std::string dir = in->getDireccion();
+    int puerta = in->getNumeroPuerta();
+    int superficie = in->getSuperficie();
+    int anio = in->getAnoConstruccion();
+    //casa
+    Casa* casa = dynamic_cast<Casa*>(in);
+    if (casa != NULL) {
+        return new DTCasa(cod, dir, puerta, superficie, anio,
+                          casa->getEsPH(), casa->getTecho());
     }
+    //apto
+    Apartamento* apto = dynamic_cast<Apartamento*>(in);
+    if (apto != NULL) {
+        return new DTApartamento(cod, dir, puerta, superficie, anio,
+                                 apto->getPiso(), apto->getTieneAscensor(), apto->getGastosComunes());
+    }
+
     return NULL;
 }
 
