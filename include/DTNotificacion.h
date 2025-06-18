@@ -18,11 +18,11 @@ public:
     DTNotificacion(std::string nickname, int codigo, std::string texto, TipoPublicacion tipo, TipoInmueble inmueble);
 
     // Getters
-    std::string getNickname();
-    int getCodigo();
-    std::string getTexto();
-    TipoPublicacion getTipo();
-    TipoInmueble getInmueble();
+    std::string getNickname()const;
+    int getCodigo()const;
+    std::string getTexto()const;
+    TipoPublicacion getTipo()const;
+    TipoInmueble getInmueble()const;
     bool operator<(const DTNotificacion& other) const;
 
 };
