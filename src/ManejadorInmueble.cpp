@@ -167,3 +167,7 @@ Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
     else
         return NULL;
 }
+
+void ManejadorInmueble::eliminarPublicacion(Publicacion* pub) {
+    publicaciones.erase(pub); // solo saca el puntero del set
+}
