@@ -10,7 +10,6 @@
 #include "../include/DTDato.h"
 #include <iostream>
 
-
 ManejadorInmueble *ManejadorInmueble::instancia = NULL;
 
 ManejadorInmueble::ManejadorInmueble()
@@ -25,9 +24,10 @@ ManejadorInmueble *ManejadorInmueble::getInstance()
     return instancia;
 }
 
-//CASO DE USO ALTA USUARIO
+// CASO DE USO ALTA USUARIO
 void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
-                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario){
+                                  int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario)
+{
     int codigo = codInc++;
     Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
     propietario->agregarInmueble(casa);
@@ -36,7 +36,8 @@ void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int s
 
 void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta, int superficie,
                                          int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes,
-                                         Propietario *propietario){
+                                         Propietario *propietario)
+{
     int codigo = codInc++;
     Apartamento *apto = new Apartamento(codigo, direccion, numeroPuerta, superficie, anioConstruccion, piso, tieneAscensor, gastosComunes);
     // agregamos casa al set de inmuebles para propietario
@@ -44,12 +45,13 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
     // agregamos casa al map de inmuebles del manejador
     inmuebles[codigo] = apto;
 }
-//CASO DE ALTA PUBLICACIO
-void ManejadorInmueble::agregarPub(Publicacion* aAgregar){
+// CASO DE ALTA PUBLICACIO
+void ManejadorInmueble::agregarPub(Publicacion *aAgregar)
+{
     std::cout << aAgregar->getCodigo() << "AGREGADO \n";
     this->publicaciones.insert(aAgregar);
 }
-//CASO DE USO CONSULTA DE PUBLICACIONES
+// CASO DE USO CONSULTA DE PUBLICACIONES
 std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     TipoPublicacion tipoPublicacion,
     float precioMinimo,
@@ -58,10 +60,10 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
 {
     std::set<DTPublicacion> resultado;
 
-    std::set<Publicacion*>::iterator it;
+    std::set<Publicacion *>::iterator it;
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
-        Publicacion* p = *it;
+        Publicacion *p = *it;
         if (p->getEstaActiva() && p->getTipoPublicacion() == tipoPublicacion)
         {
             float precio = p->getPrecio();
@@ -75,8 +77,7 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
                         p->getFecha(),
                         p->getTexto(),
                         p->getPrecio(),
-                        dato.getNombre()
-                    );
+                        dato.getNombre());
                     resultado.insert(dtpub);
                 }
             }
@@ -86,12 +87,13 @@ std::set<DTPublicacion> ManejadorInmueble::getPublicaciones(
     return resultado;
 }
 
-DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
-    std::map<int, Inmueble*>::iterator it = inmuebles.find(codigo);
+DTInmueble *ManejadorInmueble::detalleInmueble(int codigo)
+{
+    std::map<int, Inmueble *>::iterator it = inmuebles.find(codigo);
     if (it == inmuebles.end())
         return NULL;
 
-    Inmueble* in = it->second;
+    Inmueble *in = it->second;
     if (in == NULL)
         return NULL;
 
@@ -100,15 +102,17 @@ DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
     int puerta = in->getNumeroPuerta();
     int superficie = in->getSuperficie();
     int anio = in->getAnoConstruccion();
-    //casa
-    Casa* casa = dynamic_cast<Casa*>(in);
-    if (casa != NULL) {
+    // casa
+    Casa *casa = dynamic_cast<Casa *>(in);
+    if (casa != NULL)
+    {
         return new DTCasa(cod, dir, puerta, superficie, anio,
                           casa->getEsPH(), casa->getTecho());
     }
-    //apto
-    Apartamento* apto = dynamic_cast<Apartamento*>(in);
-    if (apto != NULL) {
+    // apto
+    Apartamento *apto = dynamic_cast<Apartamento *>(in);
+    if (apto != NULL)
+    {
         return new DTApartamento(cod, dir, puerta, superficie, anio,
                                  apto->getPiso(), apto->getTieneAscensor(), apto->getGastosComunes());
     }
@@ -116,8 +120,7 @@ DTInmueble* ManejadorInmueble::detalleInmueble(int codigo) {
     return NULL;
 }
 
-
-//CASO DE USO ELIMINAR INMUEBLE
+// CASO DE USO ELIMINAR INMUEBLE
 std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 {
     std::set<DTInmuebleListado> resultado;
@@ -130,7 +133,8 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
             continue;
 
         std::string propietario = "Desconocido";
-        if (in->getPropietario() != NULL) {
+        if (in->getPropietario() != NULL)
+        {
             propietario = in->getPropietario()->getNickname();
         }
 
@@ -140,18 +144,18 @@ std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
     return resultado;
 }
 
-
-void ManejadorInmueble::eliminarInmueble(int codigoInmueble) {
-    Inmueble* in = this->getInmueble(codigoInmueble); // igual que find pero ya estaba escrita
+void ManejadorInmueble::eliminarInmueble(int codigoInmueble)
+{
+    Inmueble *in = this->getInmueble(codigoInmueble); // igual que find pero ya estaba escrita
     if (in == NULL)
-       return;
-    else {
-       in->eliminarLinks();
-       this->inmuebles.erase(codigoInmueble);
-       delete in;
-       }
+        return;
+    else
+    {
+        in->eliminarLinks();
+        this->inmuebles.erase(codigoInmueble);
+        delete in;
     }
-  
+}
 
 Inmueble *ManejadorInmueble::getInmueble(int codigoInmueble)
 {

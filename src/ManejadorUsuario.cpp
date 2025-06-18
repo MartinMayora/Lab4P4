@@ -4,11 +4,12 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/DTUsuario.h"
 #include "../include/ControladorFechaActual.h"
+#include "../include/ManejadorInmueble.h"
 #include <iostream>
 
 ManejadorUsuario *ManejadorUsuario::instancia = NULL;
 
-ManejadorUsuario::ManejadorUsuario() : ultimaPub(0){}
+ManejadorUsuario::ManejadorUsuario() : ultimaPub(0) {}
 
 ManejadorUsuario *ManejadorUsuario::getInstance()
 {
@@ -17,20 +18,24 @@ ManejadorUsuario *ManejadorUsuario::getInstance()
     return instancia;
 }
 
-ManejadorUsuario::~ManejadorUsuario() {
-    //Eliminar clientes
-    std::map<std::string, Cliente*>::iterator itC;
-    for (itC = clientes.begin(); itC != clientes.end(); itC++){
+ManejadorUsuario::~ManejadorUsuario()
+{
+    // Eliminar clientes
+    std::map<std::string, Cliente *>::iterator itC;
+    for (itC = clientes.begin(); itC != clientes.end(); itC++)
+    {
         delete itC->second;
     }
-    //Eliminar propietarios
-    std::map<std::string, Propietario*>::iterator itP;
-    for (itP = propietarios.begin(); itP != propietarios.end(); itP++){
+    // Eliminar propietarios
+    std::map<std::string, Propietario *>::iterator itP;
+    for (itP = propietarios.begin(); itP != propietarios.end(); itP++)
+    {
         delete itP->second;
     }
-    //Eliminar inmobiliarias
-    std::map<std::string, Inmobiliaria*>::iterator itI;
-    for (itI = inmobiliarias.begin(); itI != inmobiliarias.end(); itI++){
+    // Eliminar inmobiliarias
+    std::map<std::string, Inmobiliaria *>::iterator itI;
+    for (itI = inmobiliarias.begin(); itI != inmobiliarias.end(); itI++)
+    {
         delete itI->second;
     }
     usuarios.clear();
@@ -39,15 +44,16 @@ ManejadorUsuario::~ManejadorUsuario() {
     inmobiliarias.clear();
 }
 
-void ManejadorUsuario::deleteInstance(){
-    if (instancia!=NULL){
+void ManejadorUsuario::deleteInstance()
+{
+    if (instancia != NULL)
+    {
         delete instancia;
-        instancia=NULL;
+        instancia = NULL;
     }
 }
 
-
-//CASO DE USO ALTA USUARIO
+// CASO DE USO ALTA USUARIO
 bool ManejadorUsuario::existeUsuario(std::string nickname)
 {
     return (this->usuarios.find(nickname) != this->usuarios.end());
@@ -121,12 +127,14 @@ bool ManejadorUsuario::representarPropietario(std::string nicknamePropietario, I
         inmobiliariaRecordada->agregarPropietario(propietario);
         return true;
     }
-    else{
+    else
+    {
         return false;
     }
 }
 
-Propietario *ManejadorUsuario::getPropietario(std::string nickname){
+Propietario *ManejadorUsuario::getPropietario(std::string nickname)
+{
     std::map<std::string, Propietario *>::iterator iter = this->propietarios.find(nickname);
     if (iter != this->propietarios.end())
         return iter->second;
@@ -134,7 +142,8 @@ Propietario *ManejadorUsuario::getPropietario(std::string nickname){
         return NULL;
 }
 
-Inmobiliaria *ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria){
+Inmobiliaria *ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria)
+{
     std::map<std::string, Inmobiliaria *>::iterator iter = this->inmobiliarias.find(nicknameInmobiliaria);
     if (iter != this->inmobiliarias.end())
         return iter->second;
@@ -143,7 +152,8 @@ Inmobiliaria *ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria
 }
 
 // CASO DE USO ALTA PUBLICACION
-std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias(){
+std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias()
+{
     std::set<DTUsuario> toReturn;
     std::map<std::string, Inmobiliaria *>::iterator inm;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
@@ -157,14 +167,16 @@ std::set<DTUsuario> ManejadorUsuario::listarInmobiliarias(){
     return toReturn;
 }
 
-std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria){
-    Inmobiliaria * i = findInmobiliaria(nicknameInmobiliaria);
-    std::cout<< nicknameInmobiliaria;
+std::set<DTInmuebleAdministrado> ManejadorUsuario::listarInmueblesAdministrados(std::string nicknameInmobiliaria)
+{
+    Inmobiliaria *i = findInmobiliaria(nicknameInmobiliaria);
+    std::cout << nicknameInmobiliaria;
     std::set<DTInmuebleAdministrado> adm = (*i).getAdministrados();
     return adm;
 }
 
-bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria){
+bool ManejadorUsuario::existeInmobiliaria(std::string nicknameInmobiliaria)
+{
     if (this->inmobiliarias.find(nicknameInmobiliaria) != this->inmobiliarias.end())
     {
         return true;
@@ -180,74 +192,89 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
     }
 
     std::map<std::string, Inmobiliaria *>::iterator inm;
-    std::set<AdministraPropiedad*> admins;
-    std::set<AdministraPropiedad*>::iterator administraAux;
+    std::set<AdministraPropiedad *> admins;
+    std::set<AdministraPropiedad *>::iterator administraAux;
     bool encontrado = false;
-    AdministraPropiedad* ap=NULL;
+    AdministraPropiedad *ap = NULL;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end() && !encontrado; ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
         admins = inmobiliariaAux->getAdmins();
-        for(administraAux = admins.begin(); administraAux != admins.end() && !encontrado; ++administraAux){
+        for (administraAux = admins.begin(); administraAux != admins.end() && !encontrado; ++administraAux)
+        {
             ap = *administraAux;
-            if (ap->tieneInmueble(codigoInmueble)){
+            if (ap->tieneInmueble(codigoInmueble))
+            {
                 encontrado = true;
             }
         }
     }
-    DTFecha* fechaActual = ControladorFechaActual::getInstance()->getFechaActual();
-    std::set<Publicacion*> publicacion = ap->getPublicaciones();
-    std::set<Publicacion*>::iterator publicacionAux;
-    for(publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux){
-        Publicacion* pub = *publicacionAux;
+    DTFecha *fechaActual = ControladorFechaActual::getInstance()->getFechaActual();
+    std::set<Publicacion *> publicacion = ap->getPublicaciones();
+    std::set<Publicacion *>::iterator publicacionAux;
+    for (publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux)
+    {
+        Publicacion *pub = *publicacionAux;
         bool e1 = pub->existeFecha(fechaActual);
         bool e2 = pub->existeTipoPub(tipoPublicacion);
-        if(e1 && e2){
+        if (e1 && e2)
+        {
             return false;
         }
     }
-    bool pactivo=true;
-    for(publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux){
-        Publicacion* pu = *publicacionAux;
+    bool pactivo = true;
+    for (publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux)
+    {
+        Publicacion *pu = *publicacionAux;
         TipoPublicacion puTipo = pu->getTipoPublicacion();
         bool puActivo = pu->getEstaActiva();
-        if(puTipo == tipoPublicacion && puActivo){
-            if(pu->getFecha()->operator<(fechaActual)){
-            pu->actiualizarActivo(false);
-            pactivo= true;}
-            else pactivo = false;
+        if (puTipo == tipoPublicacion && puActivo)
+        {
+            if (pu->getFecha()->operator<(fechaActual))
+            {
+                pu->actiualizarActivo(false);
+                pactivo = true;
+            }
+            else
+                pactivo = false;
         }
     }
 
-    int ultimaPublicacion = this->ultimaPub + 1; 
+    int ultimaPublicacion = this->ultimaPub + 1;
     this->ultimaPub += 1;
-    Publicacion* pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
+    Publicacion *pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
+    pubAgregar->setAdministra(ap);
+    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
+    manejador->agregarPub(pubAgregar);
     ap->agregarPublicacion(pubAgregar);
     return true;
 }
 
-Inmobiliaria* ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria){
+Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliaria)
+{
     std::map<std::string, Inmobiliaria *>::iterator inm;
     for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end(); ++inm)
     {
         Inmobiliaria *inmobiliariaAux = inm->second;
-       if (inmobiliariaAux->getNickname() == nicknameInmobiliaria){
+        if (inmobiliariaAux->getNickname() == nicknameInmobiliaria)
+        {
             return inmobiliariaAux;
-       }
+        }
     }
     return NULL;
 }
 //CONSULTA DE NOTIFICACION
 std::set<DTNotificacion> ManejadorUsuario::obtenerNotificaciones(std::string nickname){
     std::set<DTNotificacion> resultado;
-    Suscriptor* suscriptor = NULL;
-    if (clientes.find(nickname) != clientes.end()) {
+    Suscriptor *suscriptor = NULL;
+    if (clientes.find(nickname) != clientes.end())
+    {
         suscriptor = clientes[nickname];
-    } 
-    else 
-        if (propietarios.find(nickname) != propietarios.end()) {
-            suscriptor = propietarios[nickname];
-        } 
+    }
+    else if (propietarios.find(nickname) != propietarios.end())
+    {
+        suscriptor = propietarios[nickname];
+    }
     resultado = suscriptor->getNotificaciones();
     return resultado;
 }   
@@ -266,48 +293,52 @@ void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
 }
 
 // CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
-std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias(){
+std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias()
+{
     return this->inmobiliarias;
 }
 
-
 // CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
-std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){
+std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario)
+{
     std::set<std::string> resultado;
-    Suscriptor* suscriptor = NULL;
-    if (clientes.find(nicknameUsuario) != clientes.end()) {
+    Suscriptor *suscriptor = NULL;
+    if (clientes.find(nicknameUsuario) != clientes.end())
+    {
         suscriptor = clientes[nicknameUsuario];
-    } 
-    else 
-        if (propietarios.find(nicknameUsuario) != propietarios.end()) {
-            suscriptor = propietarios[nicknameUsuario];
-        } 
-    std::map<std::string, Inmobiliaria*>::iterator it;
-    for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++) {
-        Inmobiliaria* inmo = it->second;
-        if (!inmo->estaSuscripto(suscriptor)) {
+    }
+    else if (propietarios.find(nicknameUsuario) != propietarios.end())
+    {
+        suscriptor = propietarios[nicknameUsuario];
+    }
+    std::map<std::string, Inmobiliaria *>::iterator it;
+    for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++)
+    {
+        Inmobiliaria *inmo = it->second;
+        if (!inmo->estaSuscripto(suscriptor))
+        {
             resultado.insert(inmo->getNickname());
         }
     }
     return resultado;
 }
 
-
 void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria)
 {
-    Suscriptor* suscriptor = NULL;
-    //buscamos al usuario que quiere suscribirse entre clientes o propietarios
+    Suscriptor *suscriptor = NULL;
+    // buscamos al usuario que quiere suscribirse entre clientes o propietarios
     if (this->clientes.find(nicknameUsuario) != this->clientes.end())
         suscriptor = this->clientes[nicknameUsuario];
     else if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
         suscriptor = this->propietarios[nicknameUsuario];
-    Inmobiliaria* inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
-    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor)) {
+    Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor))
+    {
         inmobiliaria->agregarSuscriptor(suscriptor);
     }
 }
 
-//CASO DE USO ELIMINAR SUSCRIPCIONES
+// CASO DE USO ELIMINAR SUSCRIPCIONES
 std::set<std::string> ManejadorUsuario::listarSuscripciones(std::string nickname)
 {
     std::set<std::string> resultado;
@@ -339,5 +370,3 @@ void ManejadorUsuario::eliminarSuscripcion(std::string nicknameUsuario, std::str
         inmobiliaria->eliminarSuscriptor(suscriptor);
     }
 }
-
-

@@ -3,6 +3,7 @@
 #include "../include/Inmobiliaria.h"
 #include "../include/Inmueble.h"
 #include "../include/AdministraPropiedad.h"
+#include <iostream>
 
 Publicacion::Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa)
     : codigo(codigo), fecha(fecha), tipo(tipo), texto(texto), precio(precio), activa(activa) {}
@@ -43,20 +44,44 @@ bool Publicacion::getEstaActiva() const
     return activa;
 }
 
-DTDato Publicacion::getDataPublicacion() const {
-    std::string nombre = admin->getInmobiliaria()->getNombre();
-    TipoInmueble ti = admin->getInmueble()->getTipoInmueble();
+DTDato Publicacion::getDataPublicacion() const
+{
+    if (admin == NULL)
+    {
+        std::cerr << "Error: AdministraPropiedad no seteado en Publicacion." << std::endl;
+        return DTDato("", TipoCasa); // Devolvé algo neutral o manejalo según tu diseño
+    }
+
+    Inmobiliaria *inmo = admin->getInmobiliaria();
+    Inmueble *inmueble = admin->getInmueble();
+
+    if (inmo == NULL || inmueble == NULL)
+    {
+        std::cerr << "Error: Inmobiliaria o Inmueble no seteados en AdministraPropiedad." << std::endl;
+        return DTDato("", TipoCasa); // Idem
+    }
+
+    std::string nombre = inmo->getNombre();
+    TipoInmueble ti = inmueble->getTipoInmueble();
 
     return DTDato(nombre, ti);
 }
 
-//CASO DE USO ALTA PUBLICACION
-bool Publicacion::existeFecha(DTFecha *fechaActual){
+// CASO DE USO ALTA PUBLICACION
+bool Publicacion::existeFecha(DTFecha *fechaActual)
+{
     return this->fecha->operator==(fechaActual);
 }
-bool Publicacion::existeTipoPub(TipoPublicacion TipoPublicacion){
+bool Publicacion::existeTipoPub(TipoPublicacion TipoPublicacion)
+{
     return this->getTipoPublicacion() == TipoPublicacion;
 }
-void Publicacion::actiualizarActivo(bool nuevoEstado){
+void Publicacion::actiualizarActivo(bool nuevoEstado)
+{
     this->activa = nuevoEstado;
+}
+
+void Publicacion::setAdministra(AdministraPropiedad *a)
+{
+    this->admin = a;
 }

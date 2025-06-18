@@ -4,58 +4,70 @@
 #include "../include/Publicacion.h"
 #include "../include/ManejadorInmueble.h"
 #include <iostream>
-AdministraPropiedad::~AdministraPropiedad() {
+AdministraPropiedad::~AdministraPropiedad()
+{
     this->eliminarLinkPublicacion();
-    if (this->fecha != NULL) {
+    if (this->fecha != NULL)
+    {
         delete this->fecha;
         this->fecha = NULL;
     }
 }
-AdministraPropiedad::AdministraPropiedad(Inmobiliaria* i, Inmueble* inm, DTFecha* fecha) {
+AdministraPropiedad::AdministraPropiedad(Inmobiliaria *i, Inmueble *inm, DTFecha *fecha)
+{
     this->inmobiliaria = i;
     this->inmueble = inm;
     this->fecha = fecha;
 }
 
-//Getters
-DTFecha* AdministraPropiedad::getFecha(){
+// Getters
+DTFecha *AdministraPropiedad::getFecha()
+{
     return fecha;
 }
 
-Inmobiliaria* AdministraPropiedad::getInmobiliaria(){
+Inmobiliaria *AdministraPropiedad::getInmobiliaria()
+{
     return inmobiliaria;
 }
-Inmueble* AdministraPropiedad::getInmueble(){
+Inmueble *AdministraPropiedad::getInmueble()
+{
     return inmueble;
 }
 
-std::set<Publicacion*>& AdministraPropiedad::getPublicaciones(){
+std::set<Publicacion *> &AdministraPropiedad::getPublicaciones()
+{
     return this->publicaciones;
 }
 
-//CASO DE USO ALTA ADMINISTRACION PROPIEDAD
-bool AdministraPropiedad::inmobiliariaAsociada(Inmobiliaria* i){
+// CASO DE USO ALTA ADMINISTRACION PROPIEDAD
+bool AdministraPropiedad::inmobiliariaAsociada(Inmobiliaria *i)
+{
     return (i == inmobiliaria);
 }
 
-//CASO DE USO ELIMINAR INMUEBLE
-void AdministraPropiedad::eliminarLinkPublicacion() {
-    for (std::set<Publicacion*>::iterator it = this->publicaciones.begin(); it != this->publicaciones.end(); ++it) {
-        Publicacion* pub = *it;
+// CASO DE USO ELIMINAR INMUEBLE
+void AdministraPropiedad::eliminarLinkPublicacion()
+{
+    for (std::set<Publicacion *>::iterator it = this->publicaciones.begin(); it != this->publicaciones.end(); ++it)
+    {
+        Publicacion *pub = *it;
         delete pub;
     }
     this->publicaciones.clear();
 }
 
-//CASO DE USO ALTA PUBLICACION
-bool AdministraPropiedad::tieneInmueble(int codigoInmueble){
+// CASO DE USO ALTA PUBLICACION
+bool AdministraPropiedad::tieneInmueble(int codigoInmueble)
+{
     int codigo = this->inmueble->getCodigo();
     return codigoInmueble == codigo;
 }
 
-void AdministraPropiedad::agregarPublicacion(Publicacion* aAgregar){
+void AdministraPropiedad::agregarPublicacion(Publicacion *aAgregar)
+{
     this->publicaciones.insert(aAgregar);
     std::cout << aAgregar->getCodigo() << "AGREGADO \n";
-    ManejadorInmueble* manejador = ManejadorInmueble::getInstance();
+    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     manejador->agregarPub(aAgregar);
 }
