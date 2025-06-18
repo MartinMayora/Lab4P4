@@ -18,24 +18,20 @@ ManejadorUsuario *ManejadorUsuario::getInstance()
     return instancia;
 }
 
-ManejadorUsuario::~ManejadorUsuario()
-{
-    // Eliminar clientes
+ManejadorUsuario::~ManejadorUsuario(){
+    //Eliminar clientes
     std::map<std::string, Cliente *>::iterator itC;
-    for (itC = clientes.begin(); itC != clientes.end(); itC++)
-    {
+    for (itC = clientes.begin(); itC != clientes.end(); itC++){
         delete itC->second;
     }
-    // Eliminar propietarios
+    //Eliminar propietarios
     std::map<std::string, Propietario *>::iterator itP;
-    for (itP = propietarios.begin(); itP != propietarios.end(); itP++)
-    {
+    for (itP = propietarios.begin(); itP != propietarios.end(); itP++){
         delete itP->second;
     }
-    // Eliminar inmobiliarias
+    //Eliminar inmobiliarias
     std::map<std::string, Inmobiliaria *>::iterator itI;
-    for (itI = inmobiliarias.begin(); itI != inmobiliarias.end(); itI++)
-    {
+    for (itI = inmobiliarias.begin(); itI != inmobiliarias.end(); itI++){
         delete itI->second;
     }
     usuarios.clear();
@@ -44,8 +40,7 @@ ManejadorUsuario::~ManejadorUsuario()
     inmobiliarias.clear();
 }
 
-void ManejadorUsuario::deleteInstance()
-{
+void ManejadorUsuario::deleteInstance(){
     if (instancia != NULL)
     {
         delete instancia;
@@ -54,18 +49,15 @@ void ManejadorUsuario::deleteInstance()
 }
 
 // CASO DE USO ALTA USUARIO
-bool ManejadorUsuario::existeUsuario(std::string nickname)
-{
+bool ManejadorUsuario::existeUsuario(std::string nickname){
     return (this->usuarios.find(nickname) != this->usuarios.end());
 }
 
 bool ManejadorUsuario::crearCliente(std::string nickname, std::string contrasena, std::string nombre,
-                                    std::string email, std::string apellido, std::string documento)
-{
+                                    std::string email, std::string apellido, std::string documento){
     if (existeUsuario(nickname))
         return false;
-    else
-    {
+    else{
         Cliente *c = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
         usuarios[nickname] = c;
         clientes[nickname] = c;
@@ -74,12 +66,10 @@ bool ManejadorUsuario::crearCliente(std::string nickname, std::string contrasena
 }
 
 bool ManejadorUsuario::crearPropietario(std::string nickname, std::string contrasena, std::string nombre,
-                                        std::string email, std::string cuentaBancaria, std::string telefono)
-{
+                                        std::string email, std::string cuentaBancaria, std::string telefono){
     if (existeUsuario(nickname))
         return false;
-    else
-    {
+    else{
         Propietario *p = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         usuarios[nickname] = p;
         propietarios[nickname] = p;
@@ -88,12 +78,10 @@ bool ManejadorUsuario::crearPropietario(std::string nickname, std::string contra
 }
 
 bool ManejadorUsuario::crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre,
-                                         std::string email, std::string direccion, std::string url, std::string telefono)
-{
+                                         std::string email, std::string direccion, std::string url, std::string telefono){
     if (existeUsuario(nickname))
         return false;
-    else
-    {
+    else{
         Inmobiliaria *i = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         usuarios[nickname] = i;
         inmobiliarias[nickname] = i;
@@ -101,12 +89,10 @@ bool ManejadorUsuario::crearInmobiliaria(std::string nickname, std::string contr
     }
 }
 
-std::set<DTUsuario> ManejadorUsuario::listarPropietarios()
-{
+std::set<DTUsuario> ManejadorUsuario::listarPropietarios(){
     std::set<DTUsuario> resu;
     // recorremos todo el mapa de propietarios y para cada uno creamos un DTUsuario y agregamos al resultado
-    for (std::map<std::string, Propietario *>::iterator i = propietarios.begin(); i != propietarios.end(); i++)
-    {
+    for (std::map<std::string, Propietario *>::iterator i = propietarios.begin(); i != propietarios.end(); i++){
         Propietario *propietario = i->second;
         std::string nickname = propietario->getNickname();
         std::string nombre = propietario->getNombre();
@@ -117,24 +103,20 @@ std::set<DTUsuario> ManejadorUsuario::listarPropietarios()
     return resu;
 }
 
-bool ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria *inmobiliariaRecordada)
-{
+bool ManejadorUsuario::representarPropietario(std::string nicknamePropietario, Inmobiliaria *inmobiliariaRecordada){
     std::map<std::string, Propietario *>::iterator p = propietarios.find(nicknamePropietario);
-    if (p != propietarios.end())
-    {
+    if (p != propietarios.end()){
         Propietario *propietario = p->second;
         propietario->agregarInmobiliaria(inmobiliariaRecordada);
         inmobiliariaRecordada->agregarPropietario(propietario);
         return true;
     }
     else
-    {
         return false;
-    }
+    
 }
 
-Propietario *ManejadorUsuario::getPropietario(std::string nickname)
-{
+Propietario *ManejadorUsuario::getPropietario(std::string nickname){
     std::map<std::string, Propietario *>::iterator iter = this->propietarios.find(nickname);
     if (iter != this->propietarios.end())
         return iter->second;
@@ -142,8 +124,7 @@ Propietario *ManejadorUsuario::getPropietario(std::string nickname)
         return NULL;
 }
 
-Inmobiliaria *ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria)
-{
+Inmobiliaria *ManejadorUsuario::getInmobiliaria(std::string nicknameInmobiliaria){
     std::map<std::string, Inmobiliaria *>::iterator iter = this->inmobiliarias.find(nicknameInmobiliaria);
     if (iter != this->inmobiliarias.end())
         return iter->second;
