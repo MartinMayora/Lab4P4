@@ -281,41 +281,36 @@ std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias()
 }
 
 // CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
-std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario)
-{
+std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){
     std::set<std::string> resultado;
     Suscriptor *suscriptor = NULL;
-    if (clientes.find(nicknameUsuario) != clientes.end())
-    {
+    if (clientes.find(nicknameUsuario) != clientes.end()){
         suscriptor = clientes[nicknameUsuario];
     }
-    else if (propietarios.find(nicknameUsuario) != propietarios.end())
-    {
-        suscriptor = propietarios[nicknameUsuario];
-    }
+    else 
+        if (propietarios.find(nicknameUsuario) != propietarios.end()){
+            suscriptor = propietarios[nicknameUsuario];
+        }
     std::map<std::string, Inmobiliaria *>::iterator it;
-    for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++)
-    {
+    for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++){
         Inmobiliaria *inmo = it->second;
-        if (!inmo->estaSuscripto(suscriptor))
-        {
+        if (!inmo->estaSuscripto(suscriptor)){
             resultado.insert(inmo->getNickname());
         }
     }
     return resultado;
 }
 
-void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria)
-{
+void ManejadorUsuario::suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria){
     Suscriptor *suscriptor = NULL;
     // buscamos al usuario que quiere suscribirse entre clientes o propietarios
     if (this->clientes.find(nicknameUsuario) != this->clientes.end())
         suscriptor = this->clientes[nicknameUsuario];
-    else if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
-        suscriptor = this->propietarios[nicknameUsuario];
+    else 
+        if (this->propietarios.find(nicknameUsuario) != this->propietarios.end())
+            suscriptor = this->propietarios[nicknameUsuario];
     Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
-    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor))
-    {
+    if (suscriptor != NULL && inmobiliaria != NULL && !inmobiliaria->estaSuscripto(suscriptor)){
         inmobiliaria->agregarSuscriptor(suscriptor);
     }
 }
