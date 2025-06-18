@@ -30,7 +30,8 @@ public:
 
     //CASO DE USO ALTA PUBLICACION 
     std::set<DTInmuebleAdministrado> getAdministrados();
-    
+    void agregarNotificacion(std::string nickname,int codigoInmueble,std::string texto,TipoPublicacion tipoPublicacion, TipoInmueble tipoInmueble);
+
     //CASO DE USO ALTA DE ADMINISTRACION DE PROPIEDAD
     DTUsuario getDTUsuario();
     std::set<DTInmuebleListado> getInmueblesNoAdminPropietario();
