@@ -654,8 +654,7 @@ void altaAdministracionPropiedad()
     IAltaAdministracionPropiedad *iap = factory->getAltaAdministracionPropiedad();
     std::cout << "Lista de Inmobiliarias:\n";
     std::set<DTUsuario> inmobiliarias = iap->listarInmobiliarias();
-    // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
-    // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+    
     std::set<DTUsuario>::iterator it;
     for (it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
     {
@@ -664,8 +663,7 @@ void altaAdministracionPropiedad()
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
-    // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
-    // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
+    
     std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     std::set<DTInmuebleListado>::iterator itInmuebles;
     for (itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles)
@@ -677,7 +675,7 @@ void altaAdministracionPropiedad()
     int codigoInmueble;
     std::cin >> codigoInmueble;
     std::cin.ignore();
-    // TODO: Controlador->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
+    
     iap->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
 }
 
