@@ -373,17 +373,24 @@ void consultaPublicaciones()
             inTipoInmueble = -1;
         }
     }
-    TipoInmueble tipoInmueble = Todos;
+    std::set<DTPublicacion> publicaciones;
+   //TipoInmueble tipoInmueble = Todos;
     if (inTipoInmueble == 1)
     {
-        tipoInmueble = TipoCasa;
+         publicaciones = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, TipoCasa);
     }
     else if (inTipoInmueble == 2)
     {
-        tipoInmueble = TipoApartamento;
+        publicaciones = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, TipoApartamento);
+        //tipoInmueble = TipoApartamento;
+    }else if (inTipoInmueble == 0){
+    std::set<DTPublicacion> casa = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, TipoCasa);
+    std::set<DTPublicacion> apto = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, TipoApartamento);
+
+    publicaciones = casa; // Copiar publicaciones de casa
+    publicaciones.insert(apto.begin(), apto.end()); // Unir con publicaciones de apartamento9
     }
 
-    std::set<DTPublicacion> publicaciones = consultaCtrl->listarPublicacion(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
 
     if (publicaciones.empty())
     {
@@ -460,8 +467,7 @@ void consultaPublicaciones()
                           << std::endl;
             }
         }
-
-        // delete inmuebleDetalle;
+         delete inmuebleDetalle;
     }
 }
 
@@ -488,6 +494,7 @@ void eliminarInmueble()
     int codigoInmueble;
     std::cin >> codigoInmueble;
     std::cin.ignore();
+    
     std::cout << "Detalle del inmueble:\n";
     DTInmueble *detalle = ci->detalleInmueble(codigoInmueble);
 

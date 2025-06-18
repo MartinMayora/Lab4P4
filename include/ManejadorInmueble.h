@@ -45,6 +45,7 @@ public:
     //CASO DE USO CONSULTA DE NOTIFICACIONES
     std::set<DTPublicacion> getPublicaciones(TipoPublicacion tipoPublicacion, float precionMinimo, float precioMaximo, TipoInmueble tipoInmueble);
     DTInmueble* detalleInmueble(int codigo);
+    DTInmueble* detalleInmueblePublicacion(int codigo);
 
     //CASO DE USO ELIMINAR INMUEBLE
     std::set<DTInmuebleListado> darInmuebles();

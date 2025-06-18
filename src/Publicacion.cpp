@@ -85,3 +85,22 @@ void Publicacion::setAdministra(AdministraPropiedad *a)
 {
     this->admin = a;
 }
+
+int Publicacion::getCodigoInmueble() const
+{
+    if (admin == NULL)
+    {
+        std::cerr << "Error: AdministraPropiedad no seteado en Publicacion." << std::endl;
+        return -1; // Valor de error
+    }
+
+    Inmueble* inmueble = admin->getInmueble();
+
+    if (inmueble == NULL)
+    {
+        std::cerr << "Error: Inmueble no seteado en AdministraPropiedad." << std::endl;
+        return -1; // Valor de error
+    }
+
+    return inmueble->getCodigo();
+}

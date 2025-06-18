@@ -120,6 +120,19 @@ DTInmueble *ManejadorInmueble::detalleInmueble(int codigo)
     return NULL;
 }
 
+    DTInmueble* ManejadorInmueble::detalleInmueblePublicacion(int codigo){
+    for (std::set<Publicacion*>::iterator it = publicaciones.begin(); it != publicaciones.end(); ++it)
+    {
+        if ((*it)->getCodigo() == codigo)
+        {
+            Publicacion *p = *it;
+            return detalleInmueble(p->getCodigoInmueble());
+        }
+    }
+    return NULL;
+    
+    
+    }
 // CASO DE USO ELIMINAR INMUEBLE
 std::set<DTInmuebleListado> ManejadorInmueble::darInmuebles()
 {

@@ -42,6 +42,8 @@ public:
 
     DTDato getDataPublicacion() const;
     void setAdministra(AdministraPropiedad *a);
+    int getCodigoInmueble() const;
+
 };
 
 #endif

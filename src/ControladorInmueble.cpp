@@ -55,7 +55,7 @@ bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int 
  }
 
 DTInmueble* ControladorInmueble::detalleInmueblePublicacion(int codigo){
-    return ManejadorInmueble::getInstance()->detalleInmueble(codigo);
+    return ManejadorInmueble::getInstance()->detalleInmueblePublicacion(codigo);
 }
 
 
