@@ -187,7 +187,9 @@ bool ManejadorUsuario::darInmobiliaria(std::string nicknameInmobiliaria, int cod
             if (ap->tieneInmueble(codigoInmueble))
             {
                 encontrado = true;
+                if (inmobiliariaAux->getNickname() == nicknameInmobiliaria) {
                 inmobiliariaAux->agregarNotificacion(nicknameInmobiliaria, codigoInmueble, texto, tipoPublicacion, ap->getInmueble()->getTipoInmueble());
+                }
             }
         }
     }
