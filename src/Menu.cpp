@@ -277,6 +277,7 @@ void altaUsuario()
         std::cout << "Error al crear el usuario, el usuario ya existe o la contrasena ingresada es menor de 6 caracteres" << std::endl;
     }
 }
+
 void altaPublicacion()
 {
 
@@ -289,32 +290,36 @@ void altaPublicacion()
     std::set<DTUsuario>::iterator it;
     for (it = Usuarios.begin(); it != Usuarios.end(); ++it)
     {
-        std::cout << "-nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre();
+        std::cout << "Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
     }
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
+    std::cout << std::endl;
     std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    std::cout << "Cantidad de inmuebles administrados: " << listaInmAdm.size() << std::endl;    
     std::set<DTInmuebleAdministrado>::iterator ite;
-    std::cout << listaInmAdm.size();
     for (ite = listaInmAdm.begin(); ite != listaInmAdm.end(); ++ite)
     {
-        std::cout << "- Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Propietario: \n";
+        std::cout << "Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Fecha comienzo: " << (*ite).getFechaComienzo() << std::endl;
     }
-    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
     std::cout << "Inmueble: ";
     std::cin >> codigoInmueble;
     std::cin.ignore();
-    int inTipoPublicacion;
-    std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler)";
-    std::cin >> inTipoPublicacion;
-    TipoPublicacion tipoPublicacion = Alquiler;
-    if (inTipoPublicacion == 1)
-    {
-        tipoPublicacion = Venta;
+    int inTipoPublicacion=-1;
+    while (inTipoPublicacion != 0 && inTipoPublicacion != 1){
+        std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler): ";
+        std::cin >> inTipoPublicacion;
+        if (std::cin.fail() || (inTipoPublicacion != 0 && inTipoPublicacion != 1)){
+            std::cout << "Entrada invalida. Intente de nuevo." << std::endl;
+            std::cin.clear();   
+            std::cin.ignore(); 
+            inTipoPublicacion = -1; 
+        }
     }
-    std::cin.ignore();
+    std::cin.ignore(); 
+    TipoPublicacion tipoPublicacion = (inTipoPublicacion == 1) ? Venta : Alquiler;
     std::cout << "Texto: ";
     std::string texto;
     std::getline(std::cin, texto);
@@ -324,6 +329,7 @@ void altaPublicacion()
     std::cin.ignore();
     controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
+
 void consultaPublicaciones()
 {
     Factory *factory = Factory::getInstance();
