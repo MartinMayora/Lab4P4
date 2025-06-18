@@ -586,6 +586,18 @@ void suscribirseNotificaciones()
 
 void consultaNotificaciones()
 {
+    Factory *factory = Factory::getInstance();
+    IConsultaDeNotificaciones *controlador = factory->getConsultaDeNotificaciones();
+    std::string nicknameUsuario;
+    std::cout << "Ingrese su nickname (cliente o propietario): ";
+    std::getline(std::cin, nicknameUsuario);
+
+    std::set<DTNotificacion> notificaciones = controlador->listarNotificaciones(nicknameUsuario);
+    std::set<DTNotificacion>::iterator it;
+    std::cout<< "\nNotificaciones: \n";
+    for(it = notificaciones.begin(); it != notificaciones.end(); ++it){
+        std::cout<< "nickname inmobliaria: " << (*it).getNickname() << " codigo: " << (*it).getCodigo() << " tipo de inmueble: " << (*it).getInmueble() << " tipo de publicacion: " << (*it).getTipo() << " texto: " << (*it).getTexto() << " \n";
+    }
 }
 
 void eliminarSuscripciones()

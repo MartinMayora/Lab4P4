@@ -69,7 +69,6 @@ bool AdministraPropiedad::tieneInmueble(int codigoInmueble)
 void AdministraPropiedad::agregarPublicacion(Publicacion *aAgregar)
 {
     this->publicaciones.insert(aAgregar);
-    std::cout << aAgregar->getCodigo() << "AGREGADO \n";
     ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     manejador->agregarPub(aAgregar);
 }
