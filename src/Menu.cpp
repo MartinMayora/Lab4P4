@@ -667,7 +667,6 @@ void altaAdministracionPropiedad()
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
     std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
-    std::cout << "[DEBUG] Cantidad de inmuebles no administrados recibidos: " << inmuebles.size() << std::endl;
     std::set<DTInmuebleListado>::iterator itInmuebles;
     for (itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles)
     {
