@@ -40,6 +40,9 @@ public:
     //CASO DE USO ALTA ADMINISTRACION PROPIEDAD
     void asociarAdministracionPropiedad(AdministraPropiedad *ap);
     bool esAdministrado(Inmobiliaria *i);
+
+    //CASO DE USO ALTA USUARIO
+    void setPropietario(Propietario* p);
 };
 
 #endif

@@ -30,6 +30,7 @@ void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int s
 {
     int codigo = codInc++;
     Casa *casa = new Casa(codigo, direccion, numeroPuerta, superficie, anioConstruccion, esPH, techo);
+    casa->setPropietario(propietario);
     propietario->agregarInmueble(casa);
     inmuebles[codigo] = casa;
 }
@@ -40,6 +41,7 @@ void ManejadorInmueble::crearApartamento(std::string direccion, int numeroPuerta
 {
     int codigo = codInc++;
     Apartamento *apto = new Apartamento(codigo, direccion, numeroPuerta, superficie, anioConstruccion, piso, tieneAscensor, gastosComunes);
+    apto->setPropietario(propietario);
     // agregamos casa al set de inmuebles para propietario
     propietario->agregarInmueble(apto);
     // agregamos casa al map de inmuebles del manejador
