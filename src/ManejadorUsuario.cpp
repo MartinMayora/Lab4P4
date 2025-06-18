@@ -55,7 +55,7 @@ bool ManejadorUsuario::existeUsuario(std::string nickname){
 
 bool ManejadorUsuario::crearCliente(std::string nickname, std::string contrasena, std::string nombre,
                                     std::string email, std::string apellido, std::string documento){
-    if (existeUsuario(nickname))
+    if (existeUsuario(nickname) || contrasena.length()<6)
         return false;
     else{
         Cliente *c = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
@@ -67,7 +67,7 @@ bool ManejadorUsuario::crearCliente(std::string nickname, std::string contrasena
 
 bool ManejadorUsuario::crearPropietario(std::string nickname, std::string contrasena, std::string nombre,
                                         std::string email, std::string cuentaBancaria, std::string telefono){
-    if (existeUsuario(nickname))
+    if (existeUsuario(nickname) || contrasena.length()<6)
         return false;
     else{
         Propietario *p = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
@@ -79,7 +79,7 @@ bool ManejadorUsuario::crearPropietario(std::string nickname, std::string contra
 
 bool ManejadorUsuario::crearInmobiliaria(std::string nickname, std::string contrasena, std::string nombre,
                                          std::string email, std::string direccion, std::string url, std::string telefono){
-    if (existeUsuario(nickname))
+    if (existeUsuario(nickname) || contrasena.length()<6)
         return false;
     else{
         Inmobiliaria *i = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);

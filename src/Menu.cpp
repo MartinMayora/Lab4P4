@@ -274,7 +274,7 @@ void altaUsuario()
     }
     else
     {
-        std::cout << "Error al crear el usuario" << std::endl;
+        std::cout << "Error al crear el usuario, el usuario ya existe o la contrasena ingresada es menor de 6 caracteres" << std::endl;
     }
 }
 void altaPublicacion()
