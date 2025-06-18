@@ -52,6 +52,8 @@ void AdministraPropiedad::eliminarLinkPublicacion()
     for (std::set<Publicacion *>::iterator it = this->publicaciones.begin(); it != this->publicaciones.end(); ++it)
     {
         Publicacion *pub = *it;
+        ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
+        manejador->eliminarPublicacion(pub);
         delete pub;
     }
     this->publicaciones.clear();
@@ -67,7 +69,6 @@ bool AdministraPropiedad::tieneInmueble(int codigoInmueble)
 void AdministraPropiedad::agregarPublicacion(Publicacion *aAgregar)
 {
     this->publicaciones.insert(aAgregar);
-    std::cout << aAgregar->getCodigo() << "AGREGADO \n";
     ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
     manejador->agregarPub(aAgregar);
 }

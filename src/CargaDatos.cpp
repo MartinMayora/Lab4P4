@@ -90,6 +90,19 @@ CargaDatos::CargaDatos() {
     controladorFecha->setNewFechaActual(19, 5, 2022);
     altaAdministraPropiedad->altaAdministraPropiedad("vivaurbana", 8);
 
+    suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "casasur123");
+    suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "idealhome");
+    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "casasur123");
+    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "idealhome");
+    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "vivaurbana");
+    suscripcionCtrl->suscribirseAInmobiliaria("marcelom", "idealhome");
+    suscripcionCtrl->suscribirseAInmobiliaria("robertarce", "idealhome");
+    suscripcionCtrl->suscribirseAInmobiliaria("soledadf", "vivaurbana");
+    suscripcionCtrl->suscribirseAInmobiliaria("martagal", "vivaurbana");
+    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "casasur123");
+    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "idealhome");
+    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "vivaurbana");
+
     //GENERACION DE PUBLICACIONES
     
      controladorFecha->setNewFechaActual(9, 10, 2011);
@@ -142,20 +155,6 @@ CargaDatos::CargaDatos() {
 
     controladorFecha->setNewFechaActual(1, 8, 2024);
     altaPublicacion->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
-    
-
-    suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "casasur123");
-    suscripcionCtrl->suscribirseAInmobiliaria("luisito23", "idealhome");
-    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "casasur123");
-    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "idealhome");
-    suscripcionCtrl->suscribirseAInmobiliaria("anarojo88", "vivaurbana");
-    suscripcionCtrl->suscribirseAInmobiliaria("marcelom", "idealhome");
-    suscripcionCtrl->suscribirseAInmobiliaria("robertarce", "idealhome");
-    suscripcionCtrl->suscribirseAInmobiliaria("soledadf", "vivaurbana");
-    suscripcionCtrl->suscribirseAInmobiliaria("martagal", "vivaurbana");
-    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "casasur123");
-    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "idealhome");
-    suscripcionCtrl->suscribirseAInmobiliaria("jorge88", "vivaurbana");
 }
 
 CargaDatos* CargaDatos::getInstance() {

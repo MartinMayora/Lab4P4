@@ -1,5 +1,5 @@
 #include "../include/Suscriptor.h"
-
+#include <iostream>
 Suscriptor::Suscriptor(DTFecha ultimaFechaConsulta, std::set<DTNotificacion> notificaciones) {
  this->notificaciones = notificaciones;
 }

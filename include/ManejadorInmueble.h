@@ -51,7 +51,8 @@ public:
     std::set<DTInmuebleListado> darInmuebles();
     void eliminarInmueble(int codigoInmueble);
     Inmueble *getInmueble(int codigoInmueble);
-    
+
+    void eliminarPublicacion(Publicacion* pub);
 
 };
 

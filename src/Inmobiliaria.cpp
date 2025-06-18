@@ -42,6 +42,15 @@ std::set<DTInmuebleAdministrado> Inmobiliaria::getAdministrados(){
     return aReturn;
 }
 
+void Inmobiliaria::agregarNotificacion(std::string nickname,int codigoInmueble,std::string texto,TipoPublicacion tipoPublicacion, TipoInmueble tipoInmueble){
+    DTNotificacion* notif = new DTNotificacion(nickname, codigoInmueble, texto, tipoPublicacion, tipoInmueble);
+    std::set<Suscriptor*> suscriptores = this->suscriptores;
+    std::set<Suscriptor*>::iterator it;
+    for( it = suscriptores.begin(); it != suscriptores.end(); ++it){
+        Suscriptor* sus = * it;
+        sus->agregarNotificacion(*notif);
+    }
+}
 //CASO DE USO ALTA ADMINISTRA PROPIEDAD
 DTUsuario Inmobiliaria::getDTUsuario(){
     return DTUsuario(this->getNickname(), this->getNombre());

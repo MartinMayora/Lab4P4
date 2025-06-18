@@ -74,4 +74,7 @@ bool Inmueble::esAdministrado(Inmobiliaria *i)
     return administra;
 }
 
-
+//CASO DE USO ALTA USUARIO
+void Inmueble::setPropietario(Propietario* p){
+    this->propietario=p;
+}

@@ -3,23 +3,23 @@
 DTNotificacion::DTNotificacion(std::string nickname, int codigo, std::string texto, TipoPublicacion tipo, TipoInmueble inmueble)
     : nickname(nickname), codigo(codigo), texto(texto), tipo(tipo), inmueble(inmueble) {}
 
-std::string DTNotificacion::getNickname(){
+std::string DTNotificacion::getNickname() const{
     return nickname;
 }
 
-int DTNotificacion::getCodigo(){
+int DTNotificacion::getCodigo() const{
     return codigo;
 }
 
-std::string DTNotificacion::getTexto() {
+std::string DTNotificacion::getTexto() const{
     return texto;
 }
 
-TipoPublicacion DTNotificacion::getTipo() {
+TipoPublicacion DTNotificacion::getTipo() const{
     return tipo;
 }
 
-TipoInmueble DTNotificacion::getInmueble()  {
+TipoInmueble DTNotificacion::getInmueble() const{
     return inmueble;
 }
 
