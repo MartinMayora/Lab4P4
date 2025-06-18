@@ -409,7 +409,7 @@ void consultaPublicaciones()
     {
         const DTPublicacion &pub = *it;
         std::cout << "- Código: " << pub.getCodigo()
-                  << ", Fecha: " << pub.getFecha()->toString()
+                  << ", Fecha: " << pub.getFecha().toString()
                   << ", Texto: " << pub.getTexto()
                   << ", Precio: " << pub.getPrecio()
                   << ", Inmobiliaria: " << pub.getInmobiliaria()
