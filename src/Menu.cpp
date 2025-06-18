@@ -605,6 +605,7 @@ void consultaNotificaciones()
     for(it = notificaciones.begin(); it != notificaciones.end(); ++it){
         std::cout<< "nickname inmobliaria: " << (*it).getNickname() << " codigo: " << (*it).getCodigo() << " tipo de inmueble: " << (*it).getInmueble() << " tipo de publicacion: " << (*it).getTipo() << " texto: " << (*it).getTexto() << " \n";
     }
+    controlador->eliminarNotificaciones(nicknameUsuario);
 }
 
 void eliminarSuscripciones()
