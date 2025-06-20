@@ -321,9 +321,21 @@ void altaPublicacion()
         std::cout << "Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Fecha comienzo: " << (*ite).getFechaComienzo() << std::endl;
     }
     int codigoInmueble;
-    std::cout << "Inmueble: ";
-    std::cin >> codigoInmueble;
-    std::cin.ignore();
+    bool encontrado = false;
+    while (!encontrado) {
+        std::cout << "Ingrese el codigo del inmueble a publicar: ";
+        std::cin >> codigoInmueble;
+        std::cin.ignore();
+        for (ite = listaInmAdm.begin(); ite != listaInmAdm.end(); ++ite) {
+            if ((*ite).getCodigo() == codigoInmueble) {
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            std::cout << "Codigo invalido. Por favor intente de nuevo.\n";
+        }
+    }
     int inTipoPublicacion=-1;
     while (inTipoPublicacion != 0 && inTipoPublicacion != 1){
         std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler): ";
@@ -340,10 +352,20 @@ void altaPublicacion()
     std::cout << "Texto: ";
     std::string texto;
     std::getline(std::cin, texto);
-    std::cout << "Precio: ";
-    float precio;
-    std::cin >> precio;
-    std::cin.ignore();
+    float precio = -1;
+    bool precioValido = false;
+    while (!precioValido) {
+        std::cout << "Precio: ";
+        std::cin >> precio;
+        if (std::cin.fail()) {
+            std::cout << "Entrada invalida. Ingrese un numero para el precio.\n";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        } else {
+            precioValido = true;
+            std::cin.ignore();
+        }
+    }
     bool ok =controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
     if (ok)
         std::cout << "Publicacion registrada con exito." << std::endl;
