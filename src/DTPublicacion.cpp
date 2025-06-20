@@ -1,9 +1,9 @@
 #include "../include/DTPublicacion.h"
 
-DTPublicacion::DTPublicacion(int codigo, DTFecha *fecha, std::string texto, float precio, std::string inmobiliaria)
+DTPublicacion::DTPublicacion(int codigo, DTFecha fecha, std::string texto, float precio, std::string inmobiliaria)
 {
     this->codigo = codigo;
-    this->fecha = new DTFecha(fecha);
+    this->fecha = fecha;
     this->texto = texto;
     this->precio = precio;
     this->inmobiliaria = inmobiliaria;
@@ -14,7 +14,7 @@ int DTPublicacion::getCodigo() const
     return codigo;
 }
 
-DTFecha *DTPublicacion::getFecha() const
+DTFecha DTPublicacion::getFecha() const
 {
     return fecha;
 }
@@ -36,7 +36,7 @@ std::string DTPublicacion::getInmobiliaria() const
 
 DTPublicacion::~DTPublicacion()
 {
-    //delete fecha;
+   
 }
 
 bool DTPublicacion::operator<(const DTPublicacion& other) const {

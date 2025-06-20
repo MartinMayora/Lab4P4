@@ -13,10 +13,13 @@
 #include "../include/DTInmuebleListado.h"
 #include "../include/DTPublicacion.h"
 #include "../include/DTUsuario.h"
+#include "../include/ManejadorInmueble.h"
+#include "../include/ManejadorUsuario.h"
+#include "../include/IEliminarInmueble.h"
+#include "../include/Convertir.h"
 #include <string>
 #include <set>
 #include <cstdlib>
-#include "../include/IEliminarInmueble.h"
 
 void mostrarMenu()
 {
@@ -27,11 +30,12 @@ void mostrarMenu()
     std::cout << "4. Eliminar Inmueble" << std::endl;
     std::cout << "5. Suscribirse a Notificaciones" << std::endl;
     std::cout << "6. Consulta de Notificaciones" << std::endl;
-    std::cout << "7. Elimiinar Suscripciones" << std::endl;
+    std::cout << "7. Eliminar Suscripciones" << std::endl;
     std::cout << "8. Alta de Administracion de Propiedad" << std::endl;
     std::cout << "9. Cargar Datos" << std::endl;
     std::cout << "10. Ver fecha actual" << std::endl;
     std::cout << "11. Asignar fecha actual" << std::endl;
+    std::cout << "12. Liberar memoria" << std::endl;
     std::cout << "0. Salir" << std::endl;
     std::cout << "Ingrese el codigo de operacion: ";
 }
@@ -69,7 +73,7 @@ void ejecutarOpcion(int opcion)
         suscribirseNotificaciones();
         break;
     case 6:
-        std::cout << " - CONSLTAR NOTIFICACIONES - " << std::endl;
+        std::cout << " - CONSULTAR NOTIFICACIONES - " << std::endl;
         consultaNotificaciones();
         break;
     case 7:
@@ -95,6 +99,14 @@ void ejecutarOpcion(int opcion)
     case 0:
         std::cout << "Saliendo del programa..." << std::endl;
         exit(0);
+    case 12:
+        Factory::getInstance()->eliminarControladores();
+        ManejadorUsuario::deleteInstance();
+        ManejadorInmueble::deleteInstance();
+        Factory::deleteInstance();
+        std::cout << "Memoria liberada correctamente." << std::endl;
+        exit(0);
+        break;
     default:
         std::cout << "Opcion no valida. Intente de nuevo." << std::endl;
     }
@@ -197,7 +209,7 @@ void altaUsuario()
                         std::getline(std::cin, nicknamePropietario);
                         if (ci->representarPropietario(nicknamePropietario))
                         {
-                            std::cout << "Propietario representado con éxito.\n";
+                            std::cout << "Propietario representado con exito.\n";
                         }
                     }
                 }
@@ -271,12 +283,14 @@ void altaUsuario()
             }
         }
         ci->finalizarAltaUsuario();
+        std::cout << "Usuario dado de alta con exito." << std::endl;
     }
     else
     {
         std::cout << "Error al crear el usuario, el usuario ya existe o la contrasena ingresada es menor de 6 caracteres" << std::endl;
     }
 }
+
 void altaPublicacion()
 {
 
@@ -289,32 +303,40 @@ void altaPublicacion()
     std::set<DTUsuario>::iterator it;
     for (it = Usuarios.begin(); it != Usuarios.end(); ++it)
     {
-        std::cout << "-nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre();
+        std::cout << "Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
     }
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
+    std::cout << std::endl;
     std::set<DTInmuebleAdministrado> listaInmAdm = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    if (listaInmAdm.empty()) {
+        std::cout << "La inmobiliaria no tiene inmuebles administrados.\n";
+        return;
+    }
+    std::cout << "Cantidad de inmuebles administrados: " << listaInmAdm.size() << std::endl;    
     std::set<DTInmuebleAdministrado>::iterator ite;
-    std::cout << listaInmAdm.size();
     for (ite = listaInmAdm.begin(); ite != listaInmAdm.end(); ++ite)
     {
-        std::cout << "- Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Propietario: \n";
+        std::cout << "Codigo:" << (*ite).getCodigo() << ", Direccion: " << (*ite).getDireccion() << ", Fecha comienzo: " << (*ite).getFechaComienzo() << std::endl;
     }
-    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     int codigoInmueble;
     std::cout << "Inmueble: ";
     std::cin >> codigoInmueble;
     std::cin.ignore();
-    int inTipoPublicacion;
-    std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler)";
-    std::cin >> inTipoPublicacion;
-    TipoPublicacion tipoPublicacion = Alquiler;
-    if (inTipoPublicacion == 1)
-    {
-        tipoPublicacion = Venta;
+    int inTipoPublicacion=-1;
+    while (inTipoPublicacion != 0 && inTipoPublicacion != 1){
+        std::cout << "\nTipo de Publicacion: (1: Venta, 0: Alquiler): ";
+        std::cin >> inTipoPublicacion;
+        if (std::cin.fail() || (inTipoPublicacion != 0 && inTipoPublicacion != 1)){
+            std::cout << "Entrada invalida. Intente de nuevo." << std::endl;
+            std::cin.clear();   
+            std::cin.ignore(); 
+            inTipoPublicacion = -1; 
+        }
     }
-    std::cin.ignore();
+    std::cin.ignore(); 
+    TipoPublicacion tipoPublicacion = (inTipoPublicacion == 1) ? Venta : Alquiler;
     std::cout << "Texto: ";
     std::string texto;
     std::getline(std::cin, texto);
@@ -322,8 +344,13 @@ void altaPublicacion()
     float precio;
     std::cin >> precio;
     std::cin.ignore();
-    controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
+    bool ok =controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
+    if (ok)
+        std::cout << "Publicacion registrada con exito." << std::endl;
+    else
+     std::cout << "Error: no se pudo registrar la publicacion." << std::endl;
 }
+
 void consultaPublicaciones()
 {
     Factory *factory = Factory::getInstance();
@@ -402,8 +429,8 @@ void consultaPublicaciones()
     for (std::set<DTPublicacion>::const_iterator it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
         const DTPublicacion &pub = *it;
-        std::cout << "- Código: " << pub.getCodigo()
-                  << ", Fecha: " << pub.getFecha()->toString()
+        std::cout << "- Codigo: " << pub.getCodigo()
+                  << ", Fecha: " << pub.getFecha().toString()
                   << ", Texto: " << pub.getTexto()
                   << ", Precio: " << pub.getPrecio()
                   << ", Inmobiliaria: " << pub.getInmobiliaria()
@@ -429,7 +456,7 @@ void consultaPublicaciones()
         int codigoPublicacion;
         while (!(std::cin >> codigoPublicacion))
         {
-            std::cout << "Entrada invalida. Ingrese un código válido: ";
+            std::cout << "Entrada invalida. Ingrese un código valido: ";
             std::cin.clear();
             std::cin.ignore(1000, '\n');
         }
@@ -438,16 +465,16 @@ void consultaPublicaciones()
 
         if (!inmuebleDetalle)
         {
-            std::cout << "No se encontró el inmueble." << std::endl;
+            std::cout << "No se encontro el inmueble." << std::endl;
             return;
         }
 
         std::cout << "Detalle del inmueble:\n";
-        std::cout << "Código: " << inmuebleDetalle->getCodigo()
-                  << ", Dirección: " << inmuebleDetalle->getDireccion()
+        std::cout << "Codigo: " << inmuebleDetalle->getCodigo()
+                  << ", Direccion: " << inmuebleDetalle->getDireccion()
                   << ", Nro. puerta: " << inmuebleDetalle->getNumeroPuerta()
                   << ", Superficie: " << inmuebleDetalle->getSuperficie() << " m2"
-                  << ", Construcción: " << inmuebleDetalle->getAnioConstruccion();
+                  << ", Construccion: " << inmuebleDetalle->getAnioConstruccion();
 
         DTCasa *casa = dynamic_cast<DTCasa *>(inmuebleDetalle);
         if (casa)
@@ -559,7 +586,7 @@ void suscribirseNotificaciones()
 
         if (inmobiliarias.empty())
         {
-            std::cout << "No hay más inmobiliarias disponibles para suscribirse." << std::endl;
+            std::cout << "No hay mas inmobiliarias disponibles para suscribirse." << std::endl;
             return;
         }
 
@@ -575,15 +602,15 @@ void suscribirseNotificaciones()
 
         if (inmobiliarias.count(nicknameInmobiliaria) == 0)
         {
-            std::cout << "Nickname inválido o ya estás suscripto a esta inmobiliaria." << std::endl;
+            std::cout << "Nickname invalido o ya estas suscripto a esta inmobiliaria." << std::endl;
         }
         else
         {
             controlador->suscribirseAInmobiliaria(nicknameUsuario, nicknameInmobiliaria);
-            std::cout << "Suscripción realizada con éxito." << std::endl;
+            std::cout << "Suscripcion realizada con exito." << std::endl;
         }
 
-        std::cout << "¿Desea seguir suscribiéndose? (1: Sí, 0: No): ";
+        std::cout << "¿Desea seguir suscribiendose? (1: Sí, 0: No): ";
         std::string input;
         std::getline(std::cin, input);
         salir = (input == "1") ? 1 : 0;
@@ -601,9 +628,13 @@ void consultaNotificaciones()
 
     std::set<DTNotificacion> notificaciones = controlador->listarNotificaciones(nicknameUsuario);
     std::set<DTNotificacion>::iterator it;
-    std::cout<< "\nNotificaciones: \n";
-    for(it = notificaciones.begin(); it != notificaciones.end(); ++it){
-        std::cout<< "nickname inmobliaria: " << (*it).getNickname() << " codigo: " << (*it).getCodigo() << " tipo de inmueble: " << (*it).getInmueble() << " tipo de publicacion: " << (*it).getTipo() << " texto: " << (*it).getTexto() << " \n";
+    if (notificaciones.empty()) {
+        std::cout << "No hay mas notificaciones sin consultar.\n";
+    } else {
+        std::cout << "\nNotificaciones:\n";
+        for(it = notificaciones.begin(); it != notificaciones.end(); ++it){
+            std::cout<< "Nickname inmobliaria: " << (*it).getNickname()  << std::endl << "Codigo: " << (*it).getCodigo() << std::endl << "Tipo de inmueble: " << tipoInmuebleATexto((*it).getInmueble()) << std::endl << "Tipo de publicacion: " << tipoPublicacionATexto((*it).getTipo()) << std::endl << "Texto: " << (*it).getTexto() << std::endl << " \n";
+        }
     }
     controlador->eliminarNotificaciones(nicknameUsuario);
 }
@@ -624,31 +655,31 @@ void eliminarSuscripciones()
 
         if (inmobiliarias.empty())
         {
-            std::cout << "No estás suscripto a ninguna inmobiliaria." << std::endl;
+            std::cout << "No estas suscripto a ninguna inmobiliaria." << std::endl;
             return;
         }
 
-        std::cout << "Inmobiliarias a las que estás suscripto:\n";
+        std::cout << "Inmobiliarias a las que estas suscripto:\n";
         for (std::set<std::string>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
         {
             std::cout << "- " << *it << std::endl;
         }
 
-        std::cout << "Ingrese el nickname de la inmobiliaria de la que desea eliminar la suscripción: ";
+        std::cout << "Ingrese el nickname de la inmobiliaria de la que desea eliminar la suscripcion: ";
         std::string nicknameInmobiliaria;
         std::getline(std::cin, nicknameInmobiliaria);
 
         if (inmobiliarias.count(nicknameInmobiliaria) == 0)
         {
-            std::cout << "Nickname inválido o no estás suscripto a esta inmobiliaria." << std::endl;
+            std::cout << "Nickname invalido o no estas suscripto a esta inmobiliaria." << std::endl;
         }
         else
         {
             controlador->eliminarSuscripcion(nicknameUsuario, nicknameInmobiliaria);
-            std::cout << "Suscripción eliminada con éxito." << std::endl;
+            std::cout << "Suscripcion eliminada con exito." << std::endl;
         }
 
-        std::cout << "¿Desea eliminar otra suscripción? (1: Sí, 0: No): ";
+        std::cout << "¿Desea eliminar otra suscripcion? (1: Si, 0: No): ";
         std::string input;
         std::getline(std::cin, input);
         salir = (input == "1") ? 1 : 0;
@@ -671,8 +702,11 @@ void altaAdministracionPropiedad()
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
-    
     std::set<DTInmuebleListado> inmuebles = iap->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    if (inmuebles.empty()) {
+        std::cout << "No hay mas inmuebles sin administrar para esta inmobiliaria.\n";
+        return;
+    }
     std::set<DTInmuebleListado>::iterator itInmuebles;
     for (itInmuebles = inmuebles.begin(); itInmuebles != inmuebles.end(); ++itInmuebles)
     {
@@ -690,6 +724,7 @@ void altaAdministracionPropiedad()
 void cargarDatos()
 {
     CargaDatos::getInstance();
+    std::cout << "Se cargaron los datos\n";
 }
 
 void verFechaActual()

@@ -5,7 +5,7 @@ build/DTCasa.o build/DTFecha.o build/DTInmueble.o build/DTInmuebleAdministrado.o
 build/DTInmuebleListado.o build/DTPublicacion.o build/DTUsuario.o build/Factory.o \
 build/Inmobiliaria.o build/Inmueble.o build/main.o build/ManejadorInmueble.o \
 build/ManejadorUsuario.o build/Menu.o build/Propietario.o build/Usuario.o build/Suscriptor.o \
-build/Publicacion.o build/DTNotificacion.o build/DTDato.o 
+build/Publicacion.o build/DTNotificacion.o build/DTDato.o build/Convertir.o 
 
 
 
@@ -39,6 +39,9 @@ build/ControladorInmueble.o: include/ControladorInmueble.h src/ControladorInmueb
 
 build/ControladorUsuario.o: include/ControladorUsuario.h src/ControladorUsuario.cpp | build
 	$(CXX) $(OPCIONES) -c src/ControladorUsuario.cpp -o build/ControladorUsuario.o
+
+build/Convertir.o: include/Convertir.h src/Convertir.cpp | build
+	$(CXX) $(OPCIONES) -c src/Convertir.cpp -o build/Convertir.o
 
 build/DTApartamento.o: include/DTApartamento.h src/DTApartamento.cpp | build
 	$(CXX) $(OPCIONES) -c src/DTApartamento.cpp -o build/DTApartamento.o

@@ -99,7 +99,7 @@ void Inmobiliaria::agregarSuscriptor(Suscriptor *s)
 //CASO DE USO ELIMINAR SUSCRIPCIONES
 void Inmobiliaria::eliminarSuscriptor(Suscriptor *s){
     suscriptores.erase(s);
-    delete s;
+    
 };
 
 //CASO DE USO ALTA DE USUARIO

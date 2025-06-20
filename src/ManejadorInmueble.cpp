@@ -24,6 +24,26 @@ ManejadorInmueble *ManejadorInmueble::getInstance()
     return instancia;
 }
 
+ManejadorInmueble::~ManejadorInmueble(){
+     for (std::map<int, Inmueble*>::iterator it = inmuebles.begin(); it != inmuebles.end(); ++it) {
+        delete it->second;
+    }
+    inmuebles.clear();
+
+    for (std::set<Publicacion*>::iterator it = publicaciones.begin(); it != publicaciones.end(); ++it) {
+        delete *it;
+    }
+    publicaciones.clear();
+}
+
+void ManejadorInmueble::deleteInstance(){
+    if (instancia != NULL)
+    {
+        delete instancia;
+        instancia = NULL;
+    }
+}
+
 // CASO DE USO ALTA USUARIO
 void ManejadorInmueble::crearCasa(std::string direccion, int numeroPuerta, int superficie,
                                   int anioConstruccion, bool esPH, TipoTecho techo, Propietario *propietario)
