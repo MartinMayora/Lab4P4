@@ -48,6 +48,10 @@ bool ControladorInmueble::altaPublicacion(std::string nicknameInmobiliaria, int 
     return manejador->darInmobiliaria(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
+bool ControladorInmueble::altaPublicacion2(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio, int activo){
+    ManejadorUsuario *manejador = ManejadorUsuario::getInstance();
+    return manejador->darInmobiliaria2(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio, activo);
+}
 
 //CASO DE USO CONSULTA DE PUBLICACIONES
  std::set<DTPublicacion> ControladorInmueble::listarPublicacion(TipoPublicacion tipoPublicacion, float precioMinimo, float precioMaximo, TipoInmueble tipoInmueble){

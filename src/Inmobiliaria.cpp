@@ -49,8 +49,9 @@ void Inmobiliaria::agregarNotificacion(std::string nickname,int codigoInmueble,s
     for( it = suscriptores.begin(); it != suscriptores.end(); ++it){
         Suscriptor* sus = * it;
         sus->agregarNotificacion(*notif);
+        }
     }
-}
+
 //CASO DE USO ALTA ADMINISTRA PROPIEDAD
 DTUsuario Inmobiliaria::getDTUsuario(){
     return DTUsuario(this->getNickname(), this->getNombre());

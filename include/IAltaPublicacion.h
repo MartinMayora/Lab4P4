@@ -12,6 +12,7 @@ class IAltaPublicacion {
         virtual std::set<DTUsuario> listarInmobiliarias() = 0;
         virtual std::set<DTInmuebleAdministrado> listarInmueblesAdministrados(std::string nicknameInmobiliaria) = 0;
         virtual bool altaPublicacion(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio) = 0;
+        virtual bool altaPublicacion2(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio, int activo) = 0;
         virtual ~IAltaPublicacion(){};
 };
 

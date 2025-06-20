@@ -106,6 +106,66 @@ CargaDatos::CargaDatos() {
     //GENERACION DE PUBLICACIONES
     
      controladorFecha->setNewFechaActual(9, 10, 2011);
+    altaPublicacion->altaPublicacion2("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000,1);
+
+    controladorFecha->setNewFechaActual(15, 1, 2016);
+    altaPublicacion->altaPublicacion2("casasur123", 2, Alquiler, "Oportunidad en Av. Brasil: apartamento de 75 m piso 5 con ascensor.", 28000,0);
+
+    controladorFecha->setNewFechaActual(5, 3, 2019);
+    altaPublicacion->altaPublicacion2("casasur123", 2, Alquiler, "Apartamento luminoso en Av. Brasil piso alto con excelentes servicios.", 29500,1);
+
+    controladorFecha->setNewFechaActual(3, 4, 2019);
+    altaPublicacion->altaPublicacion2("idealhome", 5, Alquiler, "Casa ideal para familia en Juan Paullier barrio tranquilo.", 38500,1);
+
+    controladorFecha->setNewFechaActual(12, 12, 2019);
+    altaPublicacion->altaPublicacion2("casasur123", 6, Venta, "Apartamento en Bulevar Artigas piso 3 muy luminoso y moderno.", 375000,1);
+
+    controladorFecha->setNewFechaActual(12, 6, 2020);
+    altaPublicacion->altaPublicacion2("casasur123", 2, Venta, "Excelente apartamento en Av. Brasil con 75 m ideal para reforma.", 390000,1);
+
+    controladorFecha->setNewFechaActual(20, 7, 2020);
+    altaPublicacion->altaPublicacion2("vivaurbana", 6, Alquiler, "Apartamento 68 m en Bulevar Artigas tercer piso sin ascensor.", 23000,1);
+
+    controladorFecha->setNewFechaActual(4, 3, 2022);
+    altaPublicacion->altaPublicacion2("vivaurbana", 4, Alquiler, "Apartamento con ascensor en Colonia 1542 piso 12 excelente conectividad.", 26000,1);
+
+    controladorFecha->setNewFechaActual(12, 9, 2022);
+    altaPublicacion->altaPublicacion2("vivaurbana", 3, Alquiler, "Casa excelente en Camino Maldonado de 95 m con patio al fondo.", 27000,1);
+
+    controladorFecha->setNewFechaActual(1, 10, 2023);
+    altaPublicacion->altaPublicacion2("idealhome", 1, Venta, "Casa en Av. Rivera de 120 m con techo plano ideal para familia.", 520000,1);
+
+    controladorFecha->setNewFechaActual(18, 10, 2023);
+    altaPublicacion->altaPublicacion2("idealhome", 7, Alquiler, "Apartamento amplio en Sarmiento 1476 piso 6 con ascensor.", 32000,0);
+
+    controladorFecha->setNewFechaActual(19, 10, 2023);
+    altaPublicacion->altaPublicacion2("idealhome", 7, Venta, "Apartamento de 80 m en Sarmiento excelente estado y vista.", 455000,0);
+
+    controladorFecha->setNewFechaActual(20, 11, 2023);
+    altaPublicacion->altaPublicacion2("idealhome", 7, Alquiler, "Apartamento con gran vista a la rambla", 31000,0);
+
+    controladorFecha->setNewFechaActual(20, 11, 2023);
+    altaPublicacion->altaPublicacion2("idealhome", 7, Venta, "Aprtamente en excelentes condiciones de 80 m", 450000,1);
+
+    controladorFecha->setNewFechaActual(8, 3, 2024);
+    altaPublicacion->altaPublicacion2("vivaurbana", 3, Venta, "Venta de casa en Camino Maldonado 95 m bien distribuidos.", 430000,1);
+
+    controladorFecha->setNewFechaActual(5, 5, 2024);
+    altaPublicacion->altaPublicacion2("idealhome", 7, Alquiler, "Alquiler en Sarmiento 80 m piso alto con excelentes terminaciones.", 33000,1);
+
+    controladorFecha->setNewFechaActual(1, 8, 2024);
+    altaPublicacion->altaPublicacion2("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000, 1);
+}
+
+CargaDatos* CargaDatos::getInstance() {
+    if (instance == 0) {
+        instance = new CargaDatos();
+    }
+    return instance;
+}
+
+/*    
+     controladorFecha->setNewFechaActual(9, 10, 2011);
     altaPublicacion->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 
     controladorFecha->setNewFechaActual(15, 1, 2016);
@@ -154,12 +214,4 @@ CargaDatos::CargaDatos() {
     altaPublicacion->altaPublicacion("idealhome", 7, Alquiler, "Alquiler en Sarmiento 80 m piso alto con excelentes terminaciones.", 33000);
 
     controladorFecha->setNewFechaActual(1, 8, 2024);
-    altaPublicacion->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
-}
-
-CargaDatos* CargaDatos::getInstance() {
-    if (instance == 0) {
-        instance = new CargaDatos();
-    }
-    return instance;
-}
+    altaPublicacion->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);*/

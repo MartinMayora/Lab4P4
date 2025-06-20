@@ -247,6 +247,59 @@ Inmobiliaria *ManejadorUsuario::findInmobiliaria(std::string nicknameInmobiliari
     }
     return NULL;
 }
+
+bool ManejadorUsuario::darInmobiliaria2(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, std::string texto, float precio, int activo)
+{
+    if (!this->existeInmobiliaria(nicknameInmobiliaria))
+    {
+        return false;
+    }
+
+    std::map<std::string, Inmobiliaria *>::iterator inm;
+    std::set<AdministraPropiedad *> admins;
+    std::set<AdministraPropiedad *>::iterator administraAux;
+    bool encontrado = false;
+    AdministraPropiedad *ap = NULL;
+    for (inm = this->inmobiliarias.begin(); inm != this->inmobiliarias.end() && !encontrado; ++inm)
+    {
+        Inmobiliaria *inmobiliariaAux = inm->second;
+        admins = inmobiliariaAux->getAdmins();
+        for (administraAux = admins.begin(); administraAux != admins.end() && !encontrado; ++administraAux)
+        {
+            ap = *administraAux;
+            if (ap->tieneInmueble(codigoInmueble))
+            {
+                encontrado = true;
+                if (inmobiliariaAux->getNickname() == nicknameInmobiliaria) {
+                inmobiliariaAux->agregarNotificacion(nicknameInmobiliaria, codigoInmueble, texto, tipoPublicacion, ap->getInmueble()->getTipoInmueble());
+                }
+            }
+        }
+    }
+    DTFecha *fechaActual = ControladorFechaActual::getInstance()->getFechaActual();
+    std::set<Publicacion *> publicacion = ap->getPublicaciones();
+    std::set<Publicacion *>::iterator publicacionAux;
+    for (publicacionAux = publicacion.begin(); publicacionAux != publicacion.end(); ++publicacionAux)
+    {
+        Publicacion *pub = *publicacionAux;
+        bool e1 = pub->existeFecha(fechaActual);
+        bool e2 = pub->existeTipoPub(tipoPublicacion);
+        if (e1 && e2)
+        {
+            return false;
+        }
+    }
+    bool pactivo = activo;
+    int ultimaPublicacion = this->ultimaPub + 1;
+    this->ultimaPub += 1;
+    Publicacion *pubAgregar = new Publicacion(ultimaPublicacion, fechaActual, tipoPublicacion, texto, precio, pactivo);
+    pubAgregar->setAdministra(ap);
+    ManejadorInmueble *manejador = ManejadorInmueble::getInstance();
+    manejador->agregarPub(pubAgregar);
+    ap->agregarPublicacion(pubAgregar);
+    return true;
+}
+
 //CONSULTA DE NOTIFICACION
 std::set<DTNotificacion> ManejadorUsuario::obtenerNotificaciones(std::string nickname){
     std::set<DTNotificacion> resultado;

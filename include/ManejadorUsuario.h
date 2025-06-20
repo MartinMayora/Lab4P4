@@ -51,6 +51,8 @@ public:
     bool existeInmobiliaria(std::string nicknameInmobiliaria);
     bool darInmobiliaria(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion,
                          std::string texto, float precio);
+    bool darInmobiliaria2(std::string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion,
+                         std::string texto, float precio, int activa);
     Inmobiliaria *findInmobiliaria(std::string nicknameInmobiliaria);
 
     // Operaciones caso de uso ALTA DE ADMINISTRACION DE PROPIEDAD
