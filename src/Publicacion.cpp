@@ -44,26 +44,19 @@ bool Publicacion::getEstaActiva() const
     return activa;
 }
 
-DTDato Publicacion::getDataPublicacion() const
-{
-    if (admin == NULL)
-    {
+DTDato Publicacion::getDataPublicacion() const{
+    if (admin == NULL){
         std::cerr << "Error: AdministraPropiedad no seteado en Publicacion." << std::endl;
-        return DTDato("", TipoCasa); // Devolvé algo neutral o manejalo según tu diseño
+        return DTDato("", TipoCasa); 
     }
-
     Inmobiliaria *inmo = admin->getInmobiliaria();
     Inmueble *inmueble = admin->getInmueble();
-
-    if (inmo == NULL || inmueble == NULL)
-    {
+    if (inmo == NULL || inmueble == NULL){
         std::cerr << "Error: Inmobiliaria o Inmueble no seteados en AdministraPropiedad." << std::endl;
-        return DTDato("", TipoCasa); // Idem
+        return DTDato("", TipoCasa);
     }
-
     std::string nombre = inmo->getNombre();
     TipoInmueble ti = inmueble->getTipoInmueble();
-
     return DTDato(nombre, ti);
 }
 
@@ -86,21 +79,15 @@ void Publicacion::setAdministra(AdministraPropiedad *a)
     this->admin = a;
 }
 
-int Publicacion::getCodigoInmueble() const
-{
-    if (admin == NULL)
-    {
+int Publicacion::getCodigoInmueble() const{
+    if (admin == NULL){
         std::cerr << "Error: AdministraPropiedad no seteado en Publicacion." << std::endl;
-        return -1; // Valor de error
+        return -1; //valor de error
     }
-
     Inmueble* inmueble = admin->getInmueble();
-
-    if (inmueble == NULL)
-    {
+    if (inmueble == NULL){
         std::cerr << "Error: Inmueble no seteado en AdministraPropiedad." << std::endl;
-        return -1; // Valor de error
+        return -1; //valor de error
     }
-
     return inmueble->getCodigo();
 }

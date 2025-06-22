@@ -38,8 +38,6 @@ public:
     bool existeTipoPub(TipoPublicacion TipoPublicacion);
     void actiualizarActivo(bool nuevoEstado);
 
-    // AdministraPropiedad *getAdministraPropiedad(); //saque el const, posiblemente error sacarlo
-
     DTDato getDataPublicacion() const;
     void setAdministra(AdministraPropiedad *a);
     int getCodigoInmueble() const;
