@@ -644,6 +644,18 @@ void consultaNotificaciones()
 {
     Factory *factory = Factory::getInstance();
     IConsultaDeNotificaciones *controlador = factory->getConsultaDeNotificaciones();
+    std::set<std::string> nicknames = controlador->listarSuscriptos();
+        if (!nicknames.empty()) {
+        std::cout << "Nicknames disponibles para consultar notificaciones:\n";
+        std::set<std::string>::const_iterator it;
+        for (it = nicknames.begin(); it != nicknames.end(); ++it) {
+            std::cout << "- " << *it << "\n";
+        }
+        std::cout << "\n";
+    } else {
+        std::cout << "No hay usuarios suscriptos disponibles.\n";
+        return;
+    }
     std::string nicknameUsuario;
     std::cout << "Ingrese su nickname (cliente o propietario): ";
     std::getline(std::cin, nicknameUsuario);

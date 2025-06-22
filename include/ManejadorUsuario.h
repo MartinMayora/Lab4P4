@@ -63,6 +63,7 @@ public:
     void suscribirseAInmobiliaria(std::string nicknameUsuario, std::string nicknameInmobiliaria);
 
     // Operaciones caso de uso CONSULTA DE NOTIFICACIONES
+    std::set<std::string> listarSuscriptos();
     std::set<DTNotificacion> obtenerNotificaciones(std::string nickname);
     void borrarNotificaciones(std::string nickname);
 

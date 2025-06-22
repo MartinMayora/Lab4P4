@@ -163,7 +163,9 @@ void ControladorUsuario::eliminarNotificaciones(std::string nickname) {
     ManejadorUsuario::getInstance()->borrarNotificaciones(nickname);
 }
 
-
+std::set<std::string> ControladorUsuario::listarSuscriptos(){
+    return ManejadorUsuario::getInstance()->listarSuscriptos();
+}
 //CASO DE USO ELIMINAR SUSCRIPCIONES
 std::set<std::string> ControladorUsuario::listarSuscripciones(std::string nickname)
 {

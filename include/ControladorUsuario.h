@@ -42,6 +42,8 @@ public:
     //CASO DE USO CONSULTA NOTIFICAIONES
     std::set<DTNotificacion> listarNotificaciones(std::string nickname);
     void eliminarNotificaciones(std::string nickname);
+    std::set<std::string> listarSuscriptos();
+
 
     //CASO DE USO SUSCRIBIRSE A NOTIFICACIONES 
     std::set<std::string> listarInmobiliariasNoSuscriptas(std::string nicknameUsuario);

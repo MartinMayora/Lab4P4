@@ -329,11 +329,45 @@ void ManejadorUsuario::borrarNotificaciones(std::string nickname) {
     }
 }
 
+std::set<std::string> ManejadorUsuario::listarSuscriptos(){
+    std::set<std::string> resultado;
+    Suscriptor *suscriptor = NULL;
+    std::map<std::string, Cliente *> clientes = this->clientes;
+    std::map<std::string, Propietario *> propietarios = this->propietarios;
+    std::map<std::string, Cliente *>::iterator ite;
+    std::map<std::string, Propietario *>::iterator it;
+    for (ite = clientes.begin(); ite != clientes.end(); ++ite){
+        Cliente* cliente = ite->second;
+        std::map<std::string, Inmobiliaria *>::iterator it;
+        suscriptor = cliente;
+        for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++){
+            Inmobiliaria *inmo = it->second;
+            if (inmo->estaSuscripto(suscriptor)){
+                resultado.insert(cliente->getNickname());
+                break;
+            }
+        }
+    }
+    for (it = propietarios.begin(); it != propietarios.end(); ++it){
+        Propietario* propietario = it->second;
+        std::map<std::string, Inmobiliaria *>::iterator it;
+        suscriptor = propietario;
+        for (it = inmobiliarias.begin(); it != inmobiliarias.end(); it++){
+            Inmobiliaria *inmo = it->second;
+            if (inmo->estaSuscripto(suscriptor)){
+                resultado.insert(propietario->getNickname());
+                break;
+            }
+        }
+    }
+    return resultado;
+}
 // CASO DE USO ALTA DE ADMINISTRA PROPIEDAD
 std::map<std::string, Inmobiliaria *> &ManejadorUsuario::getInmobiliarias()
 {
     return this->inmobiliarias;
 }
+
 
 // CASO DE USO SUSCRIBIRSE A NOTIFICACIONES
 std::set<std::string> ManejadorUsuario::listarInmobiliariasNoSuscriptas(std::string nicknameUsuario){
