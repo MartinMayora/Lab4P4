@@ -19,7 +19,6 @@ class Factory {
     public:
         static Factory* getInstance();
         IControladorFechaActual* getControladorFechaActual();
-        //Interfaces casos de uso, falta la de consultar suscripciones
         IAltaUsuario* getAltaUsuario();
         IAltaPublicacion* getAltaPublicacion();
         IConsultaDePublicaciones* getConsultaDePublicaciones();
